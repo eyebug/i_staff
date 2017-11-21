@@ -1,0 +1,52 @@
+<div class="hero-unit hero-unit-custom hero-unit-mgdbtm clearfix" id="listFilter">
+    <form class="form-horizontal">
+        <div class="control-group control-group-block">
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('gsm', 'gsmOrderId'); ?>：</span>
+                <div class="controls">
+                    <input id="avtivityUserId" data-paramkey='id' type="number" class="form-control input-medium"
+                           op="filterCase" value=''/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('gsm', 'serviceCategory'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_shoppingid" data-paramkey='shoppingid' class="input-medium select-long" op="filterCase">
+                        <option value=""><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <?php foreach ($shoppingList as $shopping) { ?>
+                            <option value="<?php echo $shopping['id']; ?>"><?php echo $shopping['title_lang1']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('gsm', 'serviceType'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_userid" data-paramkey='userid' class="input-medium select-long" op="filterCase">
+                        <option value=""><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <?php foreach ($userList as $id => $roomNo) { ?>
+                            <option value="<?php echo $id; ?>"><?php echo $roomNo; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('shopping', 'SHOPPINGSTATUS'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_status" data-paramkey='status' class="input-medium select-long" op="filterCase">
+                        <option value=""><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <?php foreach ($statusList as $id => $name) { ?>
+                            <option value="<?php echo $id; ?>"><?php echo $name; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+
+            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button"
+                    data-loading-text="<?php echo Enum_Lang::getPageText('system', 'searching'); ?>">
+                <?php echo Enum_Lang::getPageText('system', 'search'); ?>
+            </button>
+        </div>
+    </form>
+</div>

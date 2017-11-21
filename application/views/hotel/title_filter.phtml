@@ -1,0 +1,22 @@
+<div class="hero-unit hero-unit-custom hero-unit-mgdbtm clearfix" id="listFilter">
+    <form class="form-horizontal">
+        <div class="control-group control-group-block">
+            <div class="pull-left control-item">
+                <span class="control-label">ID：</span>
+                <div class="controls">
+                    <input id="filter_id" data-paramkey='id' type="number" class="form-control input-medium"
+                           op="filterCase" value=''/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('hotel', 'titleKey'); ?>：</span>
+                <div class="controls">
+                    <input id="filter_key" data-paramkey='key' type="text" class="form-control input-medium" op="filterCase"/>
+                </div>
+            </div>
+            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button" data-loading-text="<?php echo Enum_Lang::getPageText('system', 'searching'); ?>">
+                <?php echo Enum_Lang::getPageText('system', 'search'); ?>
+            </button>
+        </div>
+    </form>
+</div>

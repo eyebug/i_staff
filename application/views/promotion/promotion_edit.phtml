@@ -1,0 +1,102 @@
+<div class="modal hide fade yulong" id="editor" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" mf="modalfix" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><?php echo Enum_Lang::getPageText('promotion', 'editTitle'); ?></h4>
+            </div>
+            <div class="modal-body" id="detailBody" mf="modalfix">
+                <form class="form-horizontal" id="listEditor">
+                    <input type="hidden" id="edit_id" value="0">
+                    <?php foreach ($hotelLanguageList as $index => $language) { ?>
+                        <?php $filedName = 'titleLang'; ?>
+                        <?php $filedTitle = Enum_Lang::getPageText('promotion', 'title') . '（' . Enum_Lang::getPageText('language', $language) . '）'; ?>
+                        <?php $filedIndex = $index + 1; ?>
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" for="edit_<?php echo $filedName . $filedIndex; ?>"><?php echo $filedTitle; ?>：</label>
+                            <div class="controls">
+                                <input type="text" id="edit_<?php echo $filedName . $filedIndex; ?>" placeholder="<?php echo $filedTitle; ?>" class="span3" data-title="<?php echo $filedTitle; ?>">
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <div class="control-group" op="editFiled">
+                        <?php $filedName = 'tagid';
+                        $filedTitle = Enum_Lang::getPageText('promotion', 'tagTitle'); ?>
+                        <label class="control-label" for="edit_<?php echo $filedName; ?>"><?php echo $filedTitle; ?>：</label>
+                        <div class="controls">
+                            <select id="edit_<?php echo $filedName; ?>" data-title="<?php echo $filedTitle; ?>">
+                                <?php foreach ($tagList as $tag) { ?>
+                                    <option value="<?php echo $tag['id']; ?>"><?php echo $tag['title_lang1']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <?php $filedName = 'pic';
+                        $filedTitle = Enum_Lang::getPageText('promotion', 'pic'); ?>
+                        <label class="control-label" for="edit_<?php echo $filedName; ?>"><?php echo $filedTitle; ?>：</label>
+                        <div class="controls">
+                            <img src="" id="edit_<?php echo $filedName; ?>_show" style="max-height: 80px;"/>
+                            <input type="file" id="edit_<?php echo $filedName; ?>" placeholder="<?php echo $filedTitle; ?>" class="span4" data-title="活动图片" accept="<?php echo implode(",", $allowTypeImage); ?>">
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <?php $filedName = 'pdf';
+                        $filedTitle = Enum_Lang::getPageText('promotion', 'pdf'); ?>
+                        <label class="control-label" for="edit_<?php echo $filedName; ?>"><?php echo $filedTitle; ?>：</label>
+                        <div class="controls">
+                            <input type="file" id="edit_<?php echo $filedName; ?>" placeholder="<?php echo $filedTitle; ?>" class="span4" data-title="<?php echo $filedTitle; ?>" accept="<?php echo implode(",", $allowTypePdf); ?>">
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <?php $filedName = 'video';
+                        $filedTitle = Enum_Lang::getPageText('promotion', 'video'); ?>
+                        <label class="control-label" for="edit_<?php echo $filedName; ?>"><?php echo $filedTitle; ?>：</label>
+                        <div class="controls">
+                            <div>
+                                <div id="container">
+                                    <a id="selectfiles" href="javascript:void(0);" class='btn'>选择文件</a>
+                                    <a id="postfiles" href="javascript:void(0);" class='btn'>开始上传</a>
+                                </div>
+                                <div id="ossfile"></div>
+                            </div>
+                            <input id="edit_<?php echo $filedName; ?>" type="hidden" data-title="<?php echo $filedTitle; ?>"/>
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <?php $filedName = 'sort';
+                        $filedTitle = Enum_Lang::getPageText('promotion', 'sort'); ?>
+                        <label class="control-label" for="edit_<?php echo $filedName; ?>"><?php echo $filedTitle; ?>：</label>
+                        <div class="controls">
+                            <input type="number" id="edit_<?php echo $filedName; ?>" placeholder="<?php echo $filedTitle; ?>" class="span1" data-title="<?php echo $filedTitle; ?>">
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <?php $filedName = 'url';
+                        $filedTitle = Enum_Lang::getPageText('promotion', 'url'); ?>
+                        <label class="control-label" for="edit_<?php echo $filedName; ?>"><?php echo $filedTitle; ?>：</label>
+                        <div class="controls">
+                            <input type="text" id="edit_<?php echo $filedName; ?>" placeholder="<?php echo $filedTitle; ?>" class="span8" data-title="<?php echo $filedTitle; ?>">
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <label class="control-label" for="edit_status"><?php echo Enum_Lang::getPageText('promotion', 'status'); ?>：</label>
+                        <div class="controls">
+                            <select id="edit_status" data-title="状态">
+                                <option value="0"><?php echo Enum_Lang::getPageText('promotion', 'disable'); ?></option>
+                                <option value="1"><?php echo Enum_Lang::getPageText('promotion', 'enable'); ?></option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="saveListData"
+                        data-loading-text="<?php echo Enum_Lang::getPageText('system', 'saveing'); ?>"><?php echo Enum_Lang::getPageText('system', 'save'); ?></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id='closeEditor'><?php echo Enum_Lang::getPageText('system', 'close'); ?></button>
+            </div>
+        </div>
+    </div>
+</div>

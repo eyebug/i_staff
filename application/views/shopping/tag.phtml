@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <?php include($webConfig['layoutPath'] . '/common/meta.phtml') ?>
+</head>
+<body>
+<?php include($webConfig['layoutPath'] . '/common/header.phtml') ?>
+<div class="container container-main">
+    <div class="row-fluid">
+        <?php include($webConfig['layoutPath'] . '/common/nav.phtml') ?>
+        <div class="span10">
+            <div class="cont-mod">
+                <div class="page-header page-header-custom">
+                    <h1 class="h1-custom">
+                        <?php echo Enum_Lang::getPageText('nav', 'shoppingTag'); ?>
+                        <button id="createData" class="btn btn-info" style="margin-left: 5px;" type="button"
+                                data-toggle="modal" data-target="#editor"><?php echo Enum_Lang::getPageText('system', 'create'); ?>
+                        </button>
+                    </h1>
+                </div>
+                <div class="cont-mod">
+                    <div class="page-header page-header-custom"></div>
+                    <div class="reservation">
+                        <div>
+                            <div class="res-table sys-table-auto">
+                                <table width="100%" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <?php foreach ($hotelLanguageList as $index => $language) { ?>
+                                            <th><?php echo Enum_Lang::getPageText('shopping', 'tagTitle'); ?>（<?php echo Enum_Lang::getPageText('language', $language); ?>）</th>
+                                        <?php } ?>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="dataList"></tbody>
+                                </table>
+                            </div>
+                            <div id="pageDiv" style='padding: 20px;'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php include($webConfig['layoutPath'] . '/shopping/tag_edit.phtml'); ?>
+<script type="text/javascript">
+    var YP_GLOBAL_VARS = {
+        checkParams: '<?php echo json_encode(Enum_Activity::getTagMustInput());?>',
+        listUrl: '/shoppingajax/getTagList',
+        createUrl: '/shoppingajax/createTag',
+        updateUrl: '/shoppingajax/updateTag',
+    };
+</script>
+<?php include($webConfig['layoutPath'] . '/common/list_common.phtml'); ?>
+<?php include($webConfig['layoutPath'] . '/common/record.phtml') ?>
+<script src="<?php echo $webConfig['imgDomain']; ?>js/common/yp_list.js"></script>
+<script src="<?php echo $webConfig['imgDomain']; ?>js/common/yp_form.js"></script>
+<script src="<?php echo $webConfig['imgDomain']; ?>js/lib/art.js"></script>
+<script src="<?php echo $webConfig['imgDomain']; ?>js/shopping/tag.js"></script>
+</body>
+</html>
+<script id="dataList_tpl" type="text/html">
+    {{each list as info i}}
+    <tr dataId="{{info.id}}">
+        <td type="id" data-value="{{info.id}}">{{info.id}}</td>
+        <?php foreach ($hotelLanguageList as $index => $language) { ?>
+            <td type="titleLang<?php echo $index + 1; ?>" data-value="{{info.titleLang<?php echo $index + 1; ?>}}">{{info.titleLang<?php echo $index + 1; ?>}}</td>
+        <?php } ?>
+        <td>
+            <button op="editDataOne" type="button" class="btn btn-info btn-sm" data-dataid="{{info.id}}">修改</button>
+        </td>
+    </tr>
+    {{/each}}
+</script>

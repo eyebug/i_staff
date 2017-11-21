@@ -1,0 +1,38 @@
+<div class="modal hide fade yulong" id="editor" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     mf="modalfix" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><?php echo Enum_Lang::getPageText('comment', 'editTitle'); ?></h4>
+            </div>
+            <div class="modal-body" id="detailBody" mf="modalfix">
+                <form class="form-horizontal" id="listEditor">
+                    <input type="hidden" id="edit_id" value="0">
+                    <div class="control-group" op="editFiled">
+                        <label class="control-label" for="edit_value"><?php echo Enum_Lang::getPageText('comment', 'value'); ?>：</label>
+                        <div class="controls">
+                            <textarea rows="3" id="edit_value" class="span8" readonly></textarea>
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <label class="control-label" for="edit_status"><?php echo Enum_Lang::getPageText('comment', 'status'); ?>：</label>
+                        <div class="controls">
+                            <select id="edit_status" data-title="<?php echo Enum_Lang::getPageText('comment', 'status'); ?>">
+                                <option value="1"><?php echo Enum_Lang::getPageText('comment', 'statusonline'); ?></option>
+                                <option value="2"><?php echo Enum_Lang::getPageText('comment', 'statusreview'); ?></option>
+                                <option value="3"><?php echo Enum_Lang::getPageText('comment', 'statusdelete'); ?></option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="saveListData" data-loading-text="<?php echo Enum_Lang::getPageText('system', 'saveing'); ?>"><?php echo Enum_Lang::getPageText('system', 'save'); ?></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id='closeEditor'><?php echo Enum_Lang::getPageText('system', 'close'); ?></button>
+            </div>
+        </div>
+    </div>
+</div>

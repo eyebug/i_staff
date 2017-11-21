@@ -1,0 +1,47 @@
+<div class="hero-unit hero-unit-custom hero-unit-mgdbtm clearfix" id="listFilter">
+    <form class="form-horizontal">
+        <div class="control-group control-group-block">
+            <div class="pull-left control-item">
+                <span class="control-label">ID：</span>
+                <div class="controls">
+                    <input id="userid" data-paramkey='id' type="number" class="form-control input-medium" op="filterCase" value=''/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('room', 'roomNo'); ?>：</span>
+                <div class="controls">
+                    <input id="filter_room" data-paramkey='room' type="text" class="form-control input-medium" op="filterCase"/>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('room', 'typeTitle'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_typeid" data-paramkey='typeid' class="input-medium select-long" op="filterCase">
+                        <option value="all"><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <?php foreach ($roomTypeList as $roomType) { ?>
+                            <option value="<?php echo $roomType['id']; ?>"><?php echo $roomType['title_lang1']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('room', 'roomFloor'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_floor" data-paramkey='floor' class="input-medium select-long" op="filterCase">
+                        <option value="all"><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <?php foreach ($floorList as $floor) { ?>
+                            <option value="<?php echo $floor['id']; ?>"><?php echo $floor['floor']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button"
+                    data-loading-text="<?php echo Enum_Lang::getPageText('system', 'searching'); ?>">
+                <?php echo Enum_Lang::getPageText('system', 'search'); ?>
+            </button>
+        </div>
+    </form>
+</div>

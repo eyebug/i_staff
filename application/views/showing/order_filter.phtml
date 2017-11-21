@@ -1,0 +1,40 @@
+<div class="hero-unit hero-unit-custom hero-unit-mgdbtm clearfix" id="listFilter">
+    <form class="form-horizontal">
+        <div class="control-group control-group-block">
+            <div class="pull-left control-item">
+                <span class="control-label">ID：</span>
+                <div class="controls">
+                    <input id="avtivityUserId" data-paramkey='id' type="number" class="form-control input-medium"
+                           op="filterCase" value=''/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('showing', 'ordername'); ?>：</span>
+                <div class="controls">
+                    <input id="filter_name" data-paramkey='name' type="text" class="form-control input-medium" op="filterCase"/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('showing', 'orderPhone'); ?>：</span>
+                <div class="controls">
+                    <input id="filter_phone" data-paramkey='phone' type="text" class="form-control input-medium" op="filterCase"/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('showing', 'ORDERSTATUS'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_status" data-paramkey='status' class="input-medium select-long" op="filterCase">
+                        <option value=""><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <option value="1"><?php echo Enum_Lang::getPageText('showing', 'ORDERSTATUSWAIT'); ?></option>
+                        <option value="2"><?php echo Enum_Lang::getPageText('showing', 'ORDERSTATUSPROCESSING'); ?></option>
+                        <option value="3"><?php echo Enum_Lang::getPageText('showing', 'ORDERSTATUSCOMPLATE'); ?></option>
+                    </select>
+                </div>
+            </div>
+            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button"
+                    data-loading-text="<?php echo Enum_Lang::getPageText('system', 'searching'); ?>">
+                <?php echo Enum_Lang::getPageText('system', 'search'); ?>
+            </button>
+        </div>
+    </form>
+</div>

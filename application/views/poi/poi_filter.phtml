@@ -1,0 +1,54 @@
+<div class="hero-unit hero-unit-custom hero-unit-mgdbtm clearfix" id="listFilter">
+    <form class="form-horizontal">
+        <div class="control-group control-group-block">
+            <div class="pull-left control-item">
+                <span class="control-label">ID：</span>
+                <div class="controls">
+                    <input id="userid" data-paramkey='id' type="number" class="form-control input-medium" op="filterCase" value=''/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('poi', 'poiTitle'); ?>：</span>
+                <div class="controls">
+                    <input id="filter_name" data-paramkey='name' type="text" class="form-control input-medium" op="filterCase"/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('poi', 'status'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_status" data-paramkey='status' class="input-medium select-long" op="filterCase">
+                        <option value="all"><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <option value="0"><?php echo Enum_Lang::getPageText('poi', 'disable'); ?></option>
+                        <option value="1"><?php echo Enum_Lang::getPageText('poi', 'enable'); ?></option>
+                    </select>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('poi', 'typeTitle'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_typeid" data-paramkey='typeid' class="input-medium select-long" op="filterCase">
+                        <option value="all"><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <?php foreach ($typeList as $type) { ?>
+                            <option value="<?php echo $type['id']; ?>"><?php echo $type['title_lang1']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('poi', 'tagTitle'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_tagid" data-paramkey='tagid' class="input-medium select-long" op="filterCase">
+                        <option value="all"><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <?php foreach ($tagList as $tag) { ?>
+                            <option value="<?php echo $tag['id']; ?>"><?php echo $tag['title_lang1']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button"
+                    data-loading-text="<?php echo Enum_Lang::getPageText('system', 'searching'); ?>">
+                <?php echo Enum_Lang::getPageText('system', 'search'); ?>
+            </button>
+        </div>
+    </form>
+</div>

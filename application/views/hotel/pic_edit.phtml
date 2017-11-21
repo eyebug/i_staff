@@ -1,0 +1,39 @@
+<div class="modal hide fade yulong" id="editor" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" mf="modalfix" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><?php echo Enum_Lang::getPageText('hotel', 'PICEDITTITLE'); ?></h4>
+            </div>
+            <div class="modal-body" id="detailBody" mf="modalfix">
+                <form class="form-horizontal" id="listEditor">
+                    <input type="hidden" id="edit_id" value="0">
+                    <div class="control-group" op="editFiled">
+                        <?php $filedName = 'sort';
+                        $filedTitle = Enum_Lang::getPageText('hotel', 'PICSORT'); ?>
+                        <label class="control-label" for="edit_<?php echo $filedName; ?>"><?php echo $filedTitle; ?>：</label>
+                        <div class="controls">
+                            <input type="number" id="edit_<?php echo $filedName; ?>" placeholder="<?php echo $filedTitle; ?>" class="span1" data-title="<?php echo $filedTitle; ?>">
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <?php $filedName = 'pic';
+                        $filedTitle = Enum_Lang::getPageText('hotel', 'panormaicPic'); ?>
+                        <label class="control-label" for="edit_<?php echo $filedName; ?>"><?php echo $filedTitle; ?>：</label>
+                        <div class="controls">
+                            <img src="" id="edit_<?php echo $filedName; ?>_show" style="max-height: 80px;"/>
+                            <input type="file" id="edit_<?php echo $filedName; ?>" placeholder="<?php echo $filedTitle; ?>" class="span4" data-title="<?php echo $filedTitle; ?>" accept="<?php echo implode(",", $allowTypeImage); ?>">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="saveListData"
+                        data-loading-text="<?php echo Enum_Lang::getPageText('system', 'saveing'); ?>"><?php echo Enum_Lang::getPageText('system', 'save'); ?></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id='closeEditor'><?php echo Enum_Lang::getPageText('system', 'close'); ?></button>
+            </div>
+        </div>
+    </div>
+</div>

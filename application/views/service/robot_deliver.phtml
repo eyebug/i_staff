@@ -1,0 +1,32 @@
+<div class="modal hide fade yulong" id="deiverEditor" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" mf="modalfix" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><?php echo Enum_Lang::getPageText('shopping', 'robotdeliver'); ?></h4>
+            </div>
+            <div class="modal-body" id="detailBody" mf="modalfix">
+                <form class="form-horizontal" id="robotDeliverEditor">
+                    <div class="control-group" op="editFiled">
+                        <label class="control-label" for="edit_start"><?php echo Enum_Lang::getPageText('shopping', 'robotstart'); ?>：</label>
+                        <div class="controls">
+                            <select id="edit_start">
+                                <?php foreach ($descArray as $index => $dest) { ?>
+                                    <option value="<?php echo $index; ?>" class="span3"><?php echo $dest;?></option>
+                                <?php } ?>
+                            </select>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="saveDeliverData"
+                        data-loading-text="<?php echo Enum_Lang::getPageText('shopping', 'go'); ?>"><?php echo Enum_Lang::getPageText('shopping', 'go'); ?></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id='closeEditor'><?php echo Enum_Lang::getPageText('system', 'close'); ?></button>
+            </div>
+        </div>
+    </div>
+</div>

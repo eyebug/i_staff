@@ -1,0 +1,33 @@
+<div class="navbar navbar-custom">
+    <div class="navbar-inner navbar-inner-custom" id="header">
+        <div class="container container-main">
+            <!-- <span class="icon-plane-top pull-left"></span> -->
+            <h2 class="brand brand-custom"><?php echo Enum_Lang::getPageText('system', 'systemName'); ?></h2>
+            <div class="btn-group pull-right" style="margin-left: 20px;">
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <?php echo $headerInfo['userName']; ?><span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+<!--                    <li><a href="/Login/changePass">--><?php //echo Enum_Lang::getPageText('system', 'changePassword'); ?><!--</a></li>-->
+<!--                    <li class="divider"></li>-->
+                    <li><a href="/Login/logout"><?php echo Enum_Lang::getPageText('system', 'logout'); ?></a></li>
+                </ul>
+            </div>
+            <ul class="nav pull-right">
+                <li class="divider-vertical divider-vertical-custom"></li>
+                <li><p class="navbar-text text-custom"><?php echo Enum_Lang::getPageText('system', 'welcomeMsg'); ?></p></li>
+            </ul>
+<!--            <div class="btn-group pull-right">-->
+<!--                <button id="changeLanguageButton" data-now="--><?php //echo $headerInfo['useLanguage']; ?><!--" class="btn dropdown-toggle" data-toggle="dropdown"-->
+<!--                        data-loading-text="--><?php //echo Enum_Lang::getPageText('system', 'saveing'); ?><!--">-->
+<!--                    --><?php //echo $headerInfo['useLanguageShow']; ?><!--<span class="caret"></span>-->
+<!--                </button>-->
+<!--                <ul class="dropdown-menu" id="languageList">-->
+<!--                    <li op="changeLanguage" data-language="--><?php //echo Enum_Lang::LANG_KEY_CHINESE ?><!--"><a href="javascrip:;">中文</a></li>-->
+<!--                    <li class="divider"></li>-->
+<!--                    <li op="changeLanguage" data-language="--><?php //echo Enum_Lang::LANG_KEY_ENGLISH ?><!--"><a href="javascrip:;">English</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,26 @@
+<div class="modal hide fade yulong" id="linkView" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" mf="modalfix" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><?php echo Enum_Lang::getPageText('system', 'articleLink'); ?></h4>
+            </div>
+            <div class="modal-body" id="detailBody" mf="modalfix">
+                <form class="form-horizontal" id="listEditor">
+                    <?php $filedTitle = Enum_Lang::getPageText('system', 'articleLink'); ?>
+                    <div class="control-group" op="editFiled">
+                        <label class="control-label" for="linkContent"><?php echo $filedTitle; ?>：</label>
+                        <div class="controls">
+                            <input type="text" id="linkContent" class="span8" readonly/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id='closeEditor'><?php echo Enum_Lang::getPageText('system', 'close'); ?></button>
+            </div>
+        </div>
+    </div>
+</div>

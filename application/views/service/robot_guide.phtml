@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <?php include($webConfig['layoutPath'] . '/common/meta.phtml') ?>
+    <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/select2.min.css"/>
+</head>
+<body>
+<?php include($webConfig['layoutPath'] . '/common/header.phtml') ?>
+<div class="container container-main">
+    <div class="row-fluid">
+        <?php include($webConfig['layoutPath'] . '/common/nav.phtml') ?>
+        <div class="span10">
+            <div class="cont-mod">
+                <div class="page-header page-header-custom">
+                    <h1 class="h1-custom">
+                        <?php echo Enum_Lang::getPageText('nav', 'robotGuide'); ?>
+                    </h1>
+                </div>
+
+                <div class="hero-unit hero-unit-custom hero-unit-mgdbtm clearfix" id="listFilter">
+                    <form class="form-horizontal">
+                        <div class="control-group control-group-block">
+
+                            <div class="pull-left control-item">
+                                <span class="control-label"><?php echo Enum_Lang::getPageText('service', 'roomGuide'); ?>：</span>
+                                <div class="controls">
+                                    <select id="filter_shoppingid" data-paramkey='shoppingid' class="input-medium select-long" op="filterCase">
+                                        <option value=""><?php echo Enum_Lang::getPageText('system', 'select'); ?></option>
+                                        <?php
+                                        $shoppingList = array(
+                                            array(
+                                                'id' => 'F1',
+                                                'title_lang1' => '0802',
+                                            ),
+                                            array(
+                                                'id' => 'F2',
+                                                'title_lang1' => '0803',
+                                            ),
+                                            array(
+                                                'id' => 'F3',
+                                                'title_lang1' => '0801',
+                                            ),
+                                            array(
+                                                'id' => 'F4',
+                                                'title_lang1' => '0810',
+                                            ),
+                                        );
+                                        foreach ($shoppingList as $shopping) { ?>
+                                            <option value="<?php echo $shopping['id']; ?>"><?php echo $shopping['title_lang1']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button"
+                                    data-loading-text="<?php echo Enum_Lang::getPageText('service', 'guide'); ?>">
+                                <?php echo Enum_Lang::getPageText('service', 'guide'); ?>
+                            </button>
+                        </div>
+                    </form>
+
+                    <form class="form-horizontal">
+                        <div class="control-group control-group-block">
+
+                            <div class="pull-left control-item">
+                                <span class="control-label"><?php echo Enum_Lang::getPageText('service', 'elevatorGuide'); ?>：</span>
+                                <div class="controls">
+                                    <select id="filter_shoppingid" data-paramkey='shoppingid' class="input-medium select-long" op="filterCase">
+                                        <option value=""><?php echo Enum_Lang::getPageText('system', 'select'); ?></option>
+                                        <?php
+                                        $shoppingList = array(
+                                            array(
+                                                'id' => 'F1',
+                                                'title_lang1' => 'F1',
+                                            ),
+                                            array(
+                                                'id' => 'F2',
+                                                'title_lang1' => 'F2',
+                                            ),
+                                            array(
+                                                'id' => 'F3',
+                                                'title_lang1' => 'F3',
+                                            ),
+                                            array(
+                                                'id' => 'F4',
+                                                'title_lang1' => 'F4',
+                                            ),
+                                        );
+                                        foreach ($shoppingList as $shopping) { ?>
+                                            <option value="<?php echo $shopping['id']; ?>"><?php echo $shopping['title_lang1']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button"
+                                    data-loading-text="<?php echo Enum_Lang::getPageText('service', 'guide'); ?>">
+                                <?php echo Enum_Lang::getPageText('service', 'guide'); ?>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

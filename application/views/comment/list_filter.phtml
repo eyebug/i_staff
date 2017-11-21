@@ -1,0 +1,42 @@
+<div class="hero-unit hero-unit-custom hero-unit-mgdbtm clearfix" id="listFilter">
+    <form class="form-horizontal">
+        <div class="control-group control-group-block">
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('comment', 'datatype'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_datatype" data-paramkey='datatype' class="input-medium select-long" op="filterCase">
+                        <?php foreach ($typeList as $id => $type) { ?>
+                            <option value="<?php echo $id; ?>"><?php echo Enum_Lang::getPageText('comment', 'datatype' . $type); ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('comment', 'dataid'); ?>：</span>
+                <div class="controls">
+                    <input id="filter_dataid" data-paramkey='dataid' type="number" class="form-control input-medium" op="filterCase" value=''/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('comment', 'roomno'); ?>：</span>
+                <div class="controls">
+                    <input id="filter_roomno" data-paramkey='roomno' type="text" class="form-control input-medium" op="filterCase"/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('comment', 'status'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_status" data-paramkey='status' class="input-medium select-long" op="filterCase">
+                        <option value="0"><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <option value="1"><?php echo Enum_Lang::getPageText('comment', 'statusonline'); ?></option>
+                        <option value="2"><?php echo Enum_Lang::getPageText('comment', 'statusreview'); ?></option>
+                        <option value="3"><?php echo Enum_Lang::getPageText('comment', 'statusdelete'); ?></option>
+                    </select>
+                </div>
+            </div>
+            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button" data-loading-text="<?php echo Enum_Lang::getPageText('system', 'searching'); ?>">
+                <?php echo Enum_Lang::getPageText('system', 'search'); ?>
+            </button>
+        </div>
+    </form>
+</div>

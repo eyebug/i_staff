@@ -1,0 +1,38 @@
+<div class="hero-unit hero-unit-custom hero-unit-mgdbtm clearfix" id="listFilter">
+    <form class="form-horizontal">
+        <div class="control-group control-group-block">
+            <div class="pull-left control-item">
+                <span class="control-label">ID：</span>
+                <div class="controls">
+                    <input id="dataid" data-paramkey='id' type="number" class="form-control input-medium"
+                           op="filterCase" value=''/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('app', 'platformType'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_platform" data-paramkey="platform" class="input-medium select-long" op="filterCase">
+                        <option value="all"><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <?php foreach ($platform as $key => $value) { ?>
+                            <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('app', 'pushResult'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_result" data-paramkey="result" class="input-medium select-long" op="filterCase">
+                        <option value="all"><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <option value="0"><?php echo Enum_Lang::getPageText('app', 'resultSuccess'); ?></option>
+                        <option value="1"><?php echo Enum_Lang::getPageText('app', 'resultFail'); ?></option>
+                    </select>
+                </div>
+            </div>
+            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button"
+                    data-loading-text="<?php echo Enum_Lang::getPageText('system', 'searching'); ?>">
+                <?php echo Enum_Lang::getPageText('system', 'search'); ?>
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <?php include($webConfig['layoutPath'] . '/common/meta.phtml') ?>
+</head>
+<body>
+<?php include($webConfig['layoutPath'] . '/common/header.phtml') ?>
+<div class="container container-main">
+    <div class="row-fluid">
+        <?php include($webConfig['layoutPath'] . '/common/nav.phtml') ?>
+        <div class="span10">
+            <div class="cont-mod">
+                <div class="page-header page-header-custom">
+                    <h1 class="h1-custom">
+                        <?php echo Enum_Lang::getPageText('nav', 'hotelInfo'); ?>
+                    </h1>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="listEditor">
+                        <input type="hidden" id="edit_id" value="<?php echo $hotelInfo['id']; ?>">
+                        <div class="control-group">
+                            <label class="control-label" style="width:130px;" for="groupName"><?php echo Enum_Lang::getPageText('hotel', 'groupName'); ?>：</label>
+                            <div class="controls">
+                                <input type="text" id="groupName" class="span3" value="<?php echo $hotelInfo['groupName']; ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_propertyinterfid">propertyinterfId：</label>
+                            <div class="controls">
+                                <input type="text" id="edit_propertyinterfid" placeholder="propertyinterfId" class="span3" data-title="propertyinterfId" value="<?php echo $hotelInfo['propertyinterfid']; ?>" data-old="<?php echo $hotelInfo['propertyinterfid']; ?>">
+                            </div>
+                        </div>
+                        <?php foreach ($hotelLanguageList as $index => $language) { ?>
+                            <?php
+                            $filed = 'name';
+                            $filedKey = 'edit_' . $filed . 'Lang' . ($index + 1);
+                            $filedTitle = Enum_Lang::getPageText('hotel', $filed) . '（' . Enum_Lang::getPageText('language', $language) . '）';
+                            $filedValue = $hotelInfo[$filed . '_lang' . ($index + 1)];
+                            ?>
+                            <div class=" control-group" op="editFiled">
+                                <label class="control-label" style="width:130px;" for="<?php echo $filedKey; ?>"><?php echo $filedTitle; ?>：</label>
+                                <div class="controls">
+                                    <input type="text" id="<?php echo $filedKey; ?>" placeholder="<?php echo $filedTitle; ?>" class="span5" data-title="<?php echo $filedTitle; ?>" value="<?php echo $filedValue; ?>" data-old="<?php echo $filedValue; ?>">
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_lng"><?php echo Enum_Lang::getPageText('hotel', 'lng'); ?>：</label>
+                            <div class="controls">
+                                <input type="number" step="0.00000001" id="edit_lng" placeholder="<?php echo Enum_Lang::getPageText('hotel', 'lng'); ?>" class="span3" data-title="经度" value="<?php echo $hotelInfo['lng']; ?>" data-old="<?php echo $hotelInfo['lng']; ?>">
+                            </div>
+                        </div>
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_lat"><?php echo Enum_Lang::getPageText('hotel', 'lat'); ?>：</label>
+                            <div class="controls">
+                                <input type="number" step="0.00000001" id="edit_lat" placeholder="<?php echo Enum_Lang::getPageText('hotel', 'lat'); ?>" class="span3" data-title="纬度" value="<?php echo $hotelInfo['lat']; ?>" data-old="<?php echo $hotelInfo['lat']; ?>">
+                            </div>
+                        </div>
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_cityid"><?php echo Enum_Lang::getPageText('hotel', 'city'); ?>：</label>
+                            <div class="controls">
+                                <select id="edit_cityid" data-title="城市" data-old="<?php echo $hotelInfo['cityid']; ?>">
+                                    <?php foreach ($cityList as $city) { ?>
+                                        <option value="<?php echo $city['id']; ?>" <?php if ($city['id'] == $hotelInfo['cityid']) {
+                                            echo 'selected';
+                                        } ?>><?php echo $city['name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_tel"><?php echo Enum_Lang::getPageText('hotel', 'tel'); ?>：</label>
+                            <div class="controls">
+                                <input type="text" id="edit_tel" placeholder="<?php echo Enum_Lang::getPageText('hotel', 'tel'); ?>" class="span3" data-title="前台电话" value="<?php echo $hotelInfo['tel']; ?>" data-old="<?php echo $hotelInfo['tel']; ?>">
+                            </div>
+                        </div>
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_website"><?php echo Enum_Lang::getPageText('hotel', 'website'); ?>：</label>
+                            <div class="controls">
+                                <input type="text" id="edit_website" placeholder="<?php echo Enum_Lang::getPageText('hotel', 'website'); ?>" class="span3" data-title="网站URL" value="<?php echo $hotelInfo['website']; ?>" data-old="<?php echo $hotelInfo['website']; ?>">
+                            </div>
+                        </div>
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_logo"><?php echo Enum_Lang::getPageText('hotel', 'hotelLogo'); ?>：</label>
+                            <div class="controls">
+                                <?php if ($hotelInfo['logo']) {
+                                    $logoImg = Enum_Img::getPathByKeyAndType($hotelInfo['logo']);
+                                    ?>
+                                    <a href="<?php echo $logoImg; ?>" target="_blank">
+                                        <img src="<?php echo $logoImg; ?>" id="edit_logo_show" style="max-height: 80px;"/>
+                                    </a>
+                                <?php } ?>
+                                <input type="file" id="edit_logo" data-title="物业LOGO" accept="<?php echo implode(",", $allowTypeImage); ?>">
+                            </div>
+                        </div>
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_indexBackground"><?php echo Enum_Lang::getPageText('hotel', 'indexBackground'); ?>：</label>
+                            <div class="controls">
+                                <?php if ($hotelInfo['index_background']) {
+                                    $index_background = Enum_Img::getPathByKeyAndType($hotelInfo['index_background']);
+                                    ?>
+                                    <a href="<?php echo $index_background; ?>" target="_blank">
+                                        <img src="<?php echo $index_background; ?>" id="edit_indexBackground_show" style="max-height: 80px;"/>
+                                    </a>
+                                <?php } ?>
+                                <input type="file" id="edit_indexBackground" data-title="物业LOGO" accept="<?php echo implode(",", $allowTypeImage); ?>">
+                            </div>
+                        </div>
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_localpic"><?php echo Enum_Lang::getPageText('hotel', 'localpic'); ?>：</label>
+                            <div class="controls">
+                                <?php if ($hotelInfo['localpic']) {
+                                    $index_background = Enum_Img::getPathByKeyAndType($hotelInfo['localpic']);
+                                    ?>
+                                    <a href="<?php echo $index_background; ?>" target="_blank">
+                                        <img src="<?php echo $index_background; ?>" id="edit_localpic_show" style="max-height: 80px;"/>
+                                    </a>
+                                <?php } ?>
+                                <input type="file" id="edit_localpic" data-title="物业位置图" accept="<?php echo implode(",", $allowTypeImage); ?>">
+                            </div>
+                        </div>
+                        <?php foreach ($hotelLanguageList as $index => $language) { ?>
+                            <?php
+                            $filed = 'voice';
+                            $filedKey = 'edit_' . $filed . 'Lang' . ($index + 1);
+                            $filedTitle = Enum_Lang::getPageText('hotel', $filed) . '（' . Enum_Lang::getPageText('language', $language) . '）';
+                            ?>
+                            <div class="control-group" op="editFiled">
+                                <label class="control-label" for="<?php echo $filedKey; ?>"><?php echo $filedTitle; ?>：</label>
+                                <div class="controls">
+                                    <?php if ($hotelInfo['voice_lang' . ($index + 1)]) {
+                                        $voice = Enum_Img::getPathByKeyAndType($hotelInfo['voice_lang' . ($index + 1)]);
+                                        ?>
+                                        <audio src="<?php echo $voice; ?>" id="<?php echo $filedKey; ?>_show" controls="controls"></audio>
+                                        <br/>
+                                    <?php } ?>
+                                    <input type="file" id="<?php echo $filedKey; ?>" data-title="<?php echo $filedTitle; ?>"
+                                           accept="<?php echo implode(",", $allowTypeVoice); ?>">
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <?php foreach ($hotelLanguageList as $index => $language) { ?>
+                            <?php
+                            $filed = 'introduction';
+                            $filedKey = 'edit_' . $filed . 'Lang' . ($index + 1);
+                            $filedTitle = Enum_Lang::getPageText('hotel', $filed) . '（' . Enum_Lang::getPageText('language', $language) . '）';
+                            $filedValue = $hotelInfo[$filed . '_lang' . ($index + 1)];
+                            ?>
+                            <div class=" control-group" op="editFiled">
+                                <label class="control-label" style="width:130px;" for="<?php echo $filedKey; ?>"><?php echo $filedTitle; ?>：</label>
+                                <div class="controls">
+                                    <input type="text" id="<?php echo $filedKey; ?>" placeholder="<?php echo $filedTitle; ?>" class="span5" data-title="<?php echo $filedTitle; ?>" value="<?php echo $filedValue; ?>" data-old="<?php echo $filedValue; ?>">
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <?php foreach ($hotelLanguageList as $index => $language) { ?>
+                            <?php
+                            $filed = 'introduction';
+                            $filedKey = 'edit_' . $filed . 'Lang' . ($index + 1);
+                            $filedTitle = Enum_Lang::getPageText('hotel', $filed) . '（' . Enum_Lang::getPageText('language', $language) . '）';
+                            $filedValue = $hotelInfo[$filed . '_lang' . ($index + 1)];
+                            ?>
+                            <div class=" control-group" op="editFiled">
+                                <label class="control-label" style="width:130px;" for="<?php echo $filedKey; ?>"><?php echo $filedTitle; ?>：</label>
+                                <div class="controls">
+                                    <textarea rows="3" id="<?php echo $filedKey; ?>" class="span8" data-title="<?php echo $filedTitle; ?>" data-old="<?php echo $filedValue; ?>"><?php echo $filedValue; ?></textarea>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_bookurl"><?php echo Enum_Lang::getPageText('hotel', 'bookurl'); ?>：</label>
+                            <div class="controls">
+                                <input type="text" id="edit_bookurl" placeholder="<?php echo Enum_Lang::getPageText('hotel', 'bookurl'); ?>" class="span8" data-title="预定URL" value="<?php echo $hotelInfo['bookurl']; ?>" data-old="<?php echo $hotelInfo['bookurl']; ?>">
+                            </div>
+                        </div>
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_pdf"><?php echo Enum_Lang::getPageText('hotel', 'HOTELPDF'); ?>：</label>
+                            <div class="controls">
+                                <?php if ($hotelInfo['pdf']) {
+                                    $index_pdf = Enum_Img::getPathByKeyAndType($hotelInfo['pdf']);
+                                    ?>
+                                    <a href="<?php echo $index_pdf; ?>" target="_blank">
+                                        查看
+                                    </a>
+                                <?php } ?>
+                                <input type="file" id="edit_pdf" data-title="物业LOGO" accept="<?php echo implode(",", $allowTypePdf); ?>">
+                            </div>
+                        </div>
+
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_flighturl"><?php echo Enum_Lang::getPageText('hotel', 'flighturl'); ?>：</label>
+                            <div class="controls">
+                                <input type="text" id="edit_flighturl" placeholder="<?php echo Enum_Lang::getPageText('hotel', 'flighturl'); ?>" class="span8" data-title="<?php echo Enum_Lang::getPageText('hotel', 'flighturl'); ?>" value="<?php echo $hotelInfo['flighturl']; ?>" data-old="<?php echo $hotelInfo['flighturl']; ?>">
+                            </div>
+                        </div>
+
+                        <div class="control-group" op="editFiled">
+                            <label class="control-label" style="width:130px;" for="edit_surveyurl"><?php echo Enum_Lang::getPageText('hotel', 'surveyurl'); ?>：</label>
+                            <div class="controls">
+                                <input type="text" id="edit_surveyurl" placeholder="<?php echo Enum_Lang::getPageText('hotel', 'surveyurl'); ?>" class="span8" data-title="<?php echo Enum_Lang::getPageText('hotel', 'surveyurl'); ?>" value="<?php echo $hotelInfo['surveyurl']; ?>" data-old="<?php echo $hotelInfo['surveyurl']; ?>">
+                            </div>
+                        </div>
+                    </form>
+
+                    <button type="button" style="margin-left: 130px;" class="btn btn-warning" id="saveListData"
+                            data-loading-text="<?php echo Enum_Lang::getPageText('system', 'saveing'); ?>"><?php echo Enum_Lang::getPageText('system', 'save'); ?></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var YP_GLOBAL_VARS = {
+        checkParams: '<?php echo json_encode(Enum_Hotel::getHotelMustInput());?>',
+        updateBaseUrl: '/hotelajax/updateHotel'
+    };
+</script>
+<?php include($webConfig['layoutPath'] . '/common/list_common.phtml'); ?>
+<?php include($webConfig['layoutPath'] . '/common/record.phtml') ?>
+<script src="<?php echo $webConfig['imgDomain']; ?>js/common/yp_list.js"></script>
+<script src="<?php echo $webConfig['imgDomain']; ?>js/common/yp_form.js"></script>
+<script src="<?php echo $webConfig['imgDomain']; ?>js/lib/art.js"></script>
+<script src="<?php echo $webConfig['imgDomain']; ?>js/hotel/info.js"></script>
+</body>
+</html>

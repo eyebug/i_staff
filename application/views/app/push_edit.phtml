@@ -1,0 +1,69 @@
+<div class="modal hide fade yulong" id="editor" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     mf="modalfix" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><?php echo Enum_Lang::getPageText('app', 'editTitle'); ?></h4>
+            </div>
+            <div class="modal-body" id="detailBody" mf="modalfix">
+                <form class="form-horizontal" id="listEditor">
+                    <input type="hidden" id="edit_id" value="0">
+                    <div class="control-group" op="editFiled">
+                        <label class="control-label" for="edit_platform"><?php echo Enum_Lang::getPageText('app', 'platformType'); ?>：</label>
+                        <div class="controls">
+                            <select id="edit_platform" data-title="平台">
+                                <?php foreach ($platform as $key => $value) { ?>
+                                    <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <label class="control-label" for="edit_cnTitle"><?php echo Enum_Lang::getPageText('app', 'title'); ?>
+                            （<?php echo Enum_Lang::getPageText('language', 'zh'); ?>）：</label>
+                        <div class="controls">
+                            <input type="text" id="edit_cnTitle"
+                                   placeholder="<?php echo Enum_Lang::getPageText('app', 'title'); ?>（<?php echo Enum_Lang::getPageText('language', 'zh'); ?>）"
+                                   class="span8" data-title="标题（中文）">
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <label class="control-label" for="edit_cnValue"><?php echo Enum_Lang::getPageText('app', 'content'); ?>
+                            （<?php echo Enum_Lang::getPageText('language', 'zh'); ?>）：</label>
+                        <div class="controls">
+                            <textarea rows="3" id="edit_cnValue" class="span8" data-title="内容（中文）"></textarea>
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <label class="control-label" for="edit_enTitle"><?php echo Enum_Lang::getPageText('app', 'title'); ?>
+                            （<?php echo Enum_Lang::getPageText('language', 'en'); ?>）：</label>
+                        <div class="controls">
+                            <input type="text" id="edit_enTitle" placeholder="标题（英文）" class="span8" data-title="标题（英文）">
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <label class="control-label" for="edit_enValue"><?php echo Enum_Lang::getPageText('app', 'content'); ?>
+                            （<?php echo Enum_Lang::getPageText('language', 'en'); ?>）：</label>
+                        <div class="controls">
+                            <textarea rows="3" id="edit_enValue" class="span8" data-title="内容（英文）"></textarea>
+                        </div>
+                    </div>
+                    <div class="control-group" op="editFiled">
+                        <label class="control-label" for="edit_url"><?php echo Enum_Lang::getPageText('app', 'redirectUrl'); ?>：</label>
+                        <div class="controls">
+                            <input type="text" id="edit_url" placeholder="<?php echo Enum_Lang::getPageText('app', 'redirectUrl'); ?>" class="span8" data-title="落地URL">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="saveListData"
+                        data-loading-text="<?php echo Enum_Lang::getPageText('system', 'saveing'); ?>"><?php echo Enum_Lang::getPageText('system', 'save'); ?></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id='closeEditor'><?php echo Enum_Lang::getPageText('system', 'close'); ?></button>
+            </div>
+        </div>
+    </div>
+</div>

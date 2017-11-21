@@ -1,0 +1,67 @@
+<div class="span2">
+    <div class="well side-nav">
+        <ul class="nav nav-list" id="navList">
+
+
+            <li class="nav-header">
+                <span class="nav-header-open">
+                    <i class="icon-plus icon-plus-opacity pull-right"></i><?php echo Enum_Lang::getPageText('nav', 'service'); ?>
+                </span>
+                <ul class="nav nav-list nav-li-list hide">
+                    <li>
+                        <a href="/service/robotShopping"><?php echo Enum_Lang::getPageText('nav', 'robotShopping'); ?></a>
+                    </li>
+                    <li>
+                        <a href="/service/robotGuide"><?php echo Enum_Lang::getPageText('nav', 'robotGuide'); ?></a>
+                    </li>
+                    <li>
+                        <a href="/service/gsmOrder"><?php echo Enum_Lang::getPageText('nav', 'gsmOrder'); ?></a>
+                    </li>
+                    <li>
+                        <a href="/service/historyMessage"><?php echo Enum_Lang::getPageText('nav', 'messageList'); ?></a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var log = console.log.bind(console) || alert;
+    $(function () {
+        var pathname = window.location.pathname;
+        var defaultSelected = 0;
+        if (!pathname) {
+            defaultSelected = 1;
+        }
+
+        $('.nav-li-list a').each(function (i, item) {
+            var item = $(item);
+            if (defaultSelected) {
+                if (i == 0) {
+                    item.parent().addClass('active').parent('ul').removeClass('hide');
+                    return;
+                }
+            } else {
+                if (item.attr('href') == pathname) {
+                    item.parent().addClass('active').parent('ul').removeClass('hide').prev().children('i').removeClass('icon-plus').addClass('icon-minus');
+                    return;
+                }
+            }
+        });
+
+        $('.nav-header-open').on('click', function () {
+            var T = $(this);
+            var flag = T.next('.nav-li-list').toggle().css('display');
+            if (flag == 'block') {
+                T.find('i').removeClass('icon-plus').addClass('icon-minus');
+                var item = T.parents('ul').siblings().find('.nav-li-list').hide();
+            } else {
+                T.find('i').removeClass('icon-minus').addClass('icon-plus');
+            }
+            T.parents('ul').siblings().find('i').removeClass('icon-minus').addClass('icon-plus');
+        })
+    });
+</script>

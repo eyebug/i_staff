@@ -1,0 +1,42 @@
+<div class="hero-unit hero-unit-custom hero-unit-mgdbtm clearfix" id="listFilter">
+    <form class="form-horizontal">
+        <div class="control-group control-group-block">
+            <div class="pull-left control-item">
+                <span class="control-label">ID：</span>
+                <div class="controls">
+                    <input id="avtivityUserId" data-paramkey='id' type="number" class="form-control input-medium"
+                           op="filterCase" value=''/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('activity', 'acitvityOrderName'); ?>：</span>
+                <div class="controls">
+                    <input id="filter_name" data-paramkey='title' type="text" class="form-control input-medium" op="filterCase"/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('activity', 'acitvityOrderPhone'); ?>：</span>
+                <div class="controls">
+                    <input id="filter_phone" data-paramkey='phone' type="text" class="form-control input-medium" op="filterCase"/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('activity', 'activity'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_activityid" data-paramkey='activityid' class="input-medium select-long" op="filterCase">
+                        <option value=""><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <?php foreach ($activityList as $activity) { ?>
+                            <option value="<?php echo $activity['id']; ?>"><?php echo $activity['title_lang1']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button" data-loading-text="<?php echo Enum_Lang::getPageText('system', 'searching'); ?>">
+                <?php echo Enum_Lang::getPageText('system', 'search'); ?>
+            </button>
+            <button id="exportBtn" class="mgtop5 mgleft5 pull-left btn btn-primary" type="button" data-loading-text="<?php echo Enum_Lang::getPageText('system', 'exporting'); ?>">
+                <?php echo Enum_Lang::getPageText('system', 'export'); ?>
+            </button>
+        </div>
+    </form>
+</div>
