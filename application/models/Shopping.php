@@ -160,6 +160,8 @@ class ShoppingModel extends \BaseModel {
                 break;
             }
 
+            $params['dest'] = intval($paramList['dest']);
+
             $result = $this->rpcClient->getResultRaw('GS011', $params);
         } while (false);
 
@@ -235,26 +237,5 @@ class ShoppingModel extends \BaseModel {
             $result = $this->rpcClient->getResultRaw('GS008', $params);
         } while (false);
         return (array)$result;
-    }
-
-
-    /**
-     * @param int $hotelid
-     * @return array|null
-     */
-    public static function getRobotDest(int $hotelid){
-        $info = array(
-            1 => array(
-                1 => '仓库1',
-                2 => '仓库2',
-                3 => '前台',
-            ),
-            6 => array(
-                1 => '仓库1',
-                2 => '仓库2',
-                3 => '前台',
-            ),
-        );
-        return $info[intval($hotelid)];
     }
 }

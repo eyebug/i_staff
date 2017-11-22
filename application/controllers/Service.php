@@ -3,12 +3,14 @@
 /**
  * Controller for interactive service
  */
-class ServiceController extends \BaseController {
+class ServiceController extends \BaseController
+{
 
     /**
      * Get shopping order list and control panel
      */
-    public function robotShoppingAction() {
+    public function robotShoppingAction()
+    {
         $shoppingModel = new ShoppingModel();
         $shoppingList = $shoppingModel->getShoppingList(array(
             'hotelid' => $this->getHotelId(),
@@ -16,10 +18,22 @@ class ServiceController extends \BaseController {
             'nopage' => true, //no pagination as we need to list all the shopping in the filter field
         ), 0);
         $filterList = $shoppingModel->getShoppingOrderFilterList(array('hotelid' => $this->getHotelId()), 3500);
+
+        $robotModel = new RobotModel();
+
+        $roomPositionList = $robotModel->getPositionList(
+            array(
+                'hotelid' => $this->getHotelId(),
+                'type' => RobotModel::POSITION_TYPE_ROOM
+            )
+        );
+        $publicPositionList = $robotModel->getPublicPositionList($this->getHotelId());
+
+        $this->_view->assign('roomPositionList', $roomPositionList['data']['list']);
+        $this->_view->assign('publicPositionList', $publicPositionList['data']['list']);
         $this->_view->assign('shoppingList', $shoppingList['data']['list']);
         $this->_view->assign('userList', $filterList['data']['userlist']);
         $this->_view->assign('statusList', $filterList['data']['statuslist']);
-        $this->_view->assign('descArray', $shoppingModel::getRobotDest($this->getHotelId()));
         $this->_view->display('service/order.phtml');
     }
 
@@ -32,6 +46,21 @@ class ServiceController extends \BaseController {
 
     public function robotGuideAction()
     {
+        $robotModel = new RobotModel();
+        $roomPositionList = $robotModel->getPositionList(
+            array(
+                'hotelid' => $this->getHotelId(),
+                'type' => RobotModel::POSITION_TYPE_ROOM
+            )
+        );
+        $floorPositionList = $robotModel->getPositionList(
+            array(
+                'hotelid' => $this->getHotelId(),
+                'type' => RobotModel::POSITION_TYPE_FLOOR
+            )
+        );
+        $this->_view->assign('roomPositionList', $roomPositionList['data']['list']);
+        $this->_view->assign('floorPositionList', $floorPositionList['data']['list']);
         $this->_view->display('service/robot_guide.phtml');
     }
 
@@ -40,9 +69,6 @@ class ServiceController extends \BaseController {
         $this->_view->display('service/history_message.phtml');
     }
 
-    public function robotPositionAction{
-        $robotModel = new
-    }
 
     /**
      * Call the robot to the specified destination
@@ -82,12 +108,14 @@ class ServiceController extends \BaseController {
     {
 
         $itemList = $this->getPost('itemList');
-        $dest = intval($this->getPost('start'));
+        $start = intval($this->getPost('start'));
+        $dest = intval($this->getPost('dest'));
         $hotelId = $this->getHotelId();
 
-        try{
+        try {
             $paramList = array(
-                'start' => $dest,
+                'start' => $start,
+                'dest' => $dest,
                 'hotelid' => $hotelId,
                 'itemlist' => $itemList,
                 'userid' => $this->userInfo['id']
@@ -98,7 +126,7 @@ class ServiceController extends \BaseController {
             if ($result['code'] == 0) {
                 $result['data']['msg'] = Enum_Lang::getPageText('shopping', 'robotontheway');
             }
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             $result = array(
                 'code' => $e->getCode(),
                 'msg' => $e->getMessage(),
@@ -108,8 +136,6 @@ class ServiceController extends \BaseController {
 
         $this->echoJson($result);
     }
-
-
 
 
 }

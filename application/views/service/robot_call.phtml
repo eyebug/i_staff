@@ -1,34 +1,38 @@
-<div class="modal hide fade yulong" id="editor" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" mf="modalfix" data-backdrop="static">
+<div class="modal hide fade yulong" id="editor" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     mf="modalfix" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel"><?php echo Enum_Lang::getPageText('shopping', 'callrobot'); ?></h4>
+                <h4 class="modal-title"
+                    id="myModalLabel"><?php echo Enum_Lang::getPageText('shopping', 'callrobot'); ?></h4>
             </div>
             <div class="modal-body" id="detailBody" mf="modalfix">
                 <form class="form-horizontal" id="robotCallEditor">
                     <input type="hidden" id="edit_id" value="0">
 
-                        <div class="control-group" op="editFiled">
-                            <label class="control-label" for="edit_dest"><?php echo Enum_Lang::getPageText('shopping', 'robotdest'); ?>：</label>
-                            <div class="controls">
-                                <select id="edit_dest">
-                                    <?php foreach ($descArray as $index => $dest) { ?>
-                                        <option value="<?php echo $index; ?>" class="span3"><?php echo $dest;?></option>
-                                    <?php } ?>
-                                </select>
+                    <div class="control-group" op="editFiled">
+                        <label class="control-label"
+                               for="edit_dest"><?php echo Enum_Lang::getPageText('shopping', 'robotDest'); ?>：</label>
+                        <div class="controls">
+                            <select id="edit_dest" class="searchableSelect">
+                                <?php foreach ($publicPositionList as $row) { ?>
+                                    <option value="<?php echo $row['id']; ?>" class="span3"><?php echo htmlentities($row['position']); ?></option>
+                                <?php } ?>
+                            </select>
 
-                            </div>
                         </div>
+                    </div>
 
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning" id="saveListData"
                         data-loading-text="<?php echo Enum_Lang::getPageText('shopping', 'go'); ?>"><?php echo Enum_Lang::getPageText('shopping', 'go'); ?></button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id='closeEditor'><?php echo Enum_Lang::getPageText('system', 'close'); ?></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        id='closeEditor'><?php echo Enum_Lang::getPageText('system', 'close'); ?></button>
             </div>
         </div>
     </div>

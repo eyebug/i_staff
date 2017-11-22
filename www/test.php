@@ -6,6 +6,6 @@
  * Time: 9:27 AM
  */
 
-setcookie('iHotelAid', '5613819b058e382bea4c21d623dce91a', 0, '/');
-setcookie('iHotelSid', '71aa92d2-1231db61-f5df2fbb-c80c604b', 0, '/');
+setcookie('iHotelAid', 'fd556a44d679c5cca6c0505807aa6e72', 0, '/');
+setcookie('iHotelSid', '1449d3e7-7812d0ba-e5ed0595-65b1faea', 0, '/');
 phpinfo();

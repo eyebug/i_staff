@@ -111,11 +111,12 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
         });
     }
 
+    //Adjust modal form size
     function initCss() {
         var modalBody = $(".yulong .modal-body[mf=modalfix]");
-        modalBody.height('auto');
+        modalBody.height('550px');
         $(window).resize(function () {
-            modalBody.height('auto');
+            modalBody.height('550px');
         })
 
     }

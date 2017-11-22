@@ -3,6 +3,8 @@
 <head>
     <?php include($webConfig['layoutPath'] . '/common/meta.phtml') ?>
     <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/select2.min.css"/>
+    <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/jquery.searchableSelect.css"/>
+
 </head>
 <body>
 <?php include($webConfig['layoutPath'] . '/common/header.phtml') ?>
@@ -24,29 +26,9 @@
                             <div class="pull-left control-item">
                                 <span class="control-label"><?php echo Enum_Lang::getPageText('service', 'roomGuide'); ?>：</span>
                                 <div class="controls">
-                                    <select id="filter_shoppingid" data-paramkey='shoppingid' class="input-medium select-long" op="filterCase">
-                                        <option value=""><?php echo Enum_Lang::getPageText('system', 'select'); ?></option>
-                                        <?php
-                                        $shoppingList = array(
-                                            array(
-                                                'id' => 'F1',
-                                                'title_lang1' => '0802',
-                                            ),
-                                            array(
-                                                'id' => 'F2',
-                                                'title_lang1' => '0803',
-                                            ),
-                                            array(
-                                                'id' => 'F3',
-                                                'title_lang1' => '0801',
-                                            ),
-                                            array(
-                                                'id' => 'F4',
-                                                'title_lang1' => '0810',
-                                            ),
-                                        );
-                                        foreach ($shoppingList as $shopping) { ?>
-                                            <option value="<?php echo $shopping['id']; ?>"><?php echo $shopping['title_lang1']; ?></option>
+                                    <select id="edit_dest" class="searchableSelect">
+                                        <?php foreach ($roomPositionList as $row) { ?>
+                                            <option value="<?php echo $row['id']; ?>" class="span3"><?php echo htmlentities($row['position']); ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -64,29 +46,9 @@
                             <div class="pull-left control-item">
                                 <span class="control-label"><?php echo Enum_Lang::getPageText('service', 'elevatorGuide'); ?>：</span>
                                 <div class="controls">
-                                    <select id="filter_shoppingid" data-paramkey='shoppingid' class="input-medium select-long" op="filterCase">
-                                        <option value=""><?php echo Enum_Lang::getPageText('system', 'select'); ?></option>
-                                        <?php
-                                        $shoppingList = array(
-                                            array(
-                                                'id' => 'F1',
-                                                'title_lang1' => 'F1',
-                                            ),
-                                            array(
-                                                'id' => 'F2',
-                                                'title_lang1' => 'F2',
-                                            ),
-                                            array(
-                                                'id' => 'F3',
-                                                'title_lang1' => 'F3',
-                                            ),
-                                            array(
-                                                'id' => 'F4',
-                                                'title_lang1' => 'F4',
-                                            ),
-                                        );
-                                        foreach ($shoppingList as $shopping) { ?>
-                                            <option value="<?php echo $shopping['id']; ?>"><?php echo $shopping['title_lang1']; ?></option>
+                                    <select id="edit_dest" class="searchableSelect">
+                                        <?php foreach ($floorPositionList as $row) { ?>
+                                            <option value="<?php echo $row['id']; ?>" class="span3"><?php echo htmlentities($row['position']); ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -104,5 +66,11 @@
     </div>
 </div>
 
+<script src="<?php echo $webConfig['imgDomain']; ?>js/lib/select2/jquery.searchableSelect.js"></script>
+<script>
+    $(function() {
+        $('.searchableSelect').searchableSelect();
+    });
+</script>
 </body>
 </html>
