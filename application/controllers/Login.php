@@ -15,7 +15,7 @@ class LoginController extends \BaseController {
         $hotelModel = new HotelModel();
         $hotelList = $hotelModel->getHotelList(array(
             'status' => 1,
-            'groupid' => array(1,3),
+            'limit' => 100,
         ));
         $this->_view->assign('hotelList', $hotelList['data']['list']);
         $this->_view->display('login/index.phtml');
