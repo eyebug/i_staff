@@ -1016,7 +1016,7 @@ class Rpc_UrlConfigHotel {
                 ),
                 'identity' => array(
                     'required' => false,
-                    'format' => 'int',
+                    'format' => 'string',
                     'style' => 'interface'
                 ),
             )

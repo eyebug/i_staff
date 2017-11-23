@@ -84,7 +84,7 @@ class LoginModel extends \BaseModel {
     }
 
     public function doStaffLogin($paramList) {
-        $params['platform'] = self::STAFF_WEB_IDENTIFY;
+        $params['identity'] = self::STAFF_WEB_IDENTIFY;
         $paramList['hotelid'] ? $params['hotelid'] = intval($paramList['hotelid']): false;
         $paramList['groupid'] ? $params['groupid'] = intval($paramList['groupid']): false;
         $paramList['username'] ? $params['lname'] = trim($paramList['username']): false;
