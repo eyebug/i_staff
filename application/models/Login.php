@@ -89,7 +89,7 @@ class LoginModel extends \BaseModel {
         $paramList['groupid'] ? $params['groupid'] = intval($paramList['groupid']): false;
         $paramList['username'] ? $params['lname'] = trim($paramList['username']): false;
         $paramList['password'] ? $params['pwd'] = $paramList['password']: false;
-        $params['isAd'] = intval($paramList['isAd']);
+        $params['ad'] = intval($paramList['isad']);
         $result = $this->rpcClient->getResultRaw('GH022', $params);
         $errorResult = array(
             'code' => 1,

@@ -999,7 +999,7 @@ class Rpc_UrlConfigHotel {
                     'format' => 'string',
                     'style' => 'interface'
                 ),
-                'isAd' => array(
+                'ad' => array(
                     'required' => true,
                     'format' => 'int',
                     'style' => 'interface'

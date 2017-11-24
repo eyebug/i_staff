@@ -13,7 +13,7 @@ class LoginajaxController extends \BaseController {
         $paramList['username'] = $request->getPost('username');
         $paramList['password'] = $request->getPost('password');
         $paramList['hotelid'] = intval($request->getPost('hotelid'));
-        $paramList['isad'] = intval($request->getPost('isAd'));
+        $paramList['isad'] = boolval($request->getPost('isAd'));
         $paramList['groupid'] = intval($request->getPost('groupid', 1));
 
 
