@@ -11,7 +11,8 @@
             <div class="pull-left control-item">
                 <span class="control-label"><?php echo Enum_Lang::getPageText('shopping', 'SHOPPING'); ?>：</span>
                 <div class="controls">
-                    <select id="filter_shoppingid" data-paramkey='shoppingid' class="input-medium select-long" op="filterCase">
+                    <select id="filter_shoppingid" data-paramkey='shoppingid' class="input-medium select-long"
+                            op="filterCase">
                         <option value=""><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
                         <?php foreach ($shoppingList as $shopping) { ?>
                             <option value="<?php echo $shopping['id']; ?>"><?php echo $shopping['title_lang1']; ?></option>
@@ -35,7 +36,7 @@
                 <span class="control-label"><?php echo Enum_Lang::getPageText('shopping', 'SHOPPINGSTATUS'); ?>：</span>
                 <div class="controls">
                     <select id="filter_status" data-paramkey='status' class="input-medium select-long" op="filterCase">
-                        <option value=""><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <option value=""><?php echo Enum_Lang::getPageText('shopping', 'unfinished'); ?></option>
                         <?php foreach ($statusList as $id => $name) { ?>
                             <option value="<?php echo $id; ?>"><?php echo $name; ?></option>
                         <?php } ?>
@@ -47,6 +48,9 @@
                     data-loading-text="<?php echo Enum_Lang::getPageText('system', 'searching'); ?>">
                 <?php echo Enum_Lang::getPageText('system', 'search'); ?>
             </button>
+
+            <button class="btn-primary btn mgtop5 pull-left" id="deliverRobot"
+                    style="margin-left: 10px;"><?php echo Enum_Lang::getPageText('shopping', 'robotdeliver'); ?></button>
         </div>
     </form>
 </div>

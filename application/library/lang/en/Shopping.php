@@ -17,4 +17,7 @@ class Lang_En_Shopping {
     const ROBOT_ARRIVED = 'Arrive at guest room';
     const ROBOT_GUEST_NOT_FETCH = 'Guest didn\'t fetch the product';
     const ROBOT_CANCELLED = 'Delivering cancelled';
+
+
+    const UNFINISHED = 'Unfinished';
 }

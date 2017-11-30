@@ -437,6 +437,11 @@ class Rpc_UrlConfigShopping {
                     'format' => 'int',
                     'style' => 'interface'
                 ),
+                'type' => array(
+                    'required' => false,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
             )
         ),
 

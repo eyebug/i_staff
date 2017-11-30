@@ -3,7 +3,8 @@
 <head>
     <?php include($webConfig['layoutPath'] . '/common/meta.phtml') ?>
     <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/select2.min.css"/>
-    <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/jquery.searchableSelect.css"/>
+    <link type="text/css" rel="stylesheet"
+          href="<?php echo $webConfig['imgDomain']; ?>css/jquery.searchableSelect.css"/>
 
 </head>
 <body>
@@ -24,18 +25,20 @@
                         <div class="control-group control-group-block">
 
                             <div class="pull-left control-item">
-                                <span class="control-label"><?php echo Enum_Lang::getPageText('service', 'roomGuide'); ?>：</span>
+                                <span class="control-label"><?php echo Enum_Lang::getPageText('service', 'roomGuide'); ?>
+                                    ：</span>
                                 <div class="controls">
-                                    <select id="edit_dest" class="searchableSelect">
+                                    <select id="room_dest" class="searchableSelect">
                                         <?php foreach ($roomPositionList as $row) { ?>
-                                            <option value="<?php echo $row['id']; ?>" class="span3"><?php echo htmlentities($row['position']); ?></option>
+                                            <option value="<?php echo $row['id']; ?>"
+                                                    class="span3"><?php echo htmlentities($row['position']); ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
                             </div>
-                            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button"
+                            <button id="roomGuideBtn" class="mgtop5 pull-left btn btn-primary" type="button"
                                     data-loading-text="<?php echo Enum_Lang::getPageText('service', 'guide'); ?>">
-                                <?php echo Enum_Lang::getPageText('service', 'guide'); ?>
+                                <?php echo Enum_Lang::getPageText('service', 'roomGuide'); ?>
                             </button>
                         </div>
                     </form>
@@ -44,21 +47,46 @@
                         <div class="control-group control-group-block">
 
                             <div class="pull-left control-item">
-                                <span class="control-label"><?php echo Enum_Lang::getPageText('service', 'elevatorGuide'); ?>：</span>
+                                <span class="control-label"><?php echo Enum_Lang::getPageText('service', 'elevatorGuide'); ?>
+                                    ：</span>
                                 <div class="controls">
-                                    <select id="edit_dest" class="searchableSelect">
+                                    <select id="floor_dest" class="searchableSelect">
                                         <?php foreach ($floorPositionList as $row) { ?>
-                                            <option value="<?php echo $row['id']; ?>" class="span3"><?php echo htmlentities($row['position']); ?></option>
+                                            <option value="<?php echo $row['id']; ?>"
+                                                    class="span3"><?php echo htmlentities($row['position']); ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
                             </div>
-                            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button"
+                            <button id="floorGuideBtn" class="mgtop5 pull-left btn btn-primary" type="button"
                                     data-loading-text="<?php echo Enum_Lang::getPageText('service', 'guide'); ?>">
-                                <?php echo Enum_Lang::getPageText('service', 'guide'); ?>
+                                <?php echo Enum_Lang::getPageText('service', 'elevatorGuide'); ?>
                             </button>
                         </div>
                     </form>
+
+                    <form class="form-horizontal">
+                        <div class="control-group control-group-block">
+
+                            <div class="pull-left control-item">
+                                <span class="control-label"><?php echo Enum_Lang::getPageText('shopping', 'callRobot'); ?>
+                                    ：</span>
+                                <div class="controls">
+                                    <select id="public_dest" class="searchableSelect">
+                                        <?php foreach ($publicPositionList as $row) { ?>
+                                            <option value="<?php echo $row['id']; ?>"
+                                                    class="span3"><?php echo htmlentities($row['position']); ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="callRobot" class="mgtop5 pull-left btn btn-primary" type="button"
+                                    data-loading-text="<?php echo Enum_Lang::getPageText('shopping', 'comming'); ?>">
+                                <?php echo Enum_Lang::getPageText('shopping', 'callRobot'); ?>
+                            </button>
+                        </div>
+                    </form>
+
                 </div>
 
             </div>
@@ -66,11 +94,16 @@
     </div>
 </div>
 
-<script src="<?php echo $webConfig['imgDomain']; ?>js/lib/select2/jquery.searchableSelect.js"></script>
+
 <script>
-    $(function() {
+    var YP_GLOBAL_VARS = {
+        callRobot: '/service/callRobot',
+    };
+    $(function () {
         $('.searchableSelect').searchableSelect();
     });
 </script>
+<script src="<?php echo $webConfig['imgDomain']; ?>js/lib/select2/jquery.searchableSelect.js"></script>
+<script src="<?php echo $webConfig['imgDomain']; ?>js/service/robot-guide.js"></script>
 </body>
 </html>

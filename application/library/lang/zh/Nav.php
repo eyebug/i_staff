@@ -71,10 +71,11 @@ class Lang_Zh_Nav {
     const COMMENTLIST = '评论列表';
 
 
-    const SERVICE = '互动服务';
-    const ROBOTSHOPPING = '机器人购物';
-    const GSMORDER = 'GSM服务';
+    const SERVICE = '员工服务';
+    const ROBOTCONTROL = '机器人控制';
+    const ROBOTSHOPPING = '机器人送物';
+    const GSMORDER = '工单处理';
     const ROBOTGUIDE = '机器人引领';
-    const MESSAGELIST = 'GSM历史消息';
+    const MESSAGELIST = '工单历史消息';
 
 }

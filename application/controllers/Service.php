@@ -27,10 +27,8 @@ class ServiceController extends \BaseController
                 'type' => RobotModel::POSITION_TYPE_ROOM
             )
         );
-        $publicPositionList = $robotModel->getPublicPositionList($this->getHotelId());
 
         $this->_view->assign('roomPositionList', $roomPositionList['data']['list']);
-        $this->_view->assign('publicPositionList', $publicPositionList['data']['list']);
         $this->_view->assign('shoppingList', $shoppingList['data']['list']);
         $this->_view->assign('userList', $filterList['data']['userlist']);
         $this->_view->assign('statusList', $filterList['data']['statuslist']);
@@ -59,6 +57,8 @@ class ServiceController extends \BaseController
                 'type' => RobotModel::POSITION_TYPE_FLOOR
             )
         );
+        $publicPositionList = $robotModel->getPublicPositionList($this->getHotelId());
+        $this->_view->assign('publicPositionList', $publicPositionList['data']['list']);
         $this->_view->assign('roomPositionList', $roomPositionList['data']['list']);
         $this->_view->assign('floorPositionList', $floorPositionList['data']['list']);
         $this->_view->display('service/robot_guide.phtml');
@@ -77,11 +77,13 @@ class ServiceController extends \BaseController
     {
 
         $dest = intval($this->getPost('dest'));
+        $type = $this->getPost('type');
         $hotelId = $this->getHotelId();
 
         try {
             $paramList = array(
                 'dest' => $dest,
+                'type' => $type,
                 'hotelid' => $hotelId,
                 'userid' => $this->userInfo['id']
             );

@@ -7,8 +7,8 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
     function getDeliverList() {
         var result = [];
         var itemArray = $('input.robotShopping');
-        for(var i=0;i<itemArray.length;i++){
-            if(itemArray[i].checked){
+        for (var i = 0; i < itemArray.length; i++) {
+            if (itemArray[i].checked) {
                 result.push(itemArray[i].value);
             }
         }
@@ -65,7 +65,8 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
             }
         });
         // call the robot
-        $("#callRobot").on('click', function () {
+        $("#callRobot").on('click', function (e) {
+            e.preventDefault();
             robotForm.writeEditor({
                 editorDom: $("#robotCallEditor")
             });
@@ -91,6 +92,8 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
                 });
                 saveParams = robotDeliverForm.makeRecord(saveParams, saveParams.id, saveParams.titleLang1);
                 saveParams.itemList = getDeliverList();
+                saveParams.start = getSelect('start');
+                saveParams.dest = getSelect('dest');
                 return saveParams;
             },
             saveSuccess: function (data) {
@@ -102,7 +105,8 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
             }
         });
         // call the robot
-        $("#deliverRobot").on('click', function () {
+        $("#deliverRobot").on('click', function (e) {
+            e.preventDefault();
             robotDeliverForm.writeEditor({
                 editorDom: $("#robotDeliverEditor")
             });
@@ -114,11 +118,27 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
     //Adjust modal form size
     function initCss() {
         var modalBody = $(".yulong .modal-body[mf=modalfix]");
-        modalBody.height('550px');
+        modalBody.height('300px');
         $(window).resize(function () {
-            modalBody.height('550px');
+            modalBody.height('300px');
         })
 
+    }
+
+    //fix select list when open it again
+    function getSelect(type) {
+        var selector = "#edit_" + type + " > option";
+        var optionArray = $(selector);
+        var valueText = optionArray.parent().siblings().children(".searchable-select-holder").html();
+        var value = 0;
+        optionArray.each(
+            function () {
+                if ($(this).html() == valueText) {
+                    value = $(this).val();
+                }
+            }
+        );
+        return value;
     }
 
     function init() {

@@ -16,6 +16,8 @@ class Lang_Zh_Shopping {
     const PRICE = '价格';
     const ROBOTSTATUS = '机器人送货状态';
 
+    const UNFINISHED = '未完成';
+
     const ROOM = '房间号';
     const SHOPPING = '物品';
     const SHOPPINGCOUNT = '购买数量';

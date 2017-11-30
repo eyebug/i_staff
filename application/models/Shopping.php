@@ -5,6 +5,8 @@
  */
 class ShoppingModel extends \BaseModel {
 
+    const SHOPPING_ORDER_FINISH = "已完成";
+
     /**
      * 获取tag列表
      */
@@ -113,7 +115,7 @@ class ShoppingModel extends \BaseModel {
             if ($params['userid'] <= 0) {
                 break;
             }
-
+            $params['type'] = $paramList['type'];
             $result = $this->rpcClient->getResultRaw('GS010', $params);
         } while (false);
         return (array)$result;

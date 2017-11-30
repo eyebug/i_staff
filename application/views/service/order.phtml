@@ -40,9 +40,6 @@
                                     <tbody id="dataList"></tbody>
                                 </table>
                             </div>
-                            <button class="btn-primary btn mgtop5 pull-left" id="callRobot"><?php echo Enum_Lang::getPageText('shopping', 'callrobot'); ?></button>
-                            <button class="btn-primary btn mgtop5 pull-left" id="deliverRobot" style="margin-left: 10px;"><?php echo Enum_Lang::getPageText('shopping', 'robotdeliver'); ?></button>
-
                             <div id="pageDiv" style='padding: 20px;'></div>
                         </div>
                     </div>
@@ -51,7 +48,6 @@
         </div>
     </div>
 </div>
-<?php include($webConfig['layoutPath'] . '/service/robot_call.phtml'); ?>
 <?php include($webConfig['layoutPath'] . '/service/robot_deliver.phtml'); ?>
 <script type="text/javascript">
     var YP_GLOBAL_VARS = {

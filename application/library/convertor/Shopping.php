@@ -79,7 +79,7 @@ class Convertor_Shopping extends Convertor_Base {
     /**
      * 体验购物订单列表
      */
-    public function orderListConvertor($list) {
+    public function orderListConvertor($list, $excludeFinished = false) {
         $data = array(
             'code' => intval($list['code']),
             'msg' => $list['msg']
@@ -89,6 +89,9 @@ class Convertor_Shopping extends Convertor_Base {
             $tmp = array();
             foreach ($result['list'] as $key => $value) {
                 $dataTemp = array();
+                if ($excludeFinished && $value['statusName'] == ShoppingModel::SHOPPING_ORDER_FINISH) {
+                    continue;
+                }
                 $dataTemp['id'] = $value['id'];
                 $dataTemp['userid'] = $value['userid'];
                 $dataTemp['userRoom'] = $value['userInfo']['room'];
