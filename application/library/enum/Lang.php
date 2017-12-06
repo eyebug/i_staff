@@ -23,12 +23,25 @@ class Enum_Lang {
     }
 
     /**
-     * 获取当前使用的语言
+     * Get current language
+     *
+     * @param bool $isNumber
+     * @return int|string
      */
-    public static function getSystemLang() {
+    public static function getSystemLang($isNumber = false)
+    {
         $language = self::LANG_KEY_CHINESE;
         $cookieLanguage = Util_Http::getCookie('systemLang');
         $cookieLanguage && $language = $cookieLanguage;
+
+        if ($isNumber) {
+            if ($language == self::LANG_KEY_CHINESE) {
+                return 1;
+            }
+            if ($language == self::LANG_KEY_ENGLISH) {
+                return 2;
+            }
+        }
         return $language;
     }
 

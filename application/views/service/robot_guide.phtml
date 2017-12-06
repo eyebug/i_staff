@@ -69,20 +69,20 @@
                         <div class="control-group control-group-block">
 
                             <div class="pull-left control-item">
-                                <span class="control-label"><?php echo Enum_Lang::getPageText('shopping', 'callRobot'); ?>
+                                <span class="control-label"><?php echo Enum_Lang::getPageText('service', 'positionGuide'); ?>
                                     ：</span>
                                 <div class="controls">
-                                    <select id="public_dest" class="searchableSelect">
-                                        <?php foreach ($publicPositionList as $row) { ?>
+                                    <select id="position_dest" class="searchableSelect">
+                                        <?php foreach ($otherPositionList as $row) { ?>
                                             <option value="<?php echo $row['id']; ?>"
                                                     class="span3"><?php echo htmlentities($row['position']); ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
                             </div>
-                            <button id="callRobot" class="mgtop5 pull-left btn btn-primary" type="button"
-                                    data-loading-text="<?php echo Enum_Lang::getPageText('shopping', 'comming'); ?>">
-                                <?php echo Enum_Lang::getPageText('shopping', 'callRobot'); ?>
+                            <button id="positionGuideBtn" class="mgtop5 pull-left btn btn-primary" type="button"
+                                    data-loading-text="<?php echo Enum_Lang::getPageText('service', 'guide'); ?>">
+                                <?php echo Enum_Lang::getPageText('service', 'positionGuide'); ?>
                             </button>
                         </div>
                     </form>

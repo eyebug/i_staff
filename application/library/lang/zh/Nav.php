@@ -74,6 +74,9 @@ class Lang_Zh_Nav {
     const SERVICE = '员工服务';
     const ROBOTCONTROL = '机器人控制';
     const ROBOTSHOPPING = '机器人送物';
+
+    const SHOPPINGORDERPROCESS = '订单处理';
+
     const GSMORDER = '工单处理';
     const ROBOTGUIDE = '机器人引领';
     const MESSAGELIST = '工单历史消息';

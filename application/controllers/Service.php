@@ -57,12 +57,27 @@ class ServiceController extends \BaseController
                 'type' => RobotModel::POSITION_TYPE_FLOOR
             )
         );
-        $publicPositionList = $robotModel->getPublicPositionList($this->getHotelId());
-        $this->_view->assign('publicPositionList', $publicPositionList['data']['list']);
+        $otherPositionList = $robotModel->getPositionList(
+            array(
+                'hotelid' => $this->getHotelId(),
+                'type' => RobotModel::POSITION_TYPE_OTHER
+            )
+        );
         $this->_view->assign('roomPositionList', $roomPositionList['data']['list']);
         $this->_view->assign('floorPositionList', $floorPositionList['data']['list']);
+        $this->_view->assign('otherPositionList', $otherPositionList['data']['list']);
         $this->_view->display('service/robot_guide.phtml');
     }
+
+    public function robotCallAction()
+    {
+        $robotModel = new RobotModel();
+        $publicPositionList = $robotModel->getPublicPositionList($this->getHotelId());
+
+        $this->_view->assign('publicPositionList', $publicPositionList['data']['list']);
+        $this->_view->display('service/robot_call.phtml');
+    }
+
 
     public function historyMessageAction()
     {

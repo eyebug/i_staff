@@ -12,8 +12,8 @@ class LoginajaxController extends \BaseController {
         $request = $this->getRequest();
         $paramList['username'] = $request->getPost('username');
         $paramList['password'] = $request->getPost('password');
-        $paramList['hotelid'] = intval($request->getPost('hotelid'));
         $paramList['isad'] = boolval($request->getPost('isAd', "false") != "false");
+        //todo set default group id as 1 for now
         $paramList['groupid'] = intval($request->getPost('groupid', 1));
 
 
@@ -49,6 +49,19 @@ class LoginajaxController extends \BaseController {
         }
         $baseConvertor = new Convertor_Base();
         $result = $baseConvertor->commonConvertor($result, 'changeLanguage');
+        $this->echoJson($result);
+    }
+
+    /**
+     * Change the staff's hotel id
+     *
+     */
+    public function changeHotelIdAction()
+    {
+        $hotelid = $this->getPost('hotelid');
+        $staffId = $this->userInfo['id'];
+        $loginModel = new LoginModel();
+        $result = $loginModel->changeHotel($staffId, $hotelid);
         $this->echoJson($result);
     }
 }

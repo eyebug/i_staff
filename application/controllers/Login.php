@@ -12,12 +12,6 @@ class LoginController extends \BaseController {
         if (Auth_Login::checkLogin()) {
             Util_Tools::redirect("/");
         }
-        $hotelModel = new HotelModel();
-        $hotelList = $hotelModel->getHotelList(array(
-            'status' => 1,
-            'limit' => 100,
-        ));
-        $this->_view->assign('hotelList', $hotelList['data']['list']);
         $this->_view->display('login/index.phtml');
     }
 

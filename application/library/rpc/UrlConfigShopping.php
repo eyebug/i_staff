@@ -478,6 +478,30 @@ class Rpc_UrlConfigShopping {
                 ),
             )
         ),
+
+        'GS012' => array(
+            'name' => 'Send the robot to deliver',
+            'method' => 'deliverRobot',
+            'auth' => true,
+            'url' => '/Shoppingorder/updateShoppingOrderById',
+            'param' => array(
+                'id' => array(
+                    'required' => true,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+                'adminid' => array(
+                    'required' => false,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+                'status' => array(
+                    'required' => false,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+            )
+        )
     );
 
     /**

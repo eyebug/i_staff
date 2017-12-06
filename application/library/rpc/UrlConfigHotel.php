@@ -1005,12 +1005,46 @@ class Rpc_UrlConfigHotel {
                     'style' => 'interface'
                 ),
                 'hotelid' => array(
-                    'required' => true,
+                    'required' => false,
                     'format' => 'int',
                     'style' => 'interface'
                 ),
                 'groupid' => array(
+                    'required' => false,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+                'identity' => array(
+                    'required' => false,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
+            )
+        ),
+
+        'GH023' => array(
+            'name' => 'Staff update',
+            'method' => 'loginajax',
+            'auth' => true,
+            'url' => '/Staff/updateStaffById',
+            'param' => array(
+                'id' => array(
                     'required' => true,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+                'staff_web_hotel_id' => array(
+                    'required' => true,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+                'hotelid' => array(
+                    'required' => false,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+                'groupid' => array(
+                    'required' => false,
                     'format' => 'int',
                     'style' => 'interface'
                 ),

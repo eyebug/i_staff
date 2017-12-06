@@ -29,4 +29,6 @@ class Lang_Zh_System {
 
     const SELECT = "请选择";
 
+    const SWITCHHOTEL = "切换物业";
+
 }

@@ -32,6 +32,8 @@ class BaseModel {
             $limit = intval($limit);
             $params['limit'] = $limit ? $limit : $limitDefault;
             $params['page'] = empty($page) ? 1 : intval($page);
+        } else {
+            $params['limit'] = 0;
         }
     }
 

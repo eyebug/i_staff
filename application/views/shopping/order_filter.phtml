@@ -49,8 +49,15 @@
                 <?php echo Enum_Lang::getPageText('system', 'search'); ?>
             </button>
 
+            <?php if(!isset($noDeliver) || $noDeliver) {?>
             <button class="btn-primary btn mgtop5 pull-left" id="deliverRobot"
                     style="margin-left: 10px;"><?php echo Enum_Lang::getPageText('shopping', 'robotdeliver'); ?></button>
+            <?php } else {?>
+<!--                <button id="createData" class="mgtop5 pull-left btn btn-primary" style="margin-left: 15px;" type="button"-->
+<!--                        data-toggle="modal" data-target="#editor">--><?php //echo Enum_Lang::getPageText('system', 'create'); ?>
+<!--                </button>-->
+            <?php }//todo add create order for staff ?>
+
         </div>
     </form>
 </div>

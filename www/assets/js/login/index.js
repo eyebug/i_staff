@@ -13,8 +13,6 @@ iHotel.loginIndex = (function ($, ypRecordVar) {
             var params = {
                 username: user.val(),
                 password: pass.val(),
-                groupid: hotelList.attr('groupid'),
-                hotelid: hotel.val(),
             };
             if (isAd[0] != undefined) {
                 params.isAd = isAd[0].checked;

@@ -240,4 +240,23 @@ class ShoppingModel extends \BaseModel {
         } while (false);
         return (array)$result;
     }
+
+    /**
+     * Update shopping order
+     *
+     * @param array $paramList
+     * @return array
+     */
+    public function updateShoppingOrder(array $paramList): array
+    {
+        if (!$paramList['id']) {
+            $this->throwException("Params Error", 1);
+        }
+
+        $paramList['status'] ? $params['status'] = $paramList['status'] : false;
+        $paramList['adminid'] ? $params['adminid'] = $paramList['adminid'] : false;
+        $paramList['id'] ? $params['id'] = $paramList['id'] : false;
+        $result = $this->rpcClient->getResultRaw('GS012', $params);
+        return (array)$result;
+    }
 }

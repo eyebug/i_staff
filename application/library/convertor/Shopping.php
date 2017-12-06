@@ -98,8 +98,10 @@ class Convertor_Shopping extends Convertor_Base {
                 $dataTemp['count'] = $value['count'];
                 $dataTemp['createtime'] = $value['createtime'] ? date('Y-m-d H:i:s', $value['createtime']) : '';
                 $dataTemp['status'] = $value['statusName'];
+                $dataTemp['statusid'] = $value['status'];
                 $dataTemp['shopping'] = $value['shoppingName'];
                 $dataTemp['admin'] = $value['adminName'];
+                $dataTemp['adminid'] = $value['adminid'];
                 $dataTemp['robotstatus'] = $value['robotStatus'];
                 $dataTemp['robotstatusname'] = $value['robotStatusName'];
                 $tmp[] = $dataTemp;

@@ -18,10 +18,10 @@ $(function () {
             timeout: 10000
         });
         xhr.done(function (res) {
-            toggelButton(button)
+            toggelButton(button);
             tips.show(res.data.msg, 'success');
         }).fail(function (res) {
-            toggelButton(button)
+            toggelButton(button);
             tips.show(res.msg);
         });
     });
@@ -39,19 +39,18 @@ $(function () {
             timeout: 10000
         });
         xhr.done(function (res) {
-            toggelButton(button)
+            toggelButton(button);
             tips.show(res.data.msg, 'success');
         }).fail(function (res) {
-            toggelButton(button)
+            toggelButton(button);
             tips.show(res.msg);
         });
     });
 
-    $('#callRobot').click(function (e) {
+    $('#positionGuideBtn').click(function (e) {
         var button = $(this);
-        var data = {};
-        data.dest = $('#public_dest').val();
-        toggelButton(button)
+        data.dest = $('#position_dest').val();
+        toggelButton(button);
         var xhr = ajax.ajax({
             url: url,
             type: "POST",
@@ -61,10 +60,32 @@ $(function () {
             timeout: 10000
         });
         xhr.done(function (res) {
-            toggelButton(button)
+            toggelButton(button);
             tips.show(res.data.msg, 'success');
         }).fail(function (res) {
-            toggelButton(button)
+            toggelButton(button);
+            tips.show(res.msg);
+        });
+    });
+
+    $('#callRobot').click(function (e) {
+        var button = $(this);
+        var data = {};
+        data.dest = $('#public_dest').val();
+        toggelButton(button);
+        var xhr = ajax.ajax({
+            url: url,
+            type: "POST",
+            data: data,
+            cache: false,
+            dataType: "json",
+            timeout: 10000
+        });
+        xhr.done(function (res) {
+            toggelButton(button);
+            tips.show(res.data.msg, 'success');
+        }).fail(function (res) {
+            toggelButton(button);
             tips.show(res.msg);
         });
     });

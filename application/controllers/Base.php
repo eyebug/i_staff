@@ -19,10 +19,17 @@ class BaseController extends \Yaf_Controller_Abstract {
     }
 
     /**
-     * 获取物业Id
+     * Get hotel ID
      */
-    protected function getHotelId() {
-        return $this->userInfo['hotelid'];
+    protected function getHotelId()
+    {
+        $result = intval($this->userInfo['staff_web_hotel_id']);
+        if ($result == 0) {
+//            $this->jump404();
+            return -1;
+        } else {
+            return $result;
+        }
     }
 
     /**
@@ -71,6 +78,39 @@ class BaseController extends \Yaf_Controller_Abstract {
      */
     private function setHotelLanguage($loginInfo) {
         $this->_view->assign('hotelLanguageList', explode(',', $loginInfo['hotelLanguage']));
+    }
+
+    /**
+     * Set staff's hotel list and last login hotel id
+     *
+     * @param $loginInfo
+     */
+    protected function initHotelList($loginInfo)
+    {
+        $lang = Enum_Lang::getSystemLang(true);
+        $lang = 'name_lang' . $lang;
+        $userHotelList = array();
+        $userHotel = array();
+        $hotelModel = new HotelModel();
+        $hotelList = $hotelModel->getHotelList(array('limit' => 0));
+        if (is_array($hotelList['data']['list'])) {
+            foreach ($hotelList['data']['list'] as $row) {
+                if (is_array($loginInfo['hotel_list']) && in_array($row['id'], $loginInfo['hotel_list'])) {
+                    $item = array(
+                        'id' => $row['id'],
+                        'name' => $row[$lang]
+                    );
+                    if ($row['id'] == $loginInfo['staff_web_hotel_id']) {
+                        $userHotel['id'] = $row['id'];
+                        $userHotel['name'] = $row[$lang];
+                    }
+                    $userHotelList[] = $item;
+                }
+            }
+        }
+
+        $this->_view->assign('userHotel', $userHotel);
+        $this->_view->assign('userHotelList', $userHotelList);
     }
 
     /**

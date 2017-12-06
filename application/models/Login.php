@@ -164,4 +164,54 @@ class LoginModel extends \BaseModel {
         } while (false);
         return $result;
     }
+
+    /**
+     * Change staff's hotel id
+     *
+     * @param int $staffId
+     * @param int $hotelId
+     * @return array
+     */
+    public function changeHotel(int $staffId, int $hotelId): array
+    {
+        $result = array(
+            'code' => 0,
+            'msg' => 'success'
+        );
+        try {
+            $sId = Util_Http::getCookie(Enum_Login::LOGIN_INFO_COOKIE_KEY_SID);
+            $aId = Util_Http::getCookie(Enum_Login::LOGIN_INFO_COOKIE_KEY_AID);
+            if (!$sId || !$aId || !Auth_Login::checkLogin()) {
+                $this->throwException("Session expire", 1);
+            }
+            $memKey = Auth_Login::genLoginMemKey($sId, $aId);
+            $userInfoStr = Cache_Redis::getInstance()->get($memKey);
+            if ($userInfoStr) {
+                $userInfoArr = json_decode($userInfoStr, true);
+                if (in_array($hotelId, $userInfoArr['hotel_list'])) {
+                    $userInfoArr['staff_web_hotel_id'] = intval($hotelId);
+                    $newUserInfoStr = json_encode($userInfoArr);
+                    Cache_Redis::getInstance()->set($memKey, $newUserInfoStr);
+                } else {
+                    $this->throwException("Param Error", 1);
+                }
+            } else {
+                $this->throwException("Session expire", 1);
+            }
+
+            $params = array(
+                'id' => $staffId,
+                'staff_web_hotel_id' => $hotelId
+            );
+            $result = $this->rpcClient->getResultRaw('GH023', $params);
+            $cookieTime = time() + Enum_Login::LOGIN_TIMEOUT;
+            Util_Http::setCookie(Enum_Login::LOGIN_INFO_COOKIE_KEY_AID, $aId, $cookieTime);
+            Util_Http::setCookie(Enum_Login::LOGIN_INFO_COOKIE_KEY_SID, $sId, $cookieTime);
+        } catch (Exception $e) {
+            $result['code'] = $e->getCode();
+            $result['msg'] = $e->getMessage();
+        }
+        return $result;
+    }
+
 }

@@ -2,7 +2,7 @@
     <div class="navbar-inner navbar-inner-custom" id="header">
         <div class="container container-main">
             <!-- <span class="icon-plane-top pull-left"></span> -->
-            <h2 class="brand brand-custom"><?php echo Enum_Lang::getPageText('system', 'systemName'); ?></h2>
+            <h2 class="brand brand-custom"><a href="/" style="text-decoration: none; color: white;"><?php echo Enum_Lang::getPageText('system', 'systemName'); ?></a></h2>
             <div class="btn-group pull-right" style="margin-left: 20px;">
                 <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                     <?php echo $headerInfo['userName']; ?><span class="caret"></span>
@@ -15,6 +15,24 @@
                 <li class="divider-vertical divider-vertical-custom"></li>
                 <li><p class="navbar-text text-custom"><?php echo Enum_Lang::getPageText('system', 'welcomeMsg'); ?></p></li>
             </ul>
-        </div>
+
+            <?php
+            if (!empty($userHotelList)) {
+            ?>
+            <div class="btn-group pull-right" id="changeHotel" style="margin-left: 20px;">
+                <button class="btn dropdown-toggle" data-toggle="dropdown" data-now="<?php echo $userHotel['id'];?>"
+                        data-loading-text="<?php echo Enum_Lang::getPageText('system', 'saveing'); ?>">
+                    <?php echo $userHotel['name']; ?><span class="caret"></span>
+                </button>
+                <?php
+                echo "<ul class='dropdown-menu'>";
+                foreach ($userHotelList as $hotel) {
+                    $option = sprintf("<li op='changeHotel' data-hotelid='%s'><a href='javascript:;'>%s</a></li>\n", $hotel['id'], $hotel['name']);
+                    echo $option;
+                }
+                echo "</ul></div>";
+                }
+                ?>
+            </div>
     </div>
 </div> 
