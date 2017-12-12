@@ -10,6 +10,7 @@ class Lang_En_Shopping {
     const COMMING = 'Scheduling';
 
     const ROBOTONTHEWAY = 'Robot is going';
+    const ROBOTBACK = 'Robot is going back to charging point';
     const ROBOTISBUSY = 'Robot is busy';
 
     const ROBOT_WAITING = 'Waiting';

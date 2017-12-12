@@ -35,6 +35,7 @@ class Lang_Zh_Shopping {
     const GO = '出发';
     const COMMING = '调度中';
     const ROBOTONTHEWAY = '机器人已出发';
+    const ROBOTBACK = '正在返回充电桩';
     const ROBOTISBUSY = '机器人正忙';
 
     const ROBOT_WAITING = '待处理';

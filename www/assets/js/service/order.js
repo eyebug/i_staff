@@ -39,42 +39,6 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
         });
     }
 
-
-    /**
-     * Modal for call robot
-     */
-    function initEditor() {
-        var detailModal = $("#editor");
-        robotForm.init({
-            editorDom: $("#robotCallEditor"),
-            saveButtonDom: $("#saveListData"),
-            checkParams: eval(ypGlobal.checkParams),
-            modelDom: detailModal,
-            saveBefore: function (saveParams) {
-                robotForm.updateParams({
-                    saveUrl: ypGlobal.callRobot,
-                });
-                saveParams = robotForm.makeRecord(saveParams, saveParams.id, saveParams.titleLang1);
-                return saveParams;
-            },
-            saveSuccess: function (data) {
-                tips.show(data.data.msg, 'success');
-            },
-            saveFail: function (data) {
-                tips.show(data.msg);
-            }
-        });
-        // call the robot
-        $("#callRobot").on('click', function (e) {
-            e.preventDefault();
-            robotForm.writeEditor({
-                editorDom: $("#robotCallEditor")
-            });
-            $("#ossfile").html("");
-            detailModal.modal('show');
-        });
-    }
-
     /**
      * Modal for robot deliver
      */
@@ -107,6 +71,14 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
         // call the robot
         $("#deliverRobot").on('click', function (e) {
             e.preventDefault();
+            //set selected room
+            var room = getRoom();
+            if (room === false) {
+                $('#saveDeliverData').attr('disabled', 'disabled')
+            } else {
+                $('#saveDeliverData').removeAttr('disabled');
+            }
+            $('#edit_dest').siblings().children(".searchable-select-holder").html(getRoom());
             robotDeliverForm.writeEditor({
                 editorDom: $("#robotDeliverEditor")
             });
@@ -141,10 +113,37 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
         return value;
     }
 
+    /**
+     * Get room of selected orders
+     *
+     * @returns {*}
+     */
+    function getRoom() {
+        var room = '';
+        var nextRoom = '';
+        var checkArray = $('#dataList > tr > td > input[type=checkbox]');
+        checkArray.each(function () {
+            if (this.checked) {
+                nextRoom = $(this).parent().siblings()[2].innerHTML;
+                if (room === '') {
+                    room = nextRoom;
+                } else {
+                    if (room !== nextRoom) {
+                        return false;
+                    }
+                }
+            }
+        });
+        if (room === '' || room !== nextRoom) {
+            return false;
+        } else {
+            return room;
+        }
+    }
+
     function init() {
         initAcitivityUserList();
         initCss();
-        initEditor();
         initDeliverEditor();
     }
 

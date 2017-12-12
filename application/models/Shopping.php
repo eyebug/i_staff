@@ -170,6 +170,26 @@ class ShoppingModel extends \BaseModel {
         return (array)$result;
     }
 
+    /**
+     * Send the robot back to charging point
+     *
+     * @param $paramList
+     * @return array
+     */
+    public function robotBack($paramList)
+    {
+        $errCode = 1;
+        $params['hotelid'] = intval($paramList['hotelid']);
+        $params['userid'] = intval($paramList['userid']);
+        $params['productid'] = trim($paramList['productid']);
+        if ($params['hotelid'] <= 0 || $params['userid'] < 0 || empty($paramList['productid'])) {
+            $this->throwException('Lack of param', $errCode);
+        }
+
+        $result = $this->rpcClient->getResultRaw('GS013', $params);
+        return (array)$result;
+    }
+
 
     /**
      * 新建和编辑体验购物信息

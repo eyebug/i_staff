@@ -501,7 +501,32 @@ class Rpc_UrlConfigShopping {
                     'style' => 'interface'
                 ),
             )
-        )
+        ),
+
+        'GS013' => array(
+            'name' => 'Send robot to charging point',
+            'method' => 'robotBack',
+            'auth' => true,
+            'url' => '/service/robotback',
+            'param' => array(
+                'hotelid' => array(
+                    'required' => true,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+                'userid' => array(
+                    'required' => true,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+                'productid' => array(
+                    'required' => true,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
+            )
+        ),
+
     );
 
     /**

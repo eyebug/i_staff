@@ -29,7 +29,6 @@
                                for="edit_dest"><?php echo Enum_Lang::getPageText('shopping', 'robotDest'); ?>：</label>
                         <div class="controls">
                             <select id="edit_dest" class="searchableSelect">
-                                <option value="0" class="span3">--</option>
                                 <?php foreach ($roomPositionList as $row) { ?>
                                     <option value="<?php echo $row['id']; ?>" class="span3"><?php echo htmlentities($row['position']); ?></option>
                                 <?php } ?>
@@ -41,7 +40,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning" id="saveDeliverData"
-                        data-loading-text="<?php echo Enum_Lang::getPageText('shopping', 'go'); ?>"><?php echo Enum_Lang::getPageText('shopping', 'go'); ?></button>
+                        data-loading-text="<?php echo Enum_Lang::getPageText('shopping', 'comming'); ?>"><?php echo Enum_Lang::getPageText('shopping', 'go'); ?></button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal"
                         id='closeEditor'><?php echo Enum_Lang::getPageText('system', 'close'); ?></button>
             </div>

@@ -43,6 +43,23 @@
                         </div>
                     </form>
 
+                    <form class="form-horizontal">
+                        <div class="control-group control-group-block">
+
+                            <div class="pull-left control-item">
+                                <span class="control-label"><?php echo Enum_Lang::getPageText('robot', 'robotProductId'); ?>
+                                    ：</span>
+                                <div class="controls">
+                                    <input type="text" id="product_id">
+                                </div>
+                            </div>
+                            <button id="backRobot" class="mgtop5 pull-left btn btn-primary" type="button"
+                                    data-loading-text="<?php echo Enum_Lang::getPageText('shopping', 'comming'); ?>">
+                                <?php echo Enum_Lang::getPageText('robot', 'robotBack'); ?>
+                            </button>
+                        </div>
+                    </form>
+
                 </div>
 
             </div>
@@ -54,6 +71,7 @@
 <script>
     var YP_GLOBAL_VARS = {
         callRobot: '/service/callRobot',
+        robotBack: '/serviceajax/robotback',
     };
     $(function () {
         $('.searchableSelect').searchableSelect();
@@ -63,43 +81,3 @@
 <script src="<?php echo $webConfig['imgDomain']; ?>js/service/robot-guide.js"></script>
 </body>
 </html>
-
-<!--<div class="modal hide fade yulong" id="editor" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"-->
-<!--     mf="modalfix" data-backdrop="static">-->
-<!--    <div class="modal-dialog">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                    <span aria-hidden="true">&times;</span>-->
-<!--                </button>-->
-<!--                <h4 class="modal-title"-->
-<!--                    id="myModalLabel">--><?php //echo Enum_Lang::getPageText('shopping', 'callrobot'); ?><!--</h4>-->
-<!--            </div>-->
-<!--            <div class="modal-body" id="detailBody" mf="modalfix">-->
-<!--                <form class="form-horizontal" id="robotCallEditor">-->
-<!--                    <input type="hidden" id="edit_id" value="0">-->
-<!---->
-<!--                    <div class="control-group" op="editFiled">-->
-<!--                        <label class="control-label"-->
-<!--                               for="edit_dest">--><?php //echo Enum_Lang::getPageText('shopping', 'robotDest'); ?><!--：</label>-->
-<!--                        <div class="controls">-->
-<!--                            <select id="edit_dest" class="searchableSelect">-->
-<!--                                --><?php //foreach ($publicPositionList as $row) { ?>
-<!--                                    <option value="--><?php //echo $row['id']; ?><!--" class="span3">--><?php //echo htmlentities($row['position']); ?><!--</option>-->
-<!--                                --><?php //} ?>
-<!--                            </select>-->
-<!---->
-<!--                        </div>-->
-<!--                    </div>-->
-<!---->
-<!--                </form>-->
-<!--            </div>-->
-<!--            <div class="modal-footer">-->
-<!--                <button type="button" class="btn btn-warning" id="saveListData"-->
-<!--                        data-loading-text="--><?php //echo Enum_Lang::getPageText('shopping', 'go'); ?><!--">--><?php //echo Enum_Lang::getPageText('shopping', 'go'); ?><!--</button>-->
-<!--                <button type="button" class="btn btn-primary" data-dismiss="modal"-->
-<!--                        id='closeEditor'>--><?php //echo Enum_Lang::getPageText('system', 'close'); ?><!--</button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
