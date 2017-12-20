@@ -132,7 +132,7 @@ $(function () {
     function toggelButton(button) {
         var txt = button.text().trim();
         button.text(button.data('loading-text').trim());
-        button.attr('data-loading-text', txt);
+        button.data('loading-text', txt);
         var status = button.attr('disabled');
         if (status == 'disabled') {
             button.removeAttr('disabled');
