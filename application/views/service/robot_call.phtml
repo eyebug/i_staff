@@ -29,6 +29,7 @@
                                     ：</span>
                                 <div class="controls">
                                     <select id="public_dest" class="searchableSelect">
+                                        <option value="" class="span3">--</option>
                                         <?php foreach ($publicPositionList as $row) { ?>
                                             <option value="<?php echo $row['id']; ?>"
                                                     class="span3"><?php echo htmlentities($row['position']); ?></option>
@@ -37,7 +38,7 @@
                                 </div>
                             </div>
                             <button id="callRobot" class="mgtop5 pull-left btn btn-primary" type="button"
-                                    data-loading-text="<?php echo Enum_Lang::getPageText('shopping', 'comming'); ?>">
+                                    data-loading-text="<?php echo Enum_Lang::getPageText('shopping', 'coming'); ?>">
                                 <?php echo Enum_Lang::getPageText('shopping', 'callRobot'); ?>
                             </button>
                         </div>
@@ -50,11 +51,17 @@
                                 <span class="control-label"><?php echo Enum_Lang::getPageText('robot', 'robotProductId'); ?>
                                     ：</span>
                                 <div class="controls">
-                                    <input type="text" id="product_id">
+                                    <select id="product_id">
+                                        <option value="" class="span3">--</option>
+                                        <?php foreach ($robotList as $value => $name) { ?>
+                                            <option value="<?php echo $value; ?>"
+                                                    class="span3"><?php echo htmlentities($name); ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                             <button id="backRobot" class="mgtop5 pull-left btn btn-primary" type="button"
-                                    data-loading-text="<?php echo Enum_Lang::getPageText('shopping', 'comming'); ?>">
+                                    data-loading-text="<?php echo Enum_Lang::getPageText('shopping', 'coming'); ?>">
                                 <?php echo Enum_Lang::getPageText('robot', 'robotBack'); ?>
                             </button>
                         </div>

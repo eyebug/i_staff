@@ -33,7 +33,7 @@ class Lang_Zh_Shopping {
     const ROBOTSTART = '出发地点';
     const ROBOTDEST = '目的地点';
     const GO = '出发';
-    const COMMING = '调度中';
+    const COMING = '正在处理';
     const ROBOTONTHEWAY = '机器人已出发';
     const ROBOTBACK = '正在返回充电桩';
     const ROBOTISBUSY = '机器人正忙';

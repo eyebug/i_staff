@@ -29,6 +29,7 @@
                                     ：</span>
                                 <div class="controls">
                                     <select id="room_dest" class="searchableSelect">
+                                        <option value="" class="span3">--</option>
                                         <?php foreach ($roomPositionList as $row) { ?>
                                             <option value="<?php echo $row['id']; ?>"
                                                     class="span3"><?php echo htmlentities($row['position']); ?></option>
@@ -37,7 +38,7 @@
                                 </div>
                             </div>
                             <button id="roomGuideBtn" class="mgtop5 pull-left btn btn-primary" type="button"
-                                    data-loading-text="<?php echo Enum_Lang::getPageText('service', 'guide'); ?>">
+                                    data-loading-text="<?php echo Enum_Lang::getPageText('service', 'processing'); ?>">
                                 <?php echo Enum_Lang::getPageText('service', 'roomGuide'); ?>
                             </button>
                         </div>
@@ -51,6 +52,7 @@
                                     ：</span>
                                 <div class="controls">
                                     <select id="floor_dest" class="searchableSelect">
+                                        <option value="" class="span3">--</option>
                                         <?php foreach ($floorPositionList as $row) { ?>
                                             <option value="<?php echo $row['id']; ?>"
                                                     class="span3"><?php echo htmlentities($row['position']); ?></option>
@@ -59,7 +61,7 @@
                                 </div>
                             </div>
                             <button id="floorGuideBtn" class="mgtop5 pull-left btn btn-primary" type="button"
-                                    data-loading-text="<?php echo Enum_Lang::getPageText('service', 'guide'); ?>">
+                                    data-loading-text="<?php echo Enum_Lang::getPageText('service', 'processing'); ?>">
                                 <?php echo Enum_Lang::getPageText('service', 'elevatorGuide'); ?>
                             </button>
                         </div>
@@ -73,6 +75,7 @@
                                     ：</span>
                                 <div class="controls">
                                     <select id="position_dest" class="searchableSelect">
+                                        <option value="" class="span3">--</option>
                                         <?php foreach ($otherPositionList as $row) { ?>
                                             <option value="<?php echo $row['id']; ?>"
                                                     class="span3"><?php echo htmlentities($row['position']); ?></option>
@@ -81,7 +84,7 @@
                                 </div>
                             </div>
                             <button id="positionGuideBtn" class="mgtop5 pull-left btn btn-primary" type="button"
-                                    data-loading-text="<?php echo Enum_Lang::getPageText('service', 'guide'); ?>">
+                                    data-loading-text="<?php echo Enum_Lang::getPageText('service', 'processing'); ?>">
                                 <?php echo Enum_Lang::getPageText('service', 'positionGuide'); ?>
                             </button>
                         </div>

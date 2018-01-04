@@ -15,6 +15,17 @@ class RobotModel extends \BaseModel {
         self::POSITION_TYPE_OTHER => '其他公共区域'
     );
 
+
+    private $_robotList = array(
+        1 => array(
+            'HOTQY00SZ201704180503006' => '小雅',
+        ),
+        //for test
+        6 => array(
+            'HOTQY00SZ201704180503006' => '小雅',
+        ),
+    );
+
     public function getPositionTypeList()
     {
         return $this->_positionTypeList;
@@ -137,6 +148,28 @@ class RobotModel extends \BaseModel {
 
         } while (false);
         return (array)$result;
+    }
+
+    /**
+     * @param int $hotelid
+     * @return array
+     */
+    public function getRobotList(int $hotelid): array
+    {
+        $result = array(
+            'code' => 1,
+            'msg' => "hotelid[${hotelid}] not configured",
+        );
+
+        if (isset($this->_robotList[$hotelid])) {
+            $result['code'] = 0;
+            $result['msg'] = 'success';
+            $result['data'] = $this->_robotList[$hotelid];
+        }
+
+        return $result;
+
+
     }
 
 

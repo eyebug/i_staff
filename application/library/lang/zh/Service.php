@@ -7,4 +7,6 @@ class Lang_Zh_Service {
     const POSITIONGUIDE = '地点引领';
     const GUIDE = "引领";
 
+    const PROCESSING = "正在处理";
+
 }

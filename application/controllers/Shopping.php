@@ -5,6 +5,13 @@
  */
 class ShoppingController extends \BaseController {
 
+
+    public function init()
+    {
+        parent::init();
+        $this->initHotelList($this->userInfo);
+    }
+
     public function tagAction() {
         $this->_view->display('shopping/tag.phtml');
     }
@@ -37,6 +44,7 @@ class ShoppingController extends \BaseController {
         $filterList = $shoppingModel->getShoppingOrderFilterList(array('hotelid' => $this->getHotelId()), 3600);
 
         $this->_view->assign('staffList', $staffList['data']);
+        $this->_view->assign('userId', $this->userInfo['id']);
         $this->_view->assign('userList', $filterList['data']['userlist']);
         $this->_view->assign('statusList', $filterList['data']['statuslist']);
         $this->_view->assign('noDeliver', false);

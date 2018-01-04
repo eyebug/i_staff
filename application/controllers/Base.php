@@ -92,7 +92,7 @@ class BaseController extends \Yaf_Controller_Abstract {
         $userHotelList = array();
         $userHotel = array();
         $hotelModel = new HotelModel();
-        $hotelList = $hotelModel->getHotelList(array('limit' => 0));
+        $hotelList = $hotelModel->getHotelList(array('limit' => 0), 6 * 3600);
         if (is_array($hotelList['data']['list'])) {
             foreach ($hotelList['data']['list'] as $row) {
                 if (is_array($loginInfo['hotel_list']) && in_array($row['id'], $loginInfo['hotel_list'])) {

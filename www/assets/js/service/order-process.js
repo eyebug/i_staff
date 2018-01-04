@@ -46,6 +46,7 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
                     saveUrl: saveParams.id > 0 ? ypGlobal.updateUrl : ypGlobal.createUrl
                 });
                 saveParams = tagForm.makeRecord(saveParams, saveParams.id, saveParams.titleLang1);
+                YP_RECORD_VARS.isChange = 1;
                 return saveParams;
             },
             saveSuccess: function (data) {
@@ -70,6 +71,9 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
                 var dataOne = $(value);
                 if (dataOne.attr('type')) {
                     dataList[dataOne.attr('type')] = dataOne.data('value');
+                    if (dataOne.attr('type') == 'adminid') {
+                        dataList['adminid'] = $('#current_userid').val();
+                    }
                 }
             });
             tagForm.writeEditor({

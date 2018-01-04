@@ -6,6 +6,12 @@
 class ServiceController extends \BaseController
 {
 
+    public function init()
+    {
+        parent::init();
+        $this->initHotelList($this->userInfo);
+    }
+
     /**
      * Get shopping order list and control panel
      */
@@ -74,8 +80,10 @@ class ServiceController extends \BaseController
     {
         $robotModel = new RobotModel();
         $publicPositionList = $robotModel->getPublicPositionList($this->getHotelId());
+        $robotList = $robotModel->getRobotList($this->getHotelId());
 
         $this->_view->assign('publicPositionList', $publicPositionList['data']['list']);
+        $this->_view->assign('robotList', $robotList['data']);
         $this->_view->display('service/robot_call.phtml');
     }
 

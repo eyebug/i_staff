@@ -7,7 +7,7 @@ class Lang_En_Shopping {
     const ROBOTSTART = 'Start position';
     const ROBOTDEST = 'Destination';
     const GO = 'Go';
-    const COMMING = 'Scheduling';
+    const COMING = 'Scheduling';
 
     const ROBOTONTHEWAY = 'Robot is going';
     const ROBOTBACK = 'Robot is going back to charging point';
