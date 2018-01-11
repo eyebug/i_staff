@@ -79,10 +79,14 @@ class ServiceController extends \BaseController
     public function robotCallAction()
     {
         $robotModel = new RobotModel();
-        $publicPositionList = $robotModel->getPublicPositionList($this->getHotelId());
+        $otherPositionList = $robotModel->getPositionList(
+            array(
+                'hotelid' => $this->getHotelId(),
+                'type' => RobotModel::POSITION_TYPE_OTHER
+            )
+        );
         $robotList = $robotModel->getRobotList($this->getHotelId());
-
-        $this->_view->assign('publicPositionList', $publicPositionList['data']['list']);
+        $this->_view->assign('publicPositionList', $otherPositionList['data']['list']);
         $this->_view->assign('robotList', $robotList['data']);
         $this->_view->display('service/robot_call.phtml');
     }
