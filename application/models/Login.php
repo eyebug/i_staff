@@ -99,7 +99,7 @@ class LoginModel extends \BaseModel {
         if($result['code'] == 0){
 
             $user = $result['data'];
-            $user['hotelLanguage'] = 'zh,en,jp'; //to do
+            $user['hotelLanguage'] = 'zh,en,jp'; //todo set language list
             $auth = Auth_Login::genSIdAndAId($user['id']);
 
             $user['sId'] = $auth['sId'];
