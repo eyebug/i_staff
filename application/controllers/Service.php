@@ -33,7 +33,11 @@ class ServiceController extends \BaseController
                 'type' => RobotModel::POSITION_TYPE_ROOM
             )
         );
-        $publicPositionList = $robotModel->getPublicPositionList($this->getHotelId());
+        $publicPositionList = $robotModel->getPositionList(array(
+            'hotelid' => $this->getHotelId(),
+            'type' => RobotModel::POSITION_TYPE_OTHER
+        ));
+
         $this->_view->assign('publicPositionList', $publicPositionList['data']['list']);
         $this->_view->assign('roomPositionList', $roomPositionList['data']['list']);
         $this->_view->assign('shoppingList', $shoppingList['data']['list']);
