@@ -2,7 +2,7 @@
 
 class Lang_Zh_System {
 
-    const SYSTEMNAME = 'EASYISERVICE员工管理后台';
+    const SYSTEMNAME = '员工管理后台';
     const CHANGEPASSWORD = '修改密码';
     const LOGOUT = '登出';
     const WELCOMEMSG = '欢迎';
