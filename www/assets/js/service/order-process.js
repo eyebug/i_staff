@@ -12,7 +12,7 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
             language: 'zh-CN'
         });
         shoppingItemList.init({
-            colCount: 8,
+            colCount: 9,
             autoLoad: true,
             listUrl: ypGlobal.listUrl,
             listDomObject: $("#dataList"),
@@ -73,6 +73,9 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
                     dataList[dataOne.attr('type')] = dataOne.data('value');
                     if (dataOne.attr('type') == 'adminid') {
                         dataList['adminid'] = $('#current_userid').val();
+                    }
+                    if (dataOne.attr('type') == 'memo' && dataList[dataOne.attr('type')] == '') {
+                        dataList['memo'] = $('#current_username').val();
                     }
                 }
             });

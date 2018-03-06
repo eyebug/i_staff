@@ -102,6 +102,7 @@ class Convertor_Shopping extends Convertor_Base {
                 $dataTemp['shopping'] = $value['shoppingName'];
                 $dataTemp['admin'] = $value['adminName'];
                 $dataTemp['adminid'] = $value['adminid'];
+                $dataTemp['memo'] = $value['memo'];
                 $dataTemp['robotstatus'] = $value['robotStatus'];
                 $dataTemp['robotstatusname'] = $value['robotStatusName'];
                 $tmp[] = $dataTemp;

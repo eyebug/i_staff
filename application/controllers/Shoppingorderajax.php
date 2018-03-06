@@ -26,7 +26,8 @@ class ShoppingOrderAjaxController extends \BaseController
     {
         $paramList = array();
         $paramList['id'] = intval($this->getPost('id'));
-        $paramList['adminid'] = intval($this->getPost('adminid'));
+        $paramList['adminid'] = $this->userInfo['id'];
+        $paramList['memo'] = trim($this->getPost('memo'));
         $paramList['status'] = intval($this->getPost('status'));
         $result = $this->shoppingModel->updateShoppingOrder($paramList);
         $this->echoJson($result);

@@ -45,6 +45,7 @@ class ShoppingController extends \BaseController {
 
         $this->_view->assign('staffList', $staffList['data']);
         $this->_view->assign('userId', $this->userInfo['id']);
+        $this->_view->assign('userName', $this->userInfo['lname']);
         $this->_view->assign('userList', $filterList['data']['userlist']);
         $this->_view->assign('statusList', $filterList['data']['statuslist']);
         $this->_view->assign('noDeliver', false);

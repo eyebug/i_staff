@@ -33,13 +33,7 @@
                                for="edit_adminid"><?php echo Enum_Lang::getPageText('shopping', 'orderAdmin'); ?>
                             ：</label>
                         <div class="controls">
-                            <select id="edit_adminid" data-paramkey='userid' class="input-medium select-long"
-                                    op="filterCase">
-                                <?php foreach ($staffList as $row) {
-                                    ?>
-                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['lname']; ?></option>
-                                <?php } ?>
-                            </select>
+                            <input type="text" id="edit_memo" data-paramkey="memo">
                         </div>
                     </div>
 

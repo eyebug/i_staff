@@ -20,6 +20,17 @@ class Enum_System {
         $url = strpos('http', $url) ? $url : self::$_apiDomain . $url;
         return $url;
     }
+
+    /**
+     * Check if dev environment
+     *
+     * @return bool
+     */
+    public static function isDev(): bool
+    {
+        $sysConfig = Yaf_Registry::get('sysConfig');
+        return isset($sysConfig->application->env) && $sysConfig->application->env == 'dev';
+    }
 }
 
 ?>

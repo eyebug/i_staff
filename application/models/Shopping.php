@@ -275,6 +275,7 @@ class ShoppingModel extends \BaseModel {
 
         $paramList['status'] ? $params['status'] = $paramList['status'] : false;
         $paramList['adminid'] ? $params['adminid'] = $paramList['adminid'] : false;
+        $paramList['memo'] ? $params['memo'] = $paramList['memo'] : false;
         $paramList['id'] ? $params['id'] = $paramList['id'] : false;
         $result = $this->rpcClient->getResultRaw('GS012', $params);
         return (array)$result;

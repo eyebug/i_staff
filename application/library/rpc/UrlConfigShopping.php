@@ -495,6 +495,11 @@ class Rpc_UrlConfigShopping {
                     'format' => 'int',
                     'style' => 'interface'
                 ),
+                'memo' => array(
+                    'required' => false,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
                 'status' => array(
                     'required' => false,
                     'format' => 'int',
