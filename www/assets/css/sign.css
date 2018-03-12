@@ -1,0 +1,33 @@
+div#signBox {
+    padding: 0 25%;
+}
+
+div#signBox > div {
+    width: 40%;
+    text-align: center;
+}
+
+div#signBox > > button {
+    margin-top: 1%;
+}
+
+img.img2 {
+    width: 100%;
+    padding: 5%;
+}
+
+div#canteen {
+    float: left;
+}
+
+div#gym {
+    float: right;
+}
+
+div#login-detail {
+    /*text-align: center;*/
+}
+
+.option.btn-primary.active {
+    background-color: green;
+}

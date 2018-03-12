@@ -1,0 +1,8 @@
+span.hour, span.minute {
+    display: block;
+    color: black;
+}
+
+div.disabled, span.disabled {
+    color: grey;
+}

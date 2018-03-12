@@ -617,7 +617,6 @@ form input[type="radio"] {
 /********************************      Login Page      ********************************/
 
 body#login {
-    color: #fff;
     background: #222 url('/assets/img/bg-login.gif');
 }
 

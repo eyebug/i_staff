@@ -31,4 +31,6 @@ class Lang_Zh_System {
 
     const SWITCHHOTEL = "切换物业";
 
+    const SIGNSYSTEM = '雅诗阁签到系统';
+
 }

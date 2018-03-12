@@ -138,6 +138,53 @@ class BaseController extends \Yaf_Controller_Abstract {
     }
 
     /**
+     * @param $code
+     * @param $msg
+     * @param $data
+     * @param null $debugInfo
+     */
+    public function echoAndExit($code, $msg, $data, $debugInfo = null) {
+        @header ( "Content-type:application/json" );
+        $data = $this->clearNullNew ( $data );
+        if (is_null ( $data ) && ! is_numeric ( $data )) {
+            $data = array ();
+        }
+        $echoList = array ('code' => $code,'msg' => $msg,'data' => $data );
+        $sysConfig = Yaf_Registry::get ( 'sysConfig' );
+        if ($sysConfig->api->debug) {
+            $echoList ['debugInfo'] = is_null ( $debugInfo ) ? ( object ) array () : $debugInfo;
+        }
+        $this->getResponse ()->setBody ( json_encode ( $echoList ) );
+    }
+
+    public function clearNullNew($data) {
+        foreach ( $data as $key => $value ) {
+            $keyTemp = lcfirst ( $key );
+            if ($keyTemp != $key) {
+                unset ( $data [$key] );
+                $data [$keyTemp] = $value;
+                $key = $keyTemp;
+            }
+            if (is_array ( $value ) || is_object ( $value )) {
+                if (is_object ( $data )) {
+                    $data->$key = $this->clearNullNew ( $value );
+                } else {
+                    $data [$key] = $this->clearNullNew ( $value );
+                }
+            } else {
+                if (is_null ( $value ) && ! is_numeric ( $value )) {
+                    $value = "";
+                }
+                if (is_numeric ( $value )) {
+                    $value = strval ( $value );
+                }
+                $data [$key] = $value;
+            }
+        }
+        return $data;
+    }
+
+    /**
      * 跳转404
      */
     protected function jump404() {

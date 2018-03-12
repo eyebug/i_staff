@@ -3,12 +3,14 @@
 /**
  * 入住用户Model
  */
-class UserModel extends \BaseModel {
+class UserModel extends \BaseModel
+{
 
     /**
      * 获取表单列表
      */
-    public function getList($paramList, $cacheTime = 0) {
+    public function getList($paramList, $cacheTime = 0)
+    {
         do {
             $params['hotelid'] = $paramList['hotelid'];
             if ($cacheTime == 0) {
@@ -20,5 +22,25 @@ class UserModel extends \BaseModel {
             $result = $this->rpcClient->getResultRaw('U001', $params, $isCache, $cacheTime);
         } while (false);
         return (array)$result;
+    }
+
+    public function sign($paramList)
+    {
+
+        try {
+            if (empty($paramList['lock_no']) || empty($paramList['num']) || empty($paramList['room_no']) || empty($paramList['lastname']) || empty($paramList['sports'])
+                || empty($paramList['start_time']) || empty($paramList['end_time']) || empty($paramList['hotelid']) || empty($paramList['groupid']) || empty($paramList['type'])) {
+                $this->throwException('Lack of param', 1);
+            }
+            $result = $this->rpcClient->getResultRaw('U002', $paramList);
+
+        } catch (Exception $e) {
+            $result = array(
+                'code' => $e->getCode(),
+                'msg' => $e->getMessage()
+            );
+        }
+
+        return $result;
     }
 }
