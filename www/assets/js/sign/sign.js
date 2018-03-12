@@ -29,9 +29,9 @@ function submit(e) {
                     $('div#login-detail').hide();
                     $('div#info-detail').show();
                     if (tryAgain) {
-                        $('input[name="num"]').focus();
-                    } else {
                         clearForm();
+                    } else {
+                        $('input[name="num"]').focus();
                     }
                 } else {
                     tryAgain = confirm(data.msg + "，重新输入?");
