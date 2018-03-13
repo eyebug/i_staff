@@ -37,6 +37,9 @@
                     <i class="icon-plus icon-plus-opacity pull-right"></i><?php echo Enum_Lang::getPageText('nav', 'service'); ?>
                 </span>
                 <ul class="nav nav-list nav-li-list hide">
+                    <?php
+                        if ( $userHotel['id'] == 1) {
+                    ?>
                     <li>
                         <a href="/sign"><?php echo Enum_Lang::getPageText('nav', 'signSystem'); ?></a>
                     </li>
@@ -44,6 +47,7 @@
                     <li>
                         <a href="/sign/report"><?php echo Enum_Lang::getPageText('nav', 'signReport'); ?></a>
                     </li>
+                    <?php } ?>
 
                     <li>
                         <a href="/service/gsmOrder"><?php echo Enum_Lang::getPageText('nav', 'gsmOrder'); ?></a>
