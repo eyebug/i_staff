@@ -3,6 +3,6 @@ span.hour, span.minute {
     color: black;
 }
 
-div.disabled, span.disabled {
+div.disabled, span.disabled, td.disabled {
     color: grey;
 }

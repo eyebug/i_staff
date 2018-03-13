@@ -43,4 +43,26 @@ class UserModel extends \BaseModel
 
         return $result;
     }
+
+    /**
+     * Get signUp list
+     *
+     * @param array $paramList
+     * @param int $cacheTime
+     * @return array
+     */
+    public function getSignList(array $paramList, $cacheTime = 0)
+    {
+        do {
+            $params = $paramList;
+            if ($cacheTime == 0) {
+                $this->setPageParam($params, $paramList['page'], $paramList['limit'], 15);
+            } else {
+                $params['limit'] = 0;
+            }
+            $isCache = $cacheTime != 0 ? true : false;
+            $result = $this->rpcClient->getResultRaw('U003', $params, $isCache, $cacheTime);
+        } while (false);
+        return (array)$result;
+    }
 }

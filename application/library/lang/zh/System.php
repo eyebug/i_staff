@@ -1,6 +1,7 @@
 <?php
 
-class Lang_Zh_System {
+class Lang_Zh_System
+{
 
     const SYSTEMNAME = '员工管理后台';
     const CHANGEPASSWORD = '修改密码';
@@ -31,6 +32,8 @@ class Lang_Zh_System {
 
     const SWITCHHOTEL = "切换物业";
 
-    const SIGNSYSTEM = '雅诗阁签到系统';
+    const STARTTIME = "开始时间";
+    const ENDTIME = "结束时间";
+    const TYPE = "类别";
 
 }

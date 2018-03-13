@@ -1,0 +1,44 @@
+<div class="hero-unit hero-unit-custom hero-unit-mgdbtm clearfix" id="listFilter">
+    <form class="form-horizontal">
+        <div class="control-group control-group-block">
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('system', 'startTime'); ?></span>
+                <div class="controls">
+                    <input id="start_time" data-paramkey='start' type="text"
+                           class="form-control input-medium datetimepicker"
+                           op="filterCase" value=''/>
+                </div>
+            </div>
+
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('system', 'endTime'); ?></span>
+                <div class="controls">
+                    <input id="start_time" data-paramkey='end' type="text"
+                           class="form-control input-medium datetimepicker"
+                           op="filterCase" value=''/>
+                </div>
+            </div>
+
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('system', 'type'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_type" data-paramkey='type' class="input-medium select-long" op="filterCase">
+                        <option value="swimming" selected>游泳池</option>
+                        <option value="gym">健身房</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button"
+                    data-loading-text="<?php echo Enum_Lang::getPageText('system', 'searching'); ?>">
+                <?php echo Enum_Lang::getPageText('system', 'search'); ?>
+            </button>
+
+            <button id="exportBtn" class="mgtop5 mgleft5 pull-left btn btn-primary" type="button"
+                    data-loading-text="<?php echo Enum_Lang::getPageText('system', 'exporting'); ?>">
+                <?php echo Enum_Lang::getPageText('system', 'export'); ?>
+            </button>
+
+        </div>
+    </form>
+</div>

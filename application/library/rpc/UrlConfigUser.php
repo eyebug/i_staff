@@ -1,6 +1,7 @@
 <?php
 
-class Rpc_UrlConfigUser {
+class Rpc_UrlConfigUser
+{
 
     private static $config = array(
         'U001' => array(
@@ -89,6 +90,44 @@ class Rpc_UrlConfigUser {
                 ),
             )
         ),
+        'U003' => array(
+            'name' => '获取签到列表',
+            'method' => 'getSignList',
+            'auth' => true,
+            'url' => '/user/getSignList',
+            'param' => array(
+                'hotelid' => array(
+                    'required' => true,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
+                'start' => array(
+                    'required' => false,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
+                'end' => array(
+                    'required' => false,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
+                'type' => array(
+                    'required' => false,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
+                'page' => array(
+                    'required' => false,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+                'limit' => array(
+                    'required' => false,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+            )
+        ),
     );
 
     /**
@@ -99,7 +138,8 @@ class Rpc_UrlConfigUser {
      * @return multitype:multitype:string multitype:multitype:boolean string
      *         |boolean
      */
-    public static function getConfig($interfaceId, $configKey = '') {
+    public static function getConfig($interfaceId, $configKey = '')
+    {
         if (isset(self::$config[$interfaceId])) {
             if (strlen($configKey) && isset(self::$config[$interfaceId][$configKey])) {
                 return self::$config[$interfaceId][$configKey];

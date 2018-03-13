@@ -81,4 +81,7 @@ class Lang_Zh_Nav {
     const ROBOTGUIDE = '机器人引领';
     const MESSAGELIST = '工单历史消息';
 
+    const SIGNSYSTEM = '雅诗阁签到系统';
+    const SIGNREPORT = '雅诗阁签到报表';
+
 }

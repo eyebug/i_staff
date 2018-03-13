@@ -31,3 +31,11 @@ div#login-detail {
 .option.btn-primary.active {
     background-color: green;
 }
+
+label.gym-checkbox {
+    margin: 5px;
+    border-radius: 5%;
+    padding-right: 5px;
+    border: none;
+    background-color: #0785AB;
+}
