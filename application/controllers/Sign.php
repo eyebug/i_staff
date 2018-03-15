@@ -37,6 +37,7 @@ class SignController extends \BaseController
     public function init()
     {
         parent::init();
+        $this->initHotelList($this->userInfo);
         $this->_signConvertor = new Convertor_Sign();
     }
 
