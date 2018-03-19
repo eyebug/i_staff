@@ -39,7 +39,7 @@ class Rpc_UrlConfigUser
             'url' => '/User/signFacilities',
             'param' => array(
                 'lock_no' => array(
-                    'required' => true,
+                    'required' => false,
                     'format' => 'string',
                     'style' => 'interface'
                 ),

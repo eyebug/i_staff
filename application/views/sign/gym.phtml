@@ -34,7 +34,7 @@
                     <div class="control-group">
                         <label class="control-label">Lock No.</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" name="lock"/>
+                            <input type="text" class="input-xlarge" name="lock" placeholder="Optional"/>
                         </div>
                     </div>
 
@@ -56,27 +56,33 @@
                     </div>
 
                     <div class="control-group">
-                        <label class="control-label"></label>
-
                         <!-- Multiple Checkboxes -->
-                        <div class="controls">
+
+                        <table>
                             <?php
+                            $i = 0;
                             foreach ($gyms as $name => $key) {
-                                $output = sprintf('<label class="checkbox inline gym-checkbox">
+                                if ($i % 3 == 0) {
+                                    echo '<tr>';
+                                }
+                                $output = sprintf('<td><label class="checkbox inline gym-checkbox">
                                 <input type="checkbox" value="1" name="%s"> %s
-                            </label>', $key, $name);
+                            </label></td>', $key, $name);
                                 echo $output;
+                                if ($i % 3 == 2) {
+                                    echo '</tr>';
+                                }
+                                $i++;
                             }
                             ?>
-                        </div>
-
-
+                        </table>
                     </div>
 
+
                     <div class="control-group" style="text-align: center">
-                        <button type="button" class="btn-success option">确定</button>
+                        <button type="button" class="btn-primary btn-large option">确定</button>
                         <a href="/sign/index">
-                            <button type="button" class="btn-danger">取消</button>
+                            <button type="button" class="btn-primary btn-large">取消</button>
                         </a>
                     </div>
 
@@ -103,10 +109,10 @@
                     </div>
                     <div class="control-group" style="text-align: center">
                         <a>
-                            <button type="submit" class="btn-success submit">确定</button>
+                            <button type="submit" class="btn-primary btn-large submit">确定</button>
                         </a>
                         <a href="/sign/index">
-                            <button type="button" class="btn-danger">取消</button>
+                            <button type="button" class="btn-primary btn-large">取消</button>
                         </a>
                     </div>
                 </div>

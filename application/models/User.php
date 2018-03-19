@@ -28,7 +28,7 @@ class UserModel extends \BaseModel
     {
 
         try {
-            if (empty($paramList['lock_no']) || empty($paramList['num']) || empty($paramList['room_no']) || empty($paramList['lastname']) || empty($paramList['sports'])
+            if (empty($paramList['num']) || empty($paramList['room_no']) || empty($paramList['lastname']) || empty($paramList['sports'])
                 || empty($paramList['start_time']) || empty($paramList['end_time']) || empty($paramList['hotelid']) || empty($paramList['groupid']) || empty($paramList['type'])) {
                 $this->throwException('Lack of param', 1);
             }

@@ -24,8 +24,8 @@ div#gym {
     float: right;
 }
 
-div#login-detail {
-    /*text-align: center;*/
+div#login-detail, div#info-detail, button.btn-large {
+    font-size: 20px;
 }
 
 .option.btn-primary.active {
@@ -38,4 +38,9 @@ label.gym-checkbox {
     padding-right: 5px;
     border: none;
     background-color: #0785AB;
+    width: 75%;
+}
+
+button[disabled=disabled] {
+    background-image: none;
 }

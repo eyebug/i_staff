@@ -7,6 +7,8 @@ function init() {
 
 function submit(e) {
     e.preventDefault();
+    var ob = $(e.currentTarget);
+    ob.attr('disabled', true);
     var formdata = $('form#sign-detail').serializeArray();
     var data = {};
     var gyms = [];
@@ -19,6 +21,7 @@ function submit(e) {
         url: '/sign/doSign',
         data: data,
         success: function (data) {
+            ob.removeAttr('disabled');
             if (data.code == 0) {
                 alert('Success(签到成功)');
                 window.location.href = "/sign/index";
@@ -44,8 +47,12 @@ function submit(e) {
                     }
                 }
             }
+        },
+        error: function (request, status, error) {
+            ob.removeAttr('disabled');
         }
     });
+
 }
 
 function next() {
