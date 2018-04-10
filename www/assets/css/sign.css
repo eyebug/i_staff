@@ -23,6 +23,10 @@ div#login-detail, div#info-detail, button.btn-large {
     font-size: 20px;
 }
 
+table#gym-container{
+    width: 100%;
+}
+
 label.gym-checkbox {
     margin: 5px;
     border-radius: 5%;
