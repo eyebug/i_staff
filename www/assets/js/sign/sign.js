@@ -2,7 +2,6 @@ function init() {
     $('div#login-detail').hide();
     $('button.option').bind('click', next);
     $('button.submit').bind('click', submit);
-    initDate();
 }
 
 function submit(e) {
@@ -10,16 +9,10 @@ function submit(e) {
     var ob = $(e.currentTarget);
     ob.attr('disabled', true);
     var formdata = $('form#sign-detail').serializeArray();
-    var data = {};
-    var gyms = [];
-    $(formdata).each(function (index, obj) {
-        data[obj.name] = obj.value;
-    });
-    data["gyms"] = gyms;
     $.ajax({
         type: 'POST',
         url: '/sign/doSign',
-        data: data,
+        data: formdata,
         success: function (data) {
             ob.removeAttr('disabled');
             if (data.code == 0) {
@@ -62,21 +55,6 @@ function next() {
 
 function clearForm() {
     $("input[type=reset]").click();
-}
-
-
-function initDate() {
-    var datatimepickerConfig = {
-        language: 'zh-CN',
-        format: 'yyyy-mm-dd hh:ii:ss',
-        autoclose: true,
-        todayBtn: true,
-        weekStart: 1,
-        minView: 0,
-        startDate: new Date(),
-        startView: 1
-    };
-    $("input.datetimepicker").datetimepicker(datatimepickerConfig);
 }
 
 $(function () {

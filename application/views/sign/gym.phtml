@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <?php include($webConfig['layoutPath'] . '/common/meta.phtml') ?>
     <title><?php echo Enum_Lang::getPageText('system', 'systemName'); ?></title>
     <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/reset.css"/>
@@ -19,8 +19,8 @@
     <div style="padding: 0 25%; color: white">
 
         <form class="form-horizontal" method="POST" action="/sign/dosign" id="sign-detail">
+            <input type="hidden" value="<?php echo $category_id;?>" name="type">
             <fieldset>
-
                 <div id="info-detail">
                     <div class="control-group">
                         <label class="control-label">No. of persons(人数)</label>
@@ -57,13 +57,13 @@
                         <table>
                             <?php
                             $i = 0;
-                            foreach ($gyms as $name => $key) {
+                            foreach ($items as $row) {
                                 if ($i % 3 == 0) {
                                     echo '<tr>';
                                 }
                                 $output = sprintf('<td><label class="checkbox inline gym-checkbox">
-                                <input type="checkbox" value="1" name="%s"> %s
-                            </label></td>', $key, $name);
+                                <input type="checkbox" value="%1$s" name="items[]"> %2$s
+                            </label></td>', $row['id'], $row['title']);
                                 echo $output;
                                 if ($i % 3 == 2) {
                                     echo '</tr>';

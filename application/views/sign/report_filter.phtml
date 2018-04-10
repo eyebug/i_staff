@@ -23,8 +23,13 @@
                 <span class="control-label"><?php echo Enum_Lang::getPageText('system', 'type'); ?>：</span>
                 <div class="controls">
                     <select id="filter_type" data-paramkey='type' class="input-medium select-long" op="filterCase">
-                        <option value="swimming" selected>游泳池</option>
-                        <option value="gym">健身房</option>
+                        <?php
+                        $template = '<option value="%s" selected>%s</option>';
+                        foreach ($categories as $category) {
+                            $output = sprintf($template, $category['id'], $category['title']);
+                            echo $output;
+                        }
+                        ?>
                     </select>
                 </div>
             </div>

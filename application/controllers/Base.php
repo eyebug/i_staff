@@ -16,6 +16,16 @@ class BaseController extends \Yaf_Controller_Abstract {
         $this->setPageHeaderInfo($this->userInfo);
         $this->setPermission($this->userInfo);
         $this->setHotelLanguage($this->userInfo);
+        $this->setHotelPermission();
+    }
+
+    protected function setHotelPermission()
+    {
+        $model = new SignModel();
+        $data = $model->getSignCategoryList(array('hotelid' => $this->getHotelId()), 6 * 3600);
+        if ($data['code'] == 0 && $data['data']['total'] > 0) {
+            $this->getView()->assign('hotelPermissionSign', 1);
+        }
     }
 
     /**
@@ -58,10 +68,10 @@ class BaseController extends \Yaf_Controller_Abstract {
     private function setPageHeaderInfo($loginInfo) {
         $headerInfo['userName'] = $loginInfo['lname'] ? $loginInfo['lname'] : "";
         $headerInfo['adminPermission'] = $loginInfo['createAdmin'] ? 0 : 1;
-        $useLangugae = Enum_Lang::getSystemLang();
+        $useLanguage = Enum_Lang::getSystemLang();
         $languageNameList = Enum_Lang::getLangeNameList();
-        $headerInfo['useLanguage'] = $useLangugae;
-        $headerInfo['useLanguageShow'] = $languageNameList[$useLangugae];
+        $headerInfo['useLanguage'] = $useLanguage;
+        $headerInfo['useLanguageShow'] = $languageNameList[$useLanguage];
         $this->getView()->assign('headerInfo', $headerInfo);
     }
 

@@ -5,40 +5,22 @@
  */
 class SignController extends \BaseController
 {
-
-    const SPORTS = array(
-        'gym' => array(
-            'Chest Press' => 'chest_press',
-            'Shoulder Press' => 'shoulder_press',
-            'Lat Pulldown' => 'lat_pulldown',
-            'Leg Extension' => 'leg_extension',
-            'Seated Leg Curl' => 'seated_leg_curl',
-            'AB Crunch Bench' => 'ab_crunch_bench',
-            'Fitness Bench' => 'fitness_bench',
-            'Hammer Strength' => 'hammer_strength',
-            'Total Body Trainer' => 'total_body_trainer',
-            'Shock Absorption System' => 'shock_absorption_system',
-            'Cycle Machine' => 'cycle_machine',
-        ),
-
-        'swimming' => array(
-            'Swimming pool' => 'swimming_pool',
-            'Children\'s pool' => 'children_pool',
-            'Jacuzzi' => 'jacuzzi',
-            'Sauna' => 'sauna',
-        )
-    );
-
     /**
      * @var Convertor_Sign
      */
     private $_signConvertor;
+
+    /**
+     * @var SignModel
+     */
+    private $_signModel;
 
     public function init()
     {
         parent::init();
         $this->initHotelList($this->userInfo);
         $this->_signConvertor = new Convertor_Sign();
+        $this->_signModel = new SignModel();
     }
 
     /**
@@ -46,24 +28,41 @@ class SignController extends \BaseController
      */
     public function indexAction()
     {
+        $params = array(
+            'hotelid' => $this->getHotelId(),
+            'status' => 0,
+            'limit' => 0
+        );
+
+        $signCategories = $this->_signModel->getSignCategoryList($params);
+        $categories = $this->_signConvertor->signCategoryConvertor($signCategories);
+        $this->_view->assign('categories', $categories);
         $this->_view->display('sign/index.phtml');
     }
 
-
-    public function swimmingAction()
+    public function itemAction()
     {
-        $this->_view->assign('gyms', self::SPORTS['swimming']);
-        $this->_view->display('sign/gym.phtml');
-    }
-
-    public function gymAction()
-    {
-        $this->_view->assign('gyms', self::SPORTS['gym']);
+        $params = array();
+        $params['category_id'] = intval($this->getGet('id'));
+        $params['hotelid'] = $this->getHotelId();
+        $params['status'] = 0;
+        $params['limit'] = 0;
+        $data = $this->_signModel->getItemList($params);
+        $items = $this->_signConvertor->signItemConvertor($data);
+        $this->_view->assign('category_id', intval($params['category_id']));
+        $this->_view->assign('items', $items);
         $this->_view->display('sign/gym.phtml');
     }
 
     public function reportAction()
     {
+        $data = $this->_signModel->getSignCategoryList(array(
+            'hotelid' => $this->getHotelId(),
+            'status' => 0,
+            'limit' => 0
+        ));
+        $categories = $this->_signConvertor->signCategoryConvertor($data);
+        $this->_view->assign('categories', $categories);
         $this->_view->display('sign/report.phtml');
     }
 
@@ -79,20 +78,11 @@ class SignController extends \BaseController
         $params['lastname'] = trim($this->getPost('lastname'));
         $params['start_time'] = trim($this->getPost('start_time'));
         $params['end_time'] = trim($this->getPost('end_time'));
+        $params['type'] = intval($this->getPost('type'));
+        $params['sports'] = $this->getPost('items');
 
         $params['hotelid'] = $this->getHotelId();
         $params['groupid'] = $this->getGroupId();
-
-        $sports = array();
-        foreach (self::SPORTS as $type => $items) {
-            foreach (array_values($items) as $key) {
-                if (!is_null($this->getPost($key))) {
-                    $sports[] = $key;
-                    $params['type'] = $type;
-                }
-            }
-        }
-        $params['sports'] = implode(',', $sports);
 
         $result = $model->sign($params);
         $this->echoJson($result);
@@ -105,11 +95,13 @@ class SignController extends \BaseController
             'hotelid' => intval($this->getHotelId()),
             'start' => trim($this->getPost('start')),
             'end' => trim($this->getPost('end')),
-            'type' => trim($this->getPost('type')),
+            'type' => intval($this->getPost('type')),
         );
         $this->getPageParam($paramList);
         $data = $model->getSignList($paramList);
-        $result = $this->_signConvertor->signListConvertor($data);
+        $items = $this->_signModel->getItemList(array('hotelid' => $this->getHotelId()));
+        $categories = $this->_signModel->getSignCategoryList(array('hotelid' => $this->getHotelId()));
+        $result = $this->_signConvertor->signListConvertor($data, $items['data']['list'], $categories['data']['list']);
         $this->echoJson($result);
     }
 
@@ -126,7 +118,18 @@ class SignController extends \BaseController
         );
 
         $data = $model->getSignList($paramList);
-        $result = $signConvertor->signListExportConvertor($data, $paramList);
+        $items = $this->_signModel->getItemList(array(
+            'hotelid' => $this->getHotelId(),
+            'status' => 0,
+            'category_id' => $paramList['type'],
+            'limit' => 0
+        ));
+        $categories = $this->_signModel->getSignCategoryList(array(
+            'hotelid' => $this->getHotelId(),
+            'id' => $paramList['type'],
+            'limit' => 0
+        ));
+        $result = $signConvertor->signListExportConvertor($data, $items['data']['list'], $categories['data']['list']);
 
         $fileName = 'hotelSignUpReport';
         $fileNameParams = array();

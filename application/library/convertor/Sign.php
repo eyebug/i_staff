@@ -16,16 +16,36 @@ class Convertor_Sign extends Convertor_Base
     );
 
     /**
-     * 预约看房订单列表
+     * @param $list
+     * @param array $items
+     * @param array $categories
+     * @return array
      */
-    public function signListConvertor($list)
+    public function signListConvertor(array $list, array $items, array $categories)
     {
         $data = array(
             'code' => intval($list['code']),
             'msg' => $list['msg']
         );
         if (isset($list['code']) && !$list['code']) {
-
+            $lang = Enum_Lang::getSystemLang(true);
+            $categoryMap = array();
+            $itemMap = array();
+            foreach ($categories as $category) {
+                $categoryMap[$category['id']] = $category['title_lang' . $lang];
+            }
+            foreach ($items as $item) {
+                $itemMap[$item['id']] = $item['title_lang' . $lang];
+            }
+            foreach ($list['data']['list'] as &$row) {
+                $row['type'] = $categoryMap[$row['type']];
+                $sports = explode(',', $row['sports']);
+                $tmp = array();
+                foreach ($sports as $sport) {
+                    $tmp[] = $itemMap[$sport];
+                }
+                $row['sports'] = implode(',', $tmp);
+            }
             $data['data']['list'] = $list['data']['list'];
             $data['data']['pageData']['page'] = intval($list['data']['page']);
             $data['data']['pageData']['rowNum'] = intval($list['data']['total']);
@@ -41,15 +61,17 @@ class Convertor_Sign extends Convertor_Base
      * @param $params
      * @return array
      */
-    public function signListExportConvertor($list, $params)
+    public function signListExportConvertor(array $list, array $items, array $categories)
     {
         $data = array();
         $data['list'] = array();
-        $type = $params['type'];
-        $title = self::TITLE;
-        foreach (SignController::SPORTS[$type] as $key => $name) {
-            $title[] = $key;
+        $lang = Enum_Lang::getSystemLang(true);
+        $itemMap = array();
+        foreach ($items as $item) {
+            $itemMap[$item['id']] = $item['title_lang' . $lang];
         }
+
+        $title = array_merge(self::TITLE, array_values($itemMap));
         $title[] = Enum_Lang::getPageText('sign', 'name');
         $data['title'] = $title;
 
@@ -64,8 +86,8 @@ class Convertor_Sign extends Convertor_Base
             $item['end_time'] = $row['end_time'];
 
             $sports = explode(',', $row['sports']);
-            foreach (SignController::SPORTS[$type] as $key => $name) {
-                if (in_array($name, $sports)) {
+            foreach ($itemMap as $key => $name) {
+                if (in_array($key, $sports)) {
                     $item[$name] = 'yes';
                 } else {
                     $item[$name] = '';
@@ -77,6 +99,36 @@ class Convertor_Sign extends Convertor_Base
 
         return $data;
 
+    }
+
+    /**
+     * @param $list
+     * @return array
+     */
+    public function signItemConvertor($list)
+    {
+        $data = array();
+        if (isset($list['code']) && !$list['code']) {
+            $lang = Enum_Lang::getSystemLang(true);
+            foreach ($list['data']['list'] as &$row) {
+                $row['title'] = $row['title_lang' . $lang];
+            }
+            $data = $list['data']['list'];
+        }
+        return $data;
+    }
+
+    public function signCategoryConvertor($list)
+    {
+        $data = array();
+        if (isset($list['code']) && !$list['code']) {
+            $lang = Enum_Lang::getSystemLang(true);
+            foreach ($list['data']['list'] as &$row) {
+                $row['title'] = $row['title_lang' . $lang];
+            }
+            $data = $list['data']['list'];
+        }
+        return $data;
     }
 }
 

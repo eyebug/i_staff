@@ -1,10 +1,12 @@
 div#signBox {
-    padding: 0 25%;
+    text-align: center;
 }
 
 div#signBox > div {
-    width: 40%;
     text-align: center;
+    display: inline-block;
+    width: 35%;
+    margin: 2%;
 }
 
 div#signBox > > button {
@@ -13,23 +15,12 @@ div#signBox > > button {
 
 img.img2 {
     width: 100%;
+    height: 80%;
     padding: 5%;
-}
-
-div#canteen {
-    float: left;
-}
-
-div#gym {
-    float: right;
 }
 
 div#login-detail, div#info-detail, button.btn-large {
     font-size: 20px;
-}
-
-.option.btn-primary.active {
-    background-color: green;
 }
 
 label.gym-checkbox {

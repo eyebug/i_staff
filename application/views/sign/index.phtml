@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <?php include($webConfig['layoutPath'] . '/common/meta.phtml') ?>
     <title><?php echo Enum_Lang::getPageText('system', 'systemName'); ?></title>
     <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/reset.css"/>
@@ -15,25 +15,23 @@
     </div>
     <!-- End #logn-top -->
     <div id="signBox">
-        <div id="canteen">
-            <a href="/sign/swimming">
-                <img class="img2" src="<?php echo $webConfig['imgDomain']; ?>img/sign/swimming-pool.jpg" alt=""
-                     width="200" height="100"/>
+        <?php
+        $template = '<div id="category%1$s" class="category %4$s">
+            <a href="/sign/item?id=%1$s">
+                <img class="img2" src="%2$s" alt="" width="200" height="100"/>
             </a>
-            <a href="/sign/swimming">
-                <button class="btn-primary btn-large">游泳池</button>
+            <a href="/sign/item?id=%1$s">
+                <button class="btn-primary btn-large">%3$s</button>
             </a>
-        </div>
-        <div id="gym">
-            <a href="/sign/gym">
-                <img class="img2" src="<?php echo $webConfig['imgDomain']; ?>img/sign/gym.jpg" alt="" width="200"
-                     height="100"/>
-            </a>
-            <a href="/sign/gym">
-                <button class="btn-primary btn-large">健身房</button>
-            </a>
-        </div>
-        <div style="clear: both"></div>
+        </div>';
+        $index = 0;
+        foreach ($categories as $category) {
+            $index++;
+            $class = ($index % 2 == 0 ? 'even' : 'odd');
+            $output = sprintf($template, $category['id'], $category['pic'], $category['title'], $class);
+            echo $output;
+        }
+        ?>
     </div>
     <!-- End #login-content -->
 </div>

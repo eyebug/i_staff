@@ -16,6 +16,18 @@
                 <li><p class="navbar-text text-custom"><?php echo Enum_Lang::getPageText('system', 'welcomeMsg'); ?></p></li>
             </ul>
 
+            <div class="btn-group pull-right" style="margin-left: 10px">
+                <button id="changeLanguageButton" data-now="<?php echo $headerInfo['useLanguage']; ?>" class="btn dropdown-toggle" data-toggle="dropdown"
+                        data-loading-text="<?php echo Enum_Lang::getPageText('system', 'saveing'); ?>">
+                    <?php echo $headerInfo['useLanguageShow']; ?><span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" id="languageList">
+                    <li op="changeLanguage" data-language="<?php echo Enum_Lang::LANG_KEY_CHINESE ?>"><a href="javascrip:;">中文</a></li>
+                    <li class="divider"></li>
+                    <li op="changeLanguage" data-language="<?php echo Enum_Lang::LANG_KEY_ENGLISH ?>"><a href="javascrip:;">English</a></li>
+                </ul>
+            </div>
+
             <?php
             if (!empty($userHotelList)) {
             ?>

@@ -32,6 +32,7 @@ class UserModel extends \BaseModel
                 || empty($paramList['start_time']) || empty($paramList['end_time']) || empty($paramList['hotelid']) || empty($paramList['groupid']) || empty($paramList['type'])) {
                 $this->throwException('Lack of param', 1);
             }
+            $paramList['sports'] = implode(',', $paramList['sports']);
             $result = $this->rpcClient->getResultRaw('U002', $paramList);
 
         } catch (Exception $e) {

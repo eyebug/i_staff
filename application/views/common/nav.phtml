@@ -38,7 +38,7 @@
                 </span>
                 <ul class="nav nav-list nav-li-list hide">
                     <?php
-                        if ( $userHotel['id'] == 1) {
+                        if ($hotelPermissionSign == 1) {
                     ?>
                     <li>
                         <a href="/sign"><?php echo Enum_Lang::getPageText('nav', 'signSystem'); ?></a>

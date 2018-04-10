@@ -7,7 +7,7 @@
  */
 class Enum_Request {
 
-    const RPC_REQUEST_UA = "Iservice/1.0(iam;)";
+    const RPC_REQUEST_UA = "Iservice/1.0(staff;)";
 
     public static function getUrlConfigById($interfaceId) {
         $config = array(
@@ -30,6 +30,7 @@ class Enum_Request {
             'C' => 'Rpc_UrlConfigComment',
             'RT' => 'Rpc_UrlConfigRobot',
             'SF' => 'Rpc_UrlConfigStaff',
+            'S' => 'Rpc_UrlConfigSign',
         );
         $fileKey = preg_replace('/\d+/', '', $interfaceId);
         $fileNameKey = $config[$fileKey];

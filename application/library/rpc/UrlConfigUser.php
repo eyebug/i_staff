@@ -94,7 +94,7 @@ class Rpc_UrlConfigUser
             'name' => '获取签到列表',
             'method' => 'getSignList',
             'auth' => true,
-            'url' => '/user/getSignList',
+            'url' => '/sign/getSignList',
             'param' => array(
                 'hotelid' => array(
                     'required' => true,
@@ -113,7 +113,7 @@ class Rpc_UrlConfigUser
                 ),
                 'type' => array(
                     'required' => false,
-                    'format' => 'string',
+                    'format' => 'int',
                     'style' => 'interface'
                 ),
                 'page' => array(
