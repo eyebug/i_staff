@@ -36,4 +36,7 @@ class Lang_Zh_System
     const ENDTIME = "结束时间";
     const TYPE = "类别";
 
+    const CONFIRM = '确定';
+    const CANCEL = '取消';
+
 }

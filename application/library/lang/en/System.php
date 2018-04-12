@@ -6,4 +6,7 @@ class Lang_En_System {
 
     const SWITCHHOTEL = "Switch Hotel";
 
+    const CONFIRM = 'Confirm';
+    const CANCEL = 'Cancel';
+
 }
