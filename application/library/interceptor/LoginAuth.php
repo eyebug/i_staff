@@ -29,7 +29,7 @@ class Interceptor_LoginAuth extends Interceptor_Base {
                 'dosign',
             ),
             'loginajax' => array(
-                'changeLangugae'
+                'changelangugae'
             ),
         );
 
