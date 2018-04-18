@@ -28,6 +28,9 @@ class Interceptor_LoginAuth extends Interceptor_Base {
                 'item',
                 'dosign',
             ),
+            'loginajax' => array(
+                'changeLangugae'
+            ),
         );
 
         $flag = false;
