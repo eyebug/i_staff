@@ -19,6 +19,11 @@ class Rpc_UrlConfigHotel {
                     'format' => 'string',
                     'style' => 'interface'
                 ),
+                'propertyinterfid' => array(
+                    'required' => false,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
                 'groupid' => array(
                     'required' => false,
                     'format' => 'int',

@@ -20,8 +20,9 @@ function submit(e) {
                 window.location.href = "/sign/index";
             } else {
                 var tryAgain = false;
+                var msg = getMsg(data.code);
                 if (data.code == 1) {
-                    tryAgain = confirm("请输入所有内容, 重新输入?");
+                    tryAgain = confirm(msg);
                     $('div#login-detail').hide();
                     $('div#info-detail').show();
                     if (tryAgain) {
@@ -30,7 +31,7 @@ function submit(e) {
                         $('input[name="num"]').focus();
                     }
                 } else {
-                    tryAgain = confirm(data.msg + "，重新输入?");
+                    tryAgain = confirm(msg);
                     if (tryAgain) {
                         clearForm();
                         $('div#login-detail').hide();
@@ -46,6 +47,35 @@ function submit(e) {
         }
     });
 
+}
+
+function getMsg(code) {
+    var lang = getCookie('systemLang');
+    var data = {
+        'zh':{
+            0: '成功',
+            1: '请输入所有内容，重新输入？',
+            4: '房间号和名称错误，登录失败。重新输入？',
+            other: '系统错误，重试？'
+        },
+        'en': {
+            0: 'Success',
+            1: 'Please input all the required information, start over?',
+            4: 'Room No. or Last Name are not matched, start over?',
+            other: 'System Error，try again?'
+        }
+    };
+    var result = data[lang][code];
+    if(result == undefined){
+        result = data[lang]['other'];
+    }
+    return result;
+}
+
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
 function next() {

@@ -33,7 +33,7 @@ class UserModel extends \BaseModel
                 $this->throwException('Lack of param', 1);
             }
             $paramList['sports'] = implode(',', $paramList['sports']);
-            $result = $this->rpcClient->getResultRaw('U002', $paramList);
+            $result = $this->rpcClient->getResultRaw('U002', $paramList, false, -1, true, 20);//set timeout
 
         } catch (Exception $e) {
             $result = array(

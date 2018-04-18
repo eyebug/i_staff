@@ -1,8 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <?php include($webConfig['layoutPath'] . '/common/meta.phtml') ?>
-    <title><?php echo Enum_Lang::getPageText('system', 'systemName'); ?></title>
+    <meta charset="utf-8">
+    <title><?php echo $hotelName; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/al_resize.css"/>
+    <script src="<?php echo $webConfig['imgDomain']; ?>js/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="<?php echo $webConfig['imgDomain']; ?>js/lib/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<?php echo $webConfig['imgDomain']; ?>js/common/yp_ajax.js"></script>
+    <script src="<?php echo $webConfig['imgDomain']; ?>js/common/yp_alert.js"></script>
+    <script src="<?php echo $webConfig['imgDomain']; ?>js/common/modalfix.js" type="text/javascript"></script>
+    <script src="<?php echo $webConfig['imgDomain']; ?>js/common/switch_hotel.js" type="text/javascript"></script>
+    <link href="<?php echo $webConfig['imgDomain']; ?>css/css.css" rel="stylesheet">
+    <link rel="icon" href="data:;base64,=">
     <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/reset.css"/>
     <link type="text/css" rel="stylesheet" href="<?php echo $webConfig['imgDomain']; ?>css/style.css"/>
@@ -10,6 +23,7 @@
 </head>
 <body id="login">
 <div id="login-wrapper" class="png_bg">
+    <?php include(__DIR__ . '/lang.phtml') ?>
     <div id="login-top">
         <h1><?php echo Enum_Lang::getPageText('nav', 'signSystem'); ?></h1>
     </div>
@@ -17,10 +31,10 @@
     <div id="signBox">
         <?php
         $template = '<div id="category%1$s" class="category %4$s">
-            <a href="/sign/item?id=%1$s">
+            <a href="/sign/item?id=%1$s&hotelid=%5$s">
                 <img class="img2" src="%2$s" alt="" width="200" height="100"/>
             </a>
-            <a href="/sign/item?id=%1$s">
+            <a href="/sign/item?id=%1$s&hotelid=%5$s">
                 <button class="btn-primary btn-large">%3$s</button>
             </a>
         </div>';
@@ -28,7 +42,7 @@
         foreach ($categories as $category) {
             $index++;
             $class = ($index % 2 == 0 ? 'even' : 'odd');
-            $output = sprintf($template, $category['id'], $category['pic'], $category['title'], $class);
+            $output = sprintf($template, $category['id'], $category['pic'], $category['title'], $class, $hotelid);
             echo $output;
         }
         ?>
@@ -36,8 +50,6 @@
     <!-- End #login-content -->
 </div>
 <!-- End #login-wrapper -->
-<script src="<?php echo $webConfig['imgDomain']; ?>js/lib/jquery-1.11.1.min.js"></script>
-<script src="<?php echo $webConfig['imgDomain']; ?>js/lib/bootstrap.min.js" type="text/javascript"></script>
 
 </body>
 </html>

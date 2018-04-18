@@ -14,6 +14,7 @@ class HotelModel extends \BaseModel {
                 $paramList['id'] ? $params['id'] = $paramList['id'] : false;
                 $paramList['name'] ? $params['name'] = $paramList['name'] : false;
                 $paramList['groupid'] ? $params['groupid'] = $paramList['groupid'] : false;
+                $paramList['propertyinterfid'] ? $params['propertyinterfid'] = $paramList['propertyinterfid'] : false;
                 isset($paramList['status']) ? $params['status'] = $paramList['status'] : false;
                 $this->setPageParam($params, $paramList['page'], $paramList['limit'], 15);
             } else {

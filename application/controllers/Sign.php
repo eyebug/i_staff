@@ -15,12 +15,38 @@ class SignController extends \BaseController
      */
     private $_signModel;
 
+    const SWITCH_LANG = array(
+        Enum_Lang::LANG_KEY_CHINESE => 'Switch Language',
+        Enum_Lang::LANG_KEY_ENGLISH => '切换语言'
+    );
+
     public function init()
     {
         parent::init();
         $this->initHotelList($this->userInfo);
         $this->_signConvertor = new Convertor_Sign();
         $this->_signModel = new SignModel();
+        $this->_view->assign('switchLang', static::SWITCH_LANG[Enum_Lang::getSystemLang()]);
+    }
+
+    private function _getHotelId()
+    {
+        $result = intval($this->getGet('hotelid'));
+        if ($result <= 0) {
+            $propertyId = intval($this->getGet('propertyid'));
+            $model = new HotelModel();
+            $list = $model->getHotelList(array('propertyinterfid' => $propertyId));
+            foreach ($list['data']['list'] as $row) {
+                if ($row['groupid'] != 3) {//skip test groups
+                    $result = $row['id'];
+                    break;
+                }
+            }
+        }
+        if ($result <= 0) {
+            $result = $this->getHotelId();
+        }
+        return $result <= 0 ? -1 : $result;
     }
 
     /**
@@ -29,14 +55,21 @@ class SignController extends \BaseController
     public function indexAction()
     {
         $params = array(
-            'hotelid' => $this->getHotelId(),
+            'hotelid' => $this->_getHotelId(),
             'status' => 0,
             'limit' => 0
         );
 
         $signCategories = $this->_signModel->getSignCategoryList($params);
         $categories = $this->_signConvertor->signCategoryConvertor($signCategories);
+
+        $hotelModel = new HotelModel();
+        $hotel = $hotelModel->getHotelDetail($this->_getHotelId());
+        $hotelName = $hotel['data']['list'][0]['name_lang'.Enum_Lang::getSystemLang(true)];
+
         $this->_view->assign('categories', $categories);
+        $this->_view->assign('hotelid', $this->_getHotelId());
+        $this->_view->assign('hotelName', $hotelName);
         $this->_view->display('sign/index.phtml');
     }
 
@@ -44,12 +77,20 @@ class SignController extends \BaseController
     {
         $params = array();
         $params['category_id'] = intval($this->getGet('id'));
-        $params['hotelid'] = $this->getHotelId();
+        $params['hotelid'] = $this->_getHotelId();
         $params['status'] = 0;
         $params['limit'] = 0;
         $data = $this->_signModel->getItemList($params);
         $items = $this->_signConvertor->signItemConvertor($data);
+
+        $hotelModel = new HotelModel();
+        $hotel = $hotelModel->getHotelDetail($this->_getHotelId());
+        $hotelName = $hotel['data']['list'][0]['name_lang'.Enum_Lang::getSystemLang(true)];
+
         $this->_view->assign('category_id', intval($params['category_id']));
+        $this->_view->assign('hotelid', $this->_getHotelId());
+        $this->_view->assign('hotelName', $hotelName);
+
         $this->_view->assign('items', $items);
         $this->_view->display('sign/gym.phtml');
     }
@@ -81,7 +122,7 @@ class SignController extends \BaseController
         $params['type'] = intval($this->getPost('type'));
         $params['sports'] = $this->getPost('items');
 
-        $params['hotelid'] = $this->getHotelId();
+        $params['hotelid'] = $this->_getHotelId();
         $params['groupid'] = $this->getGroupId();
 
         $result = $model->sign($params);

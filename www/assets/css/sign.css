@@ -1,16 +1,23 @@
 div#signBox {
     text-align: center;
+    white-space: nowrap;
+    overflow-x: auto;
 }
 
 div#signBox > div {
     text-align: center;
     display: inline-block;
-    width: 35%;
-    margin: 2%;
+    width: 41%;
+    margin: 3%;
 }
 
-div#signBox > > button {
-    margin-top: 1%;
+div#signBox button {
+    display: block;
+    margin: auto;
+}
+
+div#signBox a {
+    text-decoration: none;
 }
 
 img.img2 {
@@ -23,12 +30,17 @@ div#login-detail, div#info-detail, button.btn-large {
     font-size: 20px;
 }
 
+label.control-label, input.input-xlarge{
+    font-size: 15px;
+}
+
 table#gym-container{
     width: 100%;
 }
 
 label.gym-checkbox {
     margin: 5px;
+    font-size: 15px !important;
     border-radius: 5%;
     padding-right: 5px;
     border: none;
