@@ -31,7 +31,7 @@ div#login-detail, div#info-detail, button.btn-large {
 }
 
 label.control-label, input.input-xlarge{
-    font-size: 20px;
+    font-size: 18px;
 }
 
 table#gym-container{
@@ -50,4 +50,14 @@ label.gym-checkbox {
 
 button[disabled=disabled] {
     background-image: none;
+}
+
+button.time-button {
+    display: inline;
+    border-radius: 5%;
+    font-size: 18px;
+}
+
+div.time-box {
+    white-space: nowrap;
 }

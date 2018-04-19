@@ -50,18 +50,20 @@
                         </div>
                     </div>
 
-                    <div class="control-group">
+                    <div class="control-group time-box">
                         <label class="control-label">Start Time(开始时间)：</label>
                         <div class="controls" style="color: black">
                             <input name="start_time" type="datetime-local" value=''/>
+                            <button type="button" class="time-button btn-primary"><?php echo Enum_Lang::getPageText('system', 'confirm'); ?></button>
                         </div>
                     </div>
 
-                    <div class="control-group">
+                    <div class="control-group time-box">
                         <label class="control-label">End Time(结束时间)：</label>
 
                         <div class="controls" style="color: black">
                             <input name="end_time" type="datetime-local" value=''/>
+                            <button type="button" class="time-button btn-primary"><?php echo Enum_Lang::getPageText('system', 'confirm'); ?></button>
                         </div>
                     </div>
 
@@ -91,7 +93,7 @@
 
                     <div class="control-group" style="text-align: center">
                         <button type="button" class="btn-primary btn-large option"><?php echo Enum_Lang::getPageText('system', 'confirm'); ?></button>
-                        <a href="/sign/index?hotelid=<?php echo $hotelid ?>">
+                        <a href="/sign/index?hotelid=<?php echo $hotelid; ?>">
                             <button type="button" class="btn-primary btn-large"><?php echo Enum_Lang::getPageText('system', 'cancel'); ?></button>
                         </a>
                     </div>
@@ -121,10 +123,11 @@
                         <a>
                             <button type="submit" class="btn-primary btn-large submit"><?php echo Enum_Lang::getPageText('system', 'confirm'); ?></button>
                         </a>
-                        <a href="/sign/index?hotelid=<?php echo $hotelid ?>">
+                        <a href="/sign/index?hotelid=<?php echo $hotelid; ?>">
                             <button type="button" class="btn-primary btn-large"><?php echo Enum_Lang::getPageText('system', 'cancel'); ?></button>
                         </a>
                     </div>
+                    <input type="hidden" name="hotelid" value="<?php echo $hotelid; ?>">
                 </div>
 
                 <input type="reset" style="display: none"/>

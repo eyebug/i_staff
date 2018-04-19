@@ -73,11 +73,6 @@ class Rpc_UrlConfigUser
                     'format' => 'string',
                     'style' => 'interface'
                 ),
-                'groupid' => array(
-                    'required' => true,
-                    'format' => 'string',
-                    'style' => 'interface'
-                ),
                 'type' => array(
                     'required' => false,
                     'format' => 'string',

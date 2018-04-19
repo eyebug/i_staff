@@ -15,12 +15,12 @@ function submit(e) {
         data: formdata,
         success: function (data) {
             ob.removeAttr('disabled');
+            var msg = getMsg(data.code);
             if (data.code == 0) {
-                alert('Success(签到成功)');
-                window.location.href = "/sign/index";
+                alert(msg);
+                window.location.href = "/sign/index?hotelid=" + $('input[name=hotelid]').val();
             } else {
                 var tryAgain = false;
-                var msg = getMsg(data.code);
                 if (data.code == 1) {
                     tryAgain = confirm(msg);
                     $('div#login-detail').hide();

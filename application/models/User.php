@@ -29,7 +29,7 @@ class UserModel extends \BaseModel
 
         try {
             if (empty($paramList['num']) || empty($paramList['room_no']) || empty($paramList['lastname']) || empty($paramList['sports'])
-                || empty($paramList['start_time']) || empty($paramList['end_time']) || empty($paramList['hotelid']) || empty($paramList['groupid']) || empty($paramList['type'])) {
+                || empty($paramList['start_time']) || empty($paramList['end_time']) || empty($paramList['hotelid']) || empty($paramList['type'])) {
                 $this->throwException('Lack of param', 1);
             }
             $paramList['sports'] = implode(',', $paramList['sports']);

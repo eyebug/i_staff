@@ -33,6 +33,9 @@ class SignController extends \BaseController
     {
         $result = intval($this->getGet('hotelid'));
         if ($result <= 0) {
+            $result = intval($this->getPost('hotelid'));
+        }
+        if ($result <= 0) {
             $propertyId = intval($this->getGet('propertyid'));
             $model = new HotelModel();
             $list = $model->getHotelList(array('propertyinterfid' => $propertyId));
