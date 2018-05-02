@@ -20,25 +20,13 @@ function submit(e) {
                 alert(msg);
                 window.location.href = "/sign/index?hotelid=" + $('input[name=hotelid]').val();
             } else {
-                var tryAgain = false;
                 if (data.code == 1) {
-                    tryAgain = confirm(msg);
+                    alert(msg);
                     $('div#login-detail').hide();
                     $('div#info-detail').show();
-                    if (tryAgain) {
-                        clearForm();
-                    } else {
-                        $('input[name="num"]').focus();
-                    }
                 } else {
-                    tryAgain = confirm(msg);
-                    if (tryAgain) {
-                        clearForm();
-                        $('div#login-detail').hide();
-                        $('div#info-detail').show();
-                    } else {
-                        $('input[name="room"]').focus();
-                    }
+                    alert(msg);
+                    $('input[name="room"]').focus();
                 }
             }
         },
@@ -52,7 +40,7 @@ function submit(e) {
 function getMsg(code) {
     var lang = getCookie('systemLang');
     var data = {
-        'zh':{
+        'zh': {
             0: '成功',
             1: '请输入所有内容，重新输入？',
             4: '房间号和名称错误，登录失败。重新输入？',
@@ -66,7 +54,7 @@ function getMsg(code) {
         }
     };
     var result = data[lang][code];
-    if(result == undefined){
+    if (result == undefined) {
         result = data[lang]['other'];
     }
     return result;
