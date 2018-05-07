@@ -53,6 +53,9 @@ function getMsg(code) {
             other: 'System Error，try again?'
         }
     };
+    if (!data[lang]) {
+        lang = 'zh';
+    }
     var result = data[lang][code];
     if (result == undefined) {
         result = data[lang]['other'];
@@ -61,18 +64,18 @@ function getMsg(code) {
 }
 
 function getCookie(name) {
+    var result = 'zh';
     var value = "; " + document.cookie;
     var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
+    if (parts.length == 2) {
+        result = parts.pop().split(";").shift();
+    }
+    return result;
 }
 
 function next() {
     $('div#info-detail').hide();
     $('div#login-detail').show();
-}
-
-function clearForm() {
-    $("input[type=reset]").click();
 }
 
 $(function () {
