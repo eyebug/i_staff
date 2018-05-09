@@ -175,5 +175,36 @@ class RobotModel extends \BaseModel {
 
     }
 
+    public function robotSend(array $paramList): array
+    {
+        do {
+            $params = array();
+            $paramList['userid'] ? $params['userid'] = $paramList['userid'] : false;
+            $paramList['token'] ? $params['token'] = $paramList['token'] : false;
+            $paramList['to'] ? $params['to'] = $paramList['to'] : false;
+            $paramList['start'] ? $params['start'] = $paramList['start'] : false;
+            $paramList['dest'] ? $params['dest'] = $paramList['dest'] : false;
+
+            $result = $this->rpcClient->getResultRaw('RT004', $params);
+        } while (false);
+        return (array)$result;
+    }
+
+    public function getRobotSendList(array $paramList, $cacheTime = 0): array
+    {
+        do {
+            $params = array();
+            $paramList['id'] ? $params['id'] = $paramList['id'] : false;
+            $paramList['userid'] ? $params['userid'] = $paramList['userid'] : false;
+            $paramList['hotelid'] ? $params['hotelid'] = $paramList['hotelid'] : false;
+            $paramList['status'] ? $params['status'] = $paramList['status'] : false;
+
+            $this->setPageParam($params, $paramList['page'], $paramList['limit'], 10);
+            $isCache = $cacheTime != 0 ? true : false;
+            $result = $this->rpcClient->getResultRaw('RT005', $params, $isCache, $cacheTime);
+        } while (false);
+        return (array)$result;
+    }
+
 
 }

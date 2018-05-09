@@ -171,5 +171,35 @@ class ServiceController extends \BaseController
         $this->echoJson($result);
     }
 
+    public function robotGetAction()
+    {
+        $robotModel = new RobotModel();
+        $roomPositionList = $robotModel->getPositionList(
+            array(
+                'hotelid' => $this->getHotelId(),
+                'type' => RobotModel::POSITION_TYPE_ROOM
+            )
+        );
+        $publicPositionList = $robotModel->getPositionList(array(
+            'hotelid' => $this->getHotelId(),
+            'type' => RobotModel::POSITION_TYPE_OTHER
+        ));
+
+        $userModel = new UserModel();
+        $userList = $userModel->getList(
+            array(
+                'hotelid' => $this->getHotelId(),
+            )
+        );
+
+        $statusList = Enum_Robot::getStatusList();
+
+        $this->_view->assign('publicPositionList', $publicPositionList['data']['list']);
+        $this->_view->assign('roomPositionList', $roomPositionList['data']['list']);
+        $this->_view->assign('statusList', $statusList);
+        $this->_view->assign('userList', $userList['data']['list']);
+        $this->_view->display('service/robot_get.phtml');
+    }
+
 
 }
