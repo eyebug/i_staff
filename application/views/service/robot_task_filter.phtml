@@ -12,10 +12,10 @@
             <div class="pull-left control-item">
                 <span class="control-label"><?php echo Enum_Lang::getPageText('shopping', 'ROOM'); ?>：</span>
                 <div class="controls">
-                    <select id="filter_userid" data-paramkey='userid' class="input-medium select-long" op="filterCase">
+                    <select id="filter_room" data-paramkey='room' class="input-medium select-long" op="filterCase">
                         <option value=""><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
-                        <?php foreach ($userList as $user) { ?>
-                            <option value="<?php echo $user['id']; ?>"><?php echo $user['room_no']; ?></option>
+                        <?php foreach ($roomPositionList as $position) { ?>
+                            <option value="<?php echo $position['position']; ?>"><?php echo $position['position']; ?></option>
                         <?php } ?>
                     </select>
                 </div>

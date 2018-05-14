@@ -71,7 +71,7 @@ class ServiceAjaxController extends \BaseController
     {
         $params = array();
         $params['id'] = $this->getPost('id');
-        $params['userid'] = $this->getPost('userid');
+        $params['room_no'] = trim($this->getPost('room'));
         $params['hotelid'] = $this->getHotelId();
         $params['status'] = $this->getPost('status');
         if ($params['status'] == 'all') {

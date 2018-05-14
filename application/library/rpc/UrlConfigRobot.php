@@ -143,9 +143,9 @@ class Rpc_UrlConfigRobot {
                     'format' => 'int',
                     'style' => 'interface'
                 ),
-                'userid' => array(
+                'room_no' => array(
                     'required' => false,
-                    'format' => 'int',
+                    'format' => 'string',
                     'style' => 'interface'
                 ),
                 'status' => array(

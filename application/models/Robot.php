@@ -195,7 +195,7 @@ class RobotModel extends \BaseModel {
         do {
             $params = array();
             $paramList['id'] ? $params['id'] = $paramList['id'] : false;
-            $paramList['userid'] ? $params['userid'] = $paramList['userid'] : false;
+            $paramList['room_no'] ? $params['room_no'] = $paramList['room_no'] : false;
             $paramList['hotelid'] ? $params['hotelid'] = $paramList['hotelid'] : false;
             $paramList['status'] ? $params['status'] = $paramList['status'] : false;
 
