@@ -73,6 +73,11 @@ class Rpc_UrlConfigUser
                     'format' => 'string',
                     'style' => 'interface'
                 ),
+                'propertyid' => array(
+                    'required' => false,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
                 'type' => array(
                     'required' => false,
                     'format' => 'string',

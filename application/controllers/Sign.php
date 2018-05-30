@@ -20,6 +20,10 @@ class SignController extends \BaseController
         Enum_Lang::LANG_KEY_ENGLISH => '切换语言'
     );
 
+    const MULTI_PROPERTY = array(
+        1 => 27
+    );
+
     public function init()
     {
         parent::init();
@@ -68,7 +72,7 @@ class SignController extends \BaseController
 
         $hotelModel = new HotelModel();
         $hotel = $hotelModel->getHotelDetail($this->_getHotelId());
-        $hotelName = $hotel['data']['list'][0]['name_lang'.Enum_Lang::getSystemLang(true)];
+        $hotelName = $hotel['data']['list'][0]['name_lang' . Enum_Lang::getSystemLang(true)];
 
         $this->_view->assign('categories', $categories);
         $this->_view->assign('hotelid', $this->_getHotelId());
@@ -87,11 +91,19 @@ class SignController extends \BaseController
         $items = $this->_signConvertor->signItemConvertor($data);
 
         $hotelModel = new HotelModel();
-        $hotel = $hotelModel->getHotelDetail($this->_getHotelId());
-        $hotelName = $hotel['data']['list'][0]['name_lang'.Enum_Lang::getSystemLang(true)];
+        $hotelId = $this->_getHotelId();
+        $hotel = $hotelModel->getHotelDetail($hotelId);
+        $hotelName = $hotel['data']['list'][0]['name_lang' . Enum_Lang::getSystemLang(true)];
+        $propertyId = $hotel['data']['list'][0]['propertyinterfid'];
+        if (isset(static::MULTI_PROPERTY[$hotelId])) {
+            $altHotel = $hotelModel->getHotelDetail(static::MULTI_PROPERTY[$hotelId]);
+            $this->_view->assign('altHotelName', $altHotel['data']['list'][0]['name_lang' . Enum_Lang::getSystemLang(true)]);
+            $this->_view->assign('altPropertyId', $altHotel['data']['list'][0]['propertyinterfid']);
+        }
 
         $this->_view->assign('category_id', intval($params['category_id']));
         $this->_view->assign('hotelid', $this->_getHotelId());
+        $this->_view->assign('propertyId', $propertyId);
         $this->_view->assign('hotelName', $hotelName);
 
         $this->_view->assign('items', $items);
@@ -126,6 +138,7 @@ class SignController extends \BaseController
         $params['sports'] = $this->getPost('items');
 
         $params['hotelid'] = $this->_getHotelId();
+        $params['propertyid'] = $this->getPost('propertyid');
         $params['groupid'] = $this->getGroupId();
 
         $result = $model->sign($params);

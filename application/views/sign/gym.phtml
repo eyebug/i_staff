@@ -102,13 +102,29 @@
 
 
                 <div id="login-detail" style="display: none">
+                    <?php
+                    if (isset($altPropertyId)) {
+                        ?>
+                        <div class="control-group">
+                            <label class="control-label" for="propertyid">Property(物业): </label>
+                            <div class="controls">
+                                <select class="input-xlarge" name="propertyid" autocomplete="off">
+                                    <option value="<?php echo $propertyId; ?>"
+                                            selected><?php echo $hotelName; ?></option>
+                                    <option value="<?php echo $altPropertyId; ?>"><?php echo $altHotelName; ?></option>
+                                </select>
+                            </div>
+                            <div style="clear: both"></div>
+                        </div>
+                        <?php
+                    }
+                    ?>
                     <div class="control-group">
                         <!-- Text input-->
                         <label class="control-label" for="room">Room No.(房间号): </label>
                         <div class="controls">
                             <input type="text" placeholder="" class="input-xlarge" name="room" autocomplete="off">
                         </div>
-                        <div style="clear: both"></div>
                     </div>
 
                     <div class="control-group">
