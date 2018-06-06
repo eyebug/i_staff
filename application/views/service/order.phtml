@@ -27,13 +27,13 @@
                                     <thead>
                                     <tr>
                                         <th></th>
-                                        <th>ID</th>
+                                        <th>定单 ID：</th>
                                         <th><?php echo Enum_Lang::getPageText('shopping', 'createTime'); ?></th>
                                         <th><?php echo Enum_Lang::getPageText('shopping', 'room'); ?></th>
                                         <th><?php echo Enum_Lang::getPageText('shopping', 'shopping'); ?></th>
-                                        <th><?php echo Enum_Lang::getPageText('shopping', 'SHOPPINGCOUNT'); ?></th>
-                                        <th><?php echo Enum_Lang::getPageText('shopping', 'shoppingStatus'); ?></th>
+                                        <th><?php echo Enum_Lang::getPageText('shopping', 'shoppingCount'); ?></th>
                                         <th><?php echo Enum_Lang::getPageText('shopping', 'orderAdmin'); ?></th>
+                                        <th><?php echo Enum_Lang::getPageText('shopping', 'shoppingStatus'); ?></th>
                                         <th><?php echo Enum_Lang::getPageText('shopping', 'robotstatus'); ?></th>
                                     </tr>
                                     </thead>
@@ -77,14 +77,14 @@
 <script id="dataList_tpl" type="text/html">
     {{each list as info i}}
     <tr dataId="{{info.id}}">
-        <td><input type="checkbox" value="{{info.id}}" class="robotShopping"></td>
+        <td><input type="checkbox" value="{{info.ordersProductsId}}" class="robotShopping"></td>
         <td type="id" data-value="{{info.id}}">{{info.id}}</td>
         <td type="createtime" data-value="{{info.createtime}}">{{info.createtime}}</td>
         <td>{{info.userRoom}}</td>
         <td>{{info.shopping}}</td>
         <td type="count" data-value="{{info.count}}">{{info.count}}</td>
-        <td>{{info.status}}</td>
         <td>{{info.admin}}</td>
+        <td>{{info.status}}</td>
         <td>{{info.robotstatusname}}</td>
     </tr>
     {{/each}}

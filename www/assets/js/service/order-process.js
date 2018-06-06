@@ -12,7 +12,7 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
             language: 'zh-CN'
         });
         shoppingItemList.init({
-            colCount: 9,
+            colCount: 10,
             autoLoad: true,
             listUrl: ypGlobal.listUrl,
             listDomObject: $("#dataList"),

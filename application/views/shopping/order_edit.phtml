@@ -12,13 +12,14 @@
             <div class="modal-body" id="detailBody" mf="modalfix">
                 <form class="form-horizontal" id="listEditor">
                     <input type="hidden" id="edit_id" value="0">
+                    <input type="hidden" id="edit_ordersproductsid" value="0">
 
                     <div class="control-group" op="editFiled">
                         <label class="control-label"
-                               for="edit_status"><?php echo Enum_Lang::getPageText('shopping', 'shoppingStatus'); ?>
+                               for="edit_productstatus"><?php echo Enum_Lang::getPageText('shopping', 'productStatus'); ?>
                             ：</label>
                         <div class="controls">
-                            <select id="edit_status" data-paramkey='status' class="input-medium select-long"
+                            <select id="edit_productstatus" data-paramkey='productstatus' class="input-medium select-long"
                                     op="filterCase">
                                 <?php foreach ($statusList as $id => $name) {
                                     ?>

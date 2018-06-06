@@ -93,6 +93,7 @@ class Convertor_Shopping extends Convertor_Base {
                     continue;
                 }
                 $dataTemp['id'] = $value['id'];
+                $dataTemp['ordersProductsId'] = $value['orders_products_id'];
                 $dataTemp['userid'] = $value['userid'];
                 $dataTemp['userRoom'] = $value['userInfo']['room'];
                 $dataTemp['count'] = $value['count'];
@@ -105,6 +106,8 @@ class Convertor_Shopping extends Convertor_Base {
                 $dataTemp['memo'] = $value['memo'];
                 $dataTemp['robotstatus'] = $value['robotStatus'];
                 $dataTemp['robotstatusname'] = $value['robotStatusName'];
+                $dataTemp['productstatus'] = $value['productStatus'];
+                $dataTemp['productstatusname'] = $value['productStatusName'];
                 $tmp[] = $dataTemp;
             }
             $data['data']['list'] = $tmp;

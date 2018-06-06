@@ -362,7 +362,7 @@ class Rpc_UrlConfigShopping {
             'name' => '获取购物报名列表',
             'method' => 'getShoppingOrderList',
             'auth' => true,
-            'url' => '/shoppingOrder/getOrderList',
+            'url' => '/shoppingOrder/getHotelOrderList',
             'param' => array(
                 'id' => array(
                     'required' => false,
@@ -483,7 +483,7 @@ class Rpc_UrlConfigShopping {
             'name' => 'Send the robot to deliver',
             'method' => 'deliverRobot',
             'auth' => true,
-            'url' => '/Shoppingorder/updateShoppingOrderById',
+            'url' => '/Shoppingorder/updateOrderProductById',
             'param' => array(
                 'id' => array(
                     'required' => true,

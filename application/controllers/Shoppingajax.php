@@ -125,17 +125,14 @@ class ShoppingajaxController extends \BaseController {
      */
     public function getOrderListAction() {
         $paramList['page'] = $this->getPost('page');
+        $paramList['limit'] = 5;
         $paramList['id'] = intval($this->getPost('id'));
         $paramList['shoppingid'] = intval($this->getPost('shoppingid'));
         $paramList['userid'] = intval($this->getPost('userid'));
         $paramList['status'] = intval($this->getPost('status'));
         $paramList['hotelid'] = intval($this->getHotelId());
         $result = $this->shoppingModel->getOrderList($paramList);
-        $excludeFinished = false;
-        if (empty($paramList['status'])) {
-            $excludeFinished = true;
-        }
-        $result = $this->shoppingConvertor->orderListConvertor($result, $excludeFinished);
+        $result = $this->shoppingConvertor->orderListConvertor($result, false);
         $this->echoJson($result);
     }
 }

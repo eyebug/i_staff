@@ -22,6 +22,7 @@ class Lang_Zh_Shopping {
     const SHOPPING = '物品';
     const SHOPPINGCOUNT = '购买数量';
     const SHOPPINGSTATUS = '订单状态';
+    const PRODUCTSTATUS = '物品状态';
     const ORDERADMIN = '处理员工';
     const ORDERMEMO = '备注处理员工';
 

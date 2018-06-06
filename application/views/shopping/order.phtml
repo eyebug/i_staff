@@ -27,12 +27,13 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>订单 ID</th>
                                         <th><?php echo Enum_Lang::getPageText('shopping', 'createTime'); ?></th>
                                         <th><?php echo Enum_Lang::getPageText('shopping', 'room'); ?></th>
                                         <th><?php echo Enum_Lang::getPageText('shopping', 'shopping'); ?></th>
-                                        <th><?php echo Enum_Lang::getPageText('shopping', 'SHOPPINGCOUNT'); ?></th>
-                                        <th><?php echo Enum_Lang::getPageText('shopping', 'shoppingStatus'); ?></th>
+                                        <th><?php echo Enum_Lang::getPageText('shopping', 'shoppingCount'); ?></th>
+                                        <th><?php echo Enum_Lang::getPageText('shopping', 'productStatus'); ?></th>
+                                        <th><?php echo Enum_Lang::getPageText('shopping', 'robotStatus'); ?></th>
                                         <th><?php echo Enum_Lang::getPageText('shopping', 'orderAdmin'); ?></th>
                                         <th><?php echo Enum_Lang::getPageText('shopping', 'orderMemo'); ?></th>
                                         <th>操作</th>
@@ -69,17 +70,19 @@
 </html>
 <script id="dataList_tpl" type="text/html">
     {{each list as info i}}
-    <tr dataId="{{info.id}}">
-        <td type="id" data-value="{{info.id}}">{{info.id}}</td>
+    <tr dataId="{{info.ordersProductsId}}">
+        <td type="id" data-value="{{info.ordersProductsId}}">{{info.id}}</td>
         <td type="createtime" data-value="{{info.createtime}}">{{info.createtime}}</td>
         <td>{{info.userRoom}}</td>
         <td>{{info.shopping}}</td>
         <td type="count" data-value="{{info.count}}">{{info.count}}</td>
-        <td type="status" data-value="{{info.statusid}}">{{info.status}}</td>
+        <td type="productstatus" data-value="{{info.productstatus}}">{{info.productstatusname}}</td>
+        <td type="status" data-value="{{info.robotstatus}}">{{info.robotstatusname}}</td>
         <td type="adminid" data-value="{{info.adminid}}">{{info.admin}}</td>
         <td type="memo" data-value="{{info.memo}}">{{info.memo}}</td>
+        <td type="ordersproductsid" data-value="{{info.ordersProductsId}}" style="display: none"></td>
         <td>
-            <button op="editDataOne" type="button" class="btn btn-info btn-sm" data-dataid="{{info.id}}">修改</button>
+            <button op="editDataOne" type="button" class="btn btn-info btn-sm" data-dataid="{{info.ordersProductsId}}">修改</button>
         </td>
     </tr>
     {{/each}}

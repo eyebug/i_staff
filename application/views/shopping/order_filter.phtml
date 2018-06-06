@@ -36,7 +36,7 @@
                 <span class="control-label"><?php echo Enum_Lang::getPageText('shopping', 'SHOPPINGSTATUS'); ?>：</span>
                 <div class="controls">
                     <select id="filter_status" data-paramkey='status' class="input-medium select-long" op="filterCase">
-                        <option value=""><?php echo Enum_Lang::getPageText('shopping', 'unfinished'); ?></option>
+                        <option value=""><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
                         <?php foreach ($statusList as $id => $name) { ?>
                             <option value="<?php echo $id; ?>"><?php echo $name; ?></option>
                         <?php } ?>
