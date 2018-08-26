@@ -1015,7 +1015,7 @@ class Rpc_UrlConfigHotel {
                     'style' => 'interface'
                 ),
                 'groupid' => array(
-                    'required' => false,
+                    'required' => true,
                     'format' => 'int',
                     'style' => 'interface'
                 ),

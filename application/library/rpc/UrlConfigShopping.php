@@ -472,7 +472,7 @@ class Rpc_UrlConfigShopping {
                     'style' => 'interface'
                 ),
                 'itemlist' => array(
-                    'required' => true,
+                    'required' => false,
                     'format' => 'string',
                     'style' => 'interface',
                 ),

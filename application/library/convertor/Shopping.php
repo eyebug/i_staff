@@ -92,7 +92,7 @@ class Convertor_Shopping extends Convertor_Base {
                 if ($excludeFinished && $value['statusName'] == ShoppingModel::SHOPPING_ORDER_FINISH) {
                     continue;
                 }
-                $dataTemp['id'] = $value['id'];
+                $dataTemp['id'] = $value['idShow'];
                 $dataTemp['ordersProductsId'] = $value['orders_products_id'];
                 $dataTemp['userid'] = $value['userid'];
                 $dataTemp['userRoom'] = $value['userInfo']['room'];
@@ -108,6 +108,7 @@ class Convertor_Shopping extends Convertor_Base {
                 $dataTemp['robotstatusname'] = $value['robotStatusName'];
                 $dataTemp['productstatus'] = $value['productStatus'];
                 $dataTemp['productstatusname'] = $value['productStatusName'];
+                $dataTemp['price'] = $value['price'];
                 $tmp[] = $dataTemp;
             }
             $data['data']['list'] = $tmp;

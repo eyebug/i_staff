@@ -125,7 +125,7 @@ class ShoppingajaxController extends \BaseController {
      */
     public function getOrderListAction() {
         $paramList['page'] = $this->getPost('page');
-        $paramList['limit'] = 5;
+        $paramList['limit'] = $this->getPost('limit');
         $paramList['id'] = intval($this->getPost('id'));
         $paramList['shoppingid'] = intval($this->getPost('shoppingid'));
         $paramList['userid'] = intval($this->getPost('userid'));

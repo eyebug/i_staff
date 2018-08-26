@@ -194,5 +194,24 @@ class ServiceController extends \BaseController
         $this->_view->display('service/robot_get.phtml');
     }
 
+    public function pinAction()
+    {
+        $userModel = new UserModel();
+        $response = $userModel->getList(array(
+            'hotelid' => $this->getHotelId(),
+            'limit' => 0
+        ));
+        $data = $response['data']['list'];
+        $roomList = array_unique(array_column($data, 'room_no'));
+        $nameList = array_unique(array_column($data, 'fullname'));
+        sort($roomList);
+        sort($nameList);
+
+        $this->_view->assign('token', $this->getToken());
+        $this->_view->assign('roomList', $roomList);
+        $this->_view->assign('nameList', $nameList);
+        $this->_view->display('service/pin.phtml');
+    }
+
 
 }

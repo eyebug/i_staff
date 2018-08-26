@@ -140,11 +140,12 @@ class ShoppingModel extends \BaseModel {
             if ($params['hotelid'] <= 0) {
                 break;
             }
-
-            if(!is_array($paramList['itemlist']) || count($paramList['itemlist']) <= 0) break;
+            if (!is_array($paramList['itemlist'])) {
+                $paramList['itemlist'] = array();
+            }
             foreach ($paramList['itemlist'] as &$item) {
                 $orderId = intval($item);
-                if ($orderId <= 0) {
+                if ($orderId < 0) {
                     break 2;
                 } else {
                     $item = $orderId;

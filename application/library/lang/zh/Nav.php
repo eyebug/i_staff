@@ -84,4 +84,6 @@ class Lang_Zh_Nav {
     const SIGNSYSTEM = '雅诗阁签到系统';
     const SIGNREPORT = '雅诗阁签到报表';
 
+    const PINMGMT = '住客密码重置';
+
 }

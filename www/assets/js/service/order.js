@@ -31,13 +31,87 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
             searchButtonDomObject: $("#searchBtn"),
             listTemplate: 'dataList_tpl',
             listSuccess: function (data) {
-                shoppingItemList.writeListData(data);
+                //write the data to the data table
+                writeList(data);
             },
             listFail: function (data) {
                 tips.show('数据加载失败！');
             }
         });
     }
+
+    function writeList(data) {
+        var html = '';
+        if (data.data.list.length > 0) {
+            html = template(shoppingItemList.listParams.listTemplate, data.data);
+            var pageHtml = template(shoppingItemList.listParams.pageTemplate, data.data.pageData);
+            shoppingItemList.listParams.pageDomObject.html(pageHtml).show();
+        } else {
+            html = template(shoppingItemList.listParams.noDataTemplate, {
+                colCount: shoppingItemList.listParams.colCount
+            });
+            shoppingItemList.listParams.pageDomObject.hide();
+        }
+        dataTable(data);
+    }
+
+    function dataTable(data) {
+        shoppingItemList.listParams.listDomObject.html('');
+        var orderId = "";
+        for(var i = 0; i< data.data.list.length; i++) {
+            var order = data.data.list[i];
+            if (orderId != order.id) {
+                orderId = order.id;
+                var count = 0;
+                for (var j = i; j < data.data.list.length; j++) {
+                    if (orderId == data.data.list[j].id) {
+                        count = count + parseInt(data.data.list[i].count);
+                    } else {
+                        break;
+                    }
+                }
+                var orderRowStr = '<tr dataid="%s" class="order" style="background-color: lightgrey;">\n' +
+                    '    <td class="order close" data-value="%s" data-toggle="-" style="width: 100%;">+</td>\n' +
+                    '    <td data-value="%s" type="id">%s</td>\n' +
+                    '    <td type="createtime">%s</td>\n' +
+                    '    <td type="room">%s</td>\n' +
+                    '    <td></td>\n' +
+                    '    <td data-value="%s" type="count">%s</td>\n' +
+                    '    <td></td>\n' +
+                    '    <td>%s</td>\n' +
+                    '    <td></td>\n' +
+                    '</tr>';
+                var orderRow = $(orderRowStr.format(order.id, order.id, order.id, order.id, order.createtime, order.userRoom, count, count, order.status));
+                shoppingItemList.listParams.listDomObject.append(orderRow);
+            }
+
+            var orderProductStr = '<tr dataid="%s" class="orderProduct" style="display: none; background-color: white ;">\n' +
+                '    <td><input type="checkbox" value="%s" class="robotShopping"></td>' +
+                '    <td data-value="%s" type="id">%s</td>\n' +
+                '    <td type="createtime">%s</td>\n' +
+                '    <td type="room">%s</td>\n' +
+                '    <td>%s</td>\n' +
+                '    <td data-value="%s" type="count">%s</td>\n' +
+                '    <td>%s</td>\n' +
+                '    <td>%s</td>\n' +
+                '    <td>%s</td>\n' +
+                '</tr>';
+            var orderProductRow = $(orderProductStr.format(order.id, order.ordersProductsId, order.id, order.id, order.createtime, order.userRoom,
+                order.shopping, order.count, order.count, order.admin, order.productstatusname, order.robotstatusname));
+            shoppingItemList.listParams.listDomObject.append(orderProductRow);
+
+        }
+        shoppingItemList.listParams.listDomObject.show();
+    }
+
+    String.prototype.format= function(){
+        var args = Array.prototype.slice.call(arguments);
+        var count=0;
+        return this.replace(/%s/g,function(s,i){
+            return args[count++];
+        });
+    };
+
 
     /**
      * Modal for robot deliver
@@ -72,12 +146,6 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
         $("#deliverRobot").on('click', function (e) {
             e.preventDefault();
             //set selected room
-            var room = getRoom();
-            if (room === false) {
-                $('#saveDeliverData').attr('disabled', 'disabled')
-            } else {
-                $('#saveDeliverData').removeAttr('disabled');
-            }
             $('#edit_dest').siblings().children(".searchable-select-holder").html(getRoom());
             robotDeliverForm.writeEditor({
                 editorDom: $("#robotDeliverEditor")
@@ -95,6 +163,24 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
             modalBody.height('300px');
         })
 
+    }
+
+    function initEvent() {
+        $("#dataList").on('click', 'td[class~="order"]', function () {
+            var button = $(this);
+            var orderId = button.data('value');
+            var dataDom = $("#dataList").find("tr[dataId=" + orderId + "]");
+            dataDom.each(function (key, value) {
+                var dataOne = $(value);
+                if (dataOne.hasClass('orderProduct')) {
+                    dataOne.toggle();
+                }
+            });
+            var text = button.html();
+            button.html(button.data('toggle'));
+            button.data('toggle', text);
+
+        })
     }
 
     //fix select list when open it again
@@ -144,6 +230,7 @@ iHotel.robotShoppingList = (function ($, ypGlobal) {
     function init() {
         initAcitivityUserList();
         initCss();
+        initEvent();
         initDeliverEditor();
     }
 

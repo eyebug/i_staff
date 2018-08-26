@@ -50,6 +50,22 @@ class BaseController extends \Yaf_Controller_Abstract {
     }
 
     /**
+     * @return int
+     */
+    protected function getStaffId()
+    {
+        return $this->userInfo['id'];
+    }
+
+    /**
+     * @return string
+     */
+    protected function getToken()
+    {
+        return $this->userInfo['token'];
+    }
+
+    /**
      * 设置页面变量
      */
     private function setPageWebConfig() {

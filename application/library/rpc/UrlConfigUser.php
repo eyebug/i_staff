@@ -20,6 +20,16 @@ class Rpc_UrlConfigUser
                     'format' => 'int',
                     'style' => 'interface'
                 ),
+                'room_no' => array(
+                    'required' => false,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
+                'fullname' => array(
+                    'required' => false,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
                 'page' => array(
                     'required' => false,
                     'format' => 'int',

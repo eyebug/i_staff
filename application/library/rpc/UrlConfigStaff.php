@@ -31,6 +31,24 @@ class Rpc_UrlConfigStaff {
                 )
             )
         ),
+        'SF002' => array(
+            'name' => 'Reset pin for user',
+            'method' => 'getStaffList',
+            'auth' => true,
+            'url' => '/Staff/resetUserPin',
+            'param' => array(
+                'token' => array(
+                    'required' => true,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
+                'userid' => array(
+                    'required' => true,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+            )
+        ),
     );
 
     /**

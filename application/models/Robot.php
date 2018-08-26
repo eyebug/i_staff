@@ -21,7 +21,8 @@ class RobotModel extends \BaseModel {
             'HOTQY00SZ201704180503006' => '小雅',
         ),
         7 => array(
-            'HOTQY00SZ201704180503025' => '小雅',
+            'HOTQY00SZ201806281006015' => '小雅1',
+            'HOTQY00SZ201704180503025' => '小雅2',
         ),
         // --for test
         6 => array(
@@ -30,6 +31,9 @@ class RobotModel extends \BaseModel {
         // --end test
         21 => array(
             'HOTQY00SZ201802050905032' => '小雅',
+        ),
+        28 => array(
+            'HOTQY00SZ201806281006043' => '小雅',
         ),
     );
 
@@ -189,7 +193,7 @@ class RobotModel extends \BaseModel {
             $paramList['start'] ? $params['start'] = $paramList['start'] : false;
             $paramList['dest'] ? $params['dest'] = $paramList['dest'] : false;
 
-            $result = $this->rpcClient->getResultRaw('RT004', $params);
+            $result = $this->rpcClient->getResultRaw('RT004', $params, false, -1, true, 20);
         } while (false);
         return (array)$result;
     }

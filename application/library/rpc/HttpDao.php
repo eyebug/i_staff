@@ -172,6 +172,7 @@ class Rpc_HttpDao {
         }
 
         $responseResult = false;
+        $postData = '';
         if ($httpMethod == 'POST') {
             $postData = $requestUrl['param'];
             $requestUrl = $requestUrl['url'];

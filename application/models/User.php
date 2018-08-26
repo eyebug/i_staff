@@ -12,7 +12,12 @@ class UserModel extends \BaseModel
     public function getList($paramList, $cacheTime = 0)
     {
         do {
-            $params['hotelid'] = $paramList['hotelid'];
+            $params = array();
+            empty($paramList['hotelid'])? $this->throwException('Lack param', 1) : $params['hotelid'] = $paramList['hotelid'];
+            empty($paramList['id']) ? false : $params['id'] = $paramList['id'];
+            empty($paramList['room']) ? false : $params['room_no'] = $paramList['room'];
+            empty($paramList['lastname']) ? false : $params['fullname'] = $paramList['lastname'];
+
             if ($cacheTime == 0) {
                 $this->setPageParam($params, $paramList['page'], $paramList['limit'], 15);
             } else {

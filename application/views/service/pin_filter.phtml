@@ -1,0 +1,42 @@
+<div class="hero-unit hero-unit-custom hero-unit-mgdbtm clearfix" id="listFilter">
+    <form class="form-horizontal">
+        <div class="control-group control-group-block">
+            <div class="pull-left control-item">
+                <span class="control-label">ID：</span>
+                <div class="controls">
+                    <input id="filter_id" data-paramkey='id' type="number" class="form-control input-medium"
+                           op="filterCase" value=''/>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('login', 'lastName'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_lastname" data-paramkey='lastname' class="input-medium select-long searchableSelect" op="filterCase">
+                        <option value=""><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <?php foreach ($nameList as $name) { ?>
+                            <option value="<?php echo $name; ?>"><?php echo $name; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="pull-left control-item">
+                <span class="control-label"><?php echo Enum_Lang::getPageText('login', 'roomNo'); ?>：</span>
+                <div class="controls">
+                    <select id="filter_room" data-paramkey='room' class="input-medium select-long searchableSelect" op="filterCase">
+                        <option value=""><?php echo Enum_Lang::getPageText('system', 'all'); ?></option>
+                        <?php foreach ($roomList as $roomNo) { ?>
+                            <option value="<?php echo $roomNo; ?>"><?php echo $roomNo; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+
+
+            <button id="searchBtn" class="mgtop5 pull-left btn btn-primary" type="button"
+                    data-loading-text="<?php echo Enum_Lang::getPageText('system', 'searching'); ?>">
+                <?php echo Enum_Lang::getPageText('system', 'search'); ?>
+            </button>
+
+        </div>
+    </form>
+</div>
