@@ -32,6 +32,9 @@ class RobotModel extends \BaseModel {
         21 => array(
             'HOTQY00SZ201802050905032' => '小雅',
         ),
+        24 => array(
+            'HOTQY00SZ201806281006066' => '小雅',
+        ),
         28 => array(
             'HOTQY00SZ201806281006043' => '小雅',
         ),
