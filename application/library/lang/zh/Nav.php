@@ -86,4 +86,9 @@ class Lang_Zh_Nav {
 
     const PINMGMT = '住客密码重置';
 
+
+    const STAFFCONFIG = '个人设置';
+    const STAFFSCHEDULE = '消息推送时间设置';
+    const STAFFMESSAGE = '个人历史消息';
+
 }

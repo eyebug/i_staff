@@ -35,7 +35,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
         }
         Yaf_Registry::set('loginInfo', $loginInfo);
         Enum_Record::setRecordData('adminId', $loginInfo['id']);
-        Enum_Record::setRecordData('hotelId', $loginInfo['hotelId']);
+        Enum_Record::setRecordData('hotelId', $loginInfo['hotelid']);
     }
 
     public function _initPlugin(Yaf_Dispatcher $dispatcher) {

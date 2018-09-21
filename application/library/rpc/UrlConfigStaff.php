@@ -14,6 +14,11 @@ class Rpc_UrlConfigStaff {
                     'format' => 'int',
                     'style' => 'interface'
                 ),
+                'id' => array(
+                    'required' => false,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
                 'name' => array(
                     'required' => false,
                     'format' => 'string',
@@ -47,6 +52,29 @@ class Rpc_UrlConfigStaff {
                     'format' => 'int',
                     'style' => 'interface'
                 ),
+            )
+        ),
+        'SF003' => array(
+            'name' => 'update staff detail',
+            'method' => 'getStaffList',
+            'auth' => true,
+            'url' => '/Staff/updateStaffById',
+            'param' => array(
+                'id' => array(
+                    'required' => true,
+                    'format' => 'int',
+                    'style' => 'interface'
+                ),
+                'schedule' => array(
+                    'required' => false,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
+                'washing_push' => array(
+                    'required' => false,
+                    'format' => 'int',
+                    'style' => 'interface'
+                )
             )
         ),
     );

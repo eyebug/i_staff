@@ -3,6 +3,7 @@
 class Enum_App {
 
     const PUSH_TYPE_USER = 1;
+    const PUSH_TYPE_STAFF = 2;
     const PUSH_TYPE_HOTEL = 4;
     const PUSH_CONTENT_TYPE_URL = 'url';
 
