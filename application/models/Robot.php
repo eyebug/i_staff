@@ -41,6 +41,9 @@ class RobotModel extends \BaseModel {
         28 => array(
             'HOTQY00SZ201806281006043' => '小雅',
         ),
+        30 => array(
+            'HOTQY00SZ201806281007039' => '小雅',
+        ),
     );
 
     public function getPositionTypeList()
