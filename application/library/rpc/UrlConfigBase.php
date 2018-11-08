@@ -71,6 +71,19 @@ class Rpc_UrlConfigBase {
             'url' => '/system/getPlatformList',
             'param' => array()
         ),
+        'B006' => array(
+            'name' => '从oss删除',
+            'method' => 'deleteFromOss',
+            'auth' => true,
+            'url' => '/system/deleteFromOss',
+            'param' => array(
+                'filekey' => array(
+                    'required' => false,
+                    'format' => 'string',
+                    'style' => 'interface'
+                ),
+            )
+        ),
     );
 
     /**

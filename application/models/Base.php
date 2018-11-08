@@ -58,22 +58,45 @@ class BaseModel {
     }
 
     /**
-     * 上传文件
-     * @param $file 待上传的文件
-     * @param $path 待上传的文件类型
-     * @return array
+     * Handle file
+     *
+     * @param array|string $file
+     * @param string $path file type
+     * @param string $oldFileKey
+     * @return mixed
      */
     public function uploadFile($file, $path, $oldFileKey = '') {
         $result['code'] = 1;
-        if ($file['error']) {
-            switch ($file['error']) {
-                case UPLOAD_ERR_INI_SIZE:
-                    $result['msg'] = '上传的文件超过大小限制：' . ini_get('upload_max_filesize');
-                    break;
+        if (is_string($file) && !empty($file)) {
+            //means remove the file
+            $result = $this->deleteFile($file);
+            if ($result['code'] == 0) {
+                $result['data']['picKey'] = '';
             }
         } else {
-            $result = $this->rpcClient->getResultRaw('B003', array('uploadfile' => $file, 'type' => $path, 'oldfilekey' => $oldFileKey), false, -1, true, 100);
+            if ($file['error']) {
+                switch ($file['error']) {
+                    case UPLOAD_ERR_INI_SIZE:
+                        $result['msg'] = '上传的文件超过大小限制：' . ini_get('upload_max_filesize');
+                        break;
+                }
+            } else {
+                $result = $this->rpcClient->getResultRaw('B003', array('uploadfile' => $file, 'type' => $path, 'oldfilekey' => $oldFileKey), false, -1, true, 100);
+            }
         }
+        return $result;
+    }
+
+    /**
+     * Delete oss file
+     *
+     * @param $oldFileKey
+     * @return mixed
+     */
+    public function deleteFile($oldFileKey)
+    {
+        $result['code'] = 1;
+        $result = $this->rpcClient->getResultRaw('B006', array('filekey' => $oldFileKey));
         return $result;
     }
 
