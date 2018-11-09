@@ -106,6 +106,9 @@ class Convertor_Activity extends Convertor_Base {
             $data['data']['list'] = $tmp;
             $data['data']['pageData']['page'] = intval($result['page']);
             $data['data']['pageData']['rowNum'] = intval($result['total']);
+            if ($result['limit'] == 0) {
+                $data['data']['pageData']['pageNum'] = 1;
+            }
             $data['data']['pageData']['pageNum'] = ceil($result['total'] / $result['limit']);
         }
         return $data;
