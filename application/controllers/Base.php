@@ -95,7 +95,7 @@ class BaseController extends \Yaf_Controller_Abstract {
      * 设置权限
      */
     private function setPermission($loginInfo) {
-        $permissionList = explode(",", $loginInfo['permission']);
+        $permissionList = $loginInfo['permission'];
         $this->_view->assign('permssionList', $permissionList);
     }
 

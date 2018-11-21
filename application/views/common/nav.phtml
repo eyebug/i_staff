@@ -2,6 +2,7 @@
     <div class="well side-nav">
         <ul class="nav nav-list" id="navList">
 
+            <?php if (in_array(1, $permssionList)) { ?>
             <li class="nav-header">
                 <span class="nav-header-open">
                     <i class="icon-plus icon-plus-opacity pull-right"></i><?php echo Enum_Lang::getPageText('nav', 'robotControl'); ?>
@@ -21,7 +22,10 @@
                     </li>
                 </ul>
             </li>
+            <?php } ?>
 
+
+            <?php if (in_array(2, $permssionList)) { ?>
             <li class="nav-header">
                 <span class="nav-header-open">
                     <i class="icon-plus icon-plus-opacity pull-right"></i><?php echo Enum_Lang::getPageText('nav', 'shoppingOrder'); ?>
@@ -33,7 +37,9 @@
 
                 </ul>
             </li>
+            <?php } ?>
 
+            <?php if (in_array(3, $permssionList)) { ?>
             <li class="nav-header">
                 <span class="nav-header-open">
                     <i class="icon-plus icon-plus-opacity pull-right"></i><?php echo Enum_Lang::getPageText('nav', 'activity'); ?>
@@ -44,8 +50,9 @@
                     <li><a href="/activity/order"><?php echo Enum_Lang::getPageText('nav', 'activityOrder'); ?></a></li>
                 </ul>
             </li>
+            <?php } ?>
 
-
+            <?php if (in_array(4, $permssionList)) { ?>
             <li class="nav-header">
                 <span class="nav-header-open">
                     <i class="icon-plus icon-plus-opacity pull-right"></i><?php echo Enum_Lang::getPageText('nav', 'service'); ?>
@@ -74,7 +81,10 @@
                     </li>
                 </ul>
             </li>
+            <?php } ?>
 
+
+            <?php if (in_array(5, $permssionList)) { ?>
             <li class="nav-header">
                 <span class="nav-header-open">
                     <i class="icon-plus icon-plus-opacity pull-right"></i><?php echo Enum_Lang::getPageText('nav', 'staffConfig'); ?>
@@ -89,6 +99,7 @@
                     </li>
                 </ul>
             </li>
+            <?php } ?>
 
         </ul>
     </div>
